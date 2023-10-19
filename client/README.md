@@ -46,8 +46,7 @@ Development
 Describe the project's folder structure, available scripts, and testing procedures.
 
 Folder Structure
-bash
-Copy code
+```
 /project-root
   ├── src/            # Source code
   ├── public/         # Public assets
@@ -55,6 +54,7 @@ Copy code
   ├── vite.config.js  # Vite configuration
   ├── package.json    # Project dependencies
   ├── README.md       # Project documentation
+```
 Available Scripts
 npm run start: Start the development server.
 npm run build: Build the project for production.
