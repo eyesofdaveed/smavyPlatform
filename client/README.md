@@ -1,6 +1,4 @@
-# Project Name
-
-**[Smavy Platform]**
+### Smavy Platform
 
 ## Description
 
