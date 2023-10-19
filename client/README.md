@@ -1,8 +1,8 @@
-### Smavy Platform
+# Smavy Platform
 
 ## Description
 
-[Smavy Platform was createed for practice part of study course]
+[Smavy Platform was createed for practice part of study course
 
 ## Table of Contents
 
@@ -39,8 +39,7 @@ npm install
 # Start the development server
 npm start
 
-bash
-Copy code
+```
 # To build for production
 npm run build
 Development
