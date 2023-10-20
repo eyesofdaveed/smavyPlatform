@@ -26,3 +26,7 @@ app.options("*", cors());
 app.listen(8800, () => {
   console.log("Backend server is running at port 8800!");
 });
+
+app.get('/', (req, res) => {
+  res.write(`hello`)
+});
