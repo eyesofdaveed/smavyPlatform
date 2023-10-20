@@ -1,1 +1,1 @@
-const module = "module"
+const module = "modules"
