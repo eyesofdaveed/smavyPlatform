@@ -28,5 +28,5 @@ app.listen(8800, () => {
 });
 
 app.get('/', (req, res) => {
-  res.write(`Hello`)
+  res.write(`adding get request`)
 });
