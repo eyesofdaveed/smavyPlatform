@@ -7,11 +7,18 @@ const StyledInput = styled.input`
   outline: none;
   border: none;
   padding: 12px 16px;
-  width: 100%;
+  width: 80%;
 `;
 
-const Input = ({ placeholder = '', type = 'text' }) => {
-  return <StyledInput type={type} placeholder={placeholder} />;
+const Input = (props) => {
+  debugger;
+  return <StyledInput
+    type={props.type}
+    placeholder={props.placeholder}
+    name={props.name}
+    required={props.required}
+    value={props.value}
+    onChange={props.onChange} />;
 };
 
 export default Input;

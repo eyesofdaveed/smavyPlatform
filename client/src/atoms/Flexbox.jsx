@@ -7,7 +7,7 @@ const StyledFlexbox = styled.div`
   align-items: center;
   flex-direction: ${({ direction }) => direction};
   gap: ${({ gap }) => (gap ? gap : '16px')};
-  align-items: ${({ align }) => align};\
+  align-items: ${({ align }) => align};
   width: 100%;
 `;
 
