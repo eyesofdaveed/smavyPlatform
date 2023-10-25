@@ -6,6 +6,8 @@ const helmet = require("helmet");
 const morgan = require("morgan");
 const cors = require("cors");
 
+const usersRoute = require("./routes/users");
+
 dotenv.config();
 
 /* MongoDB Connection */
@@ -26,6 +28,8 @@ app.options("*", cors());
 app.listen(8800, () => {
   console.log("Backend server is running at port 8800!");
 });
+
+app.use("/register", usersRoute);
 
 app.get('/', (req, res) => {
   res.write(`hello`)
