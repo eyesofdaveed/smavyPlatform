@@ -18,6 +18,8 @@ mongoose
   .then(() => console.log("Database connected!"))
   .catch((err) => console.log(err));
 
+
+
 // middleware
 app.use(express.json());
 app.use(helmet());
@@ -29,8 +31,6 @@ app.listen(8800, () => {
   console.log("Backend server is running at port 8800!");
 });
 
-app.use("/register", usersRoute);
+// routes with prefix
+app.use("/users", usersRoute);
 
-app.get('/', (req, res) => {
-  res.write(`hello`)
-});
