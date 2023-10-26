@@ -7,18 +7,23 @@ const StyledInput = styled.input`
   outline: none;
   border: none;
   padding: 12px 16px;
-  width: 80%;
+  width: 100%;
 `;
 
-const Input = (props) => {
-  debugger;
-  return <StyledInput
-    type={props.type}
-    placeholder={props.placeholder}
-    name={props.name}
-    required={props.required}
-    value={props.value}
-    onChange={props.onChange} />;
+const Input = ({ type, placeholder, required, value, onChange }) => {
+  const handleInputChange = e => {
+    onChange(e.target.value);
+  };
+
+  return (
+    <StyledInput
+      type={type}
+      placeholder={placeholder}
+      required={required}
+      value={value}
+      onChange={handleInputChange}
+    />
+  );
 };
 
 export default Input;

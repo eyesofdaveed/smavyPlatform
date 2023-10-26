@@ -1,91 +1,79 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
+import styled from 'styled-components';
 
-import Card from "../atoms/Card";
-import Flexbox from "../atoms/Flexbox";
-import Input from "../atoms/Input";
-import Text from "../atoms/Text";
+import Card from '../atoms/Card';
+import Flexbox from '../atoms/Flexbox';
+import Input from '../atoms/Input';
+import Text from '../atoms/Text';
+import Button from '../atoms/Button';
 import { sizes } from '../base/index';
 
-function Form() {
+// @TODO: fix width of input
+const StyledInput = styled(Input)`
+  width: 80%;
+`;
 
-  const [errorMessages, setErrorMessages] = useState({});
+const INPUT_TYPES = {
+  USERNAME: 'username',
+  PASSWORD: 'password',
+};
+
+const ERROR_MESSAGES = {
+  USERNAME: 'Введите имя',
+  PASSWORD: 'Введите пароль',
+};
+
+function Form() {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-
-  const database = [
-    {
-      username: "",
-      password: ""
-    }
-  ];
-
-  const errors = {
-    uname: "invalid username",
-    pass: "invalid password"
-  };
-
-  const handleSubmit = (event) => {
+  const handleSubmit = event => {
+    console.log('12312');
     event.preventDefault();
 
-    let { uname, pass } = document.forms[0];
-
-    const userData = database.find((user) => user.username === uname.value);
-
-    if (userData) {
-      if (userData.password !== pass.value) {
-        setErrorMessages({ name: "pass", message: errors.pass });
-      } else {
-        setIsSubmitted(true);
-      }
-    } else {
-      debugger;
-      setErrorMessages({ name: "uname", message: errors.uname });
-    }
+    if (!username.length) return setErrorMessage('Введите имя');
+    if (!password.length) return setErrorMessage('Введите пароль');
   };
 
-  const renderErrorMessage = (name) =>
-    name === errorMessages.name && (
-      <div className="error">{errorMessages.message}</div>
-    );
+  const handleChange = inputName => value => {
+    if (inputName === INPUT_TYPES.USERNAME) setUsername(value.trim());
+    if (inputName === INPUT_TYPES.PASSWORD) setPassword(value.trim());
+  };
 
-  const onChange = () => {
-    let { uname, pass } = document.forms[0];
-    database[0].username += uname.value;
-    database[0].password += pass.value;
-  }
-
-  const renderForm = (
-
+  const renderForm = () => (
     <Card>
       <Flexbox direction="column" gap="8px" align="flex-start">
-        <form onSubmit={handleSubmit}>
-          <Text fontSize={sizes.xLarge}>Вход</Text>
-
-
-          <Flexbox direction="column">
-            <Input placeholder="Ваше имя" onChange={onChange} value={database[0].username} type="text" name="uname" required />
-            {renderErrorMessage("uname")}
-            <Input placeholder="Ваш пароль" onChange={onChange} value={database[0].password} type="password" name="pass" required />
-            {renderErrorMessage("pass")}
-            <Input type="submit" />
-
-          </Flexbox>
-
-          <Flexbox>
-            <Text fontSize={sizes.small}>Забыли пароль?</Text>
-            <Text fontSize={sizes.small}>Зарегестрироваться </Text>
-          </Flexbox>
-        </form>
-      </Flexbox >
-    </Card >
-
+        <Text fontSize={sizes.xLarge}>Вход</Text>
+        <Flexbox direction="column">
+          <StyledInput
+            placeholder="Ваше имя"
+            onChange={handleChange(INPUT_TYPES.USERNAME)}
+            value={username}
+            type="text"
+            required
+          />
+          {errorMessage}
+          <StyledInput
+            placeholder="Ваш пароль"
+            onChange={handleChange(INPUT_TYPES.PASSWORD)}
+            value={password}
+            type="password"
+            required
+          />
+          {errorMessage}
+          <Button type="submit" text="Войти" onClick={handleSubmit} />
+        </Flexbox>
+        <Flexbox>
+          <Text fontSize={sizes.small}>Забыли пароль?</Text>
+          <Text fontSize={sizes.small}>Зарегестрироваться </Text>
+        </Flexbox>
+      </Flexbox>
+    </Card>
   );
 
-  return (
-    <>
-      {isSubmitted ? <div>User is successfully logged in</div> : renderForm}
-    </>
-  );
+  return isSubmitted ? <>User is successfully logged in</> : renderForm();
 }
 
 export default Form;
