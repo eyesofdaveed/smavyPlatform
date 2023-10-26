@@ -13,6 +13,11 @@ const AssignmentsSchema = new Schema({
         trim: true,
         required: true,  
     },
+    deadline: {
+        type: Date,
+        trim: true,
+        required: true
+    },
     completed: {
         type: Boolean,
         required: true,
