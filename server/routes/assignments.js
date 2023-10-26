@@ -41,4 +41,17 @@ router.put('/:id', async (req, res) => {
 })
 
 
+//delete an assignment by id
+router.put('/:id', async (req, res) => {
+    const deletionCriteria = { _id: 123 };
+    try {
+        const deletedAssignment = await Assignments.deleteOne({deletionCriteria
+        });
+        res.status(200).json(deletedAssignment);
+    } catch (err) {
+        console.log(err);
+    }
+})
+
+
 module.exports = router;
