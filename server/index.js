@@ -7,6 +7,9 @@ const morgan = require("morgan");
 const cors = require("cors");
 
 const usersRoute = require("./routes/users");
+const assignmentsRoute = require("./routes/assignments");
+
+
 
 dotenv.config();
 
@@ -33,4 +36,5 @@ app.listen(8800, () => {
 
 // routes with prefix
 app.use("/users", usersRoute);
+app.use("/assignments", assignmentsRoute);
 
