@@ -7,13 +7,12 @@ const StyledFlexbox = styled.div`
   align-items: center;
   flex-direction: ${({ direction }) => direction};
   gap: ${({ gap }) => (gap ? gap : '16px')};
-  align-items: ${({ align }) => align};\
-  width: 100%;
+  width: ${({width}) => width };
 `;
 
-const Flexbox = ({ direction = 'row', gap, align, children }) => {
+const Flexbox = ({ direction = 'row', gap, align, children, width }) => {
   return (
-    <StyledFlexbox direction={direction} gap={gap} align={align}>
+    <StyledFlexbox direction={direction} gap={gap} align={align} width={width}>
       {children}
     </StyledFlexbox>
   );
