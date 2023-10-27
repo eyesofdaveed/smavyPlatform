@@ -8,10 +8,6 @@ import Text from '../atoms/Text';
 import Button from '../atoms/Button';
 import { sizes } from '../base/index';
 
-const INPUT_WIDTH = {
-  WIDTH: '80%',
-};
-
 const INPUT_TYPES = {
   USERNAME: 'username',
   PASSWORD: 'password',
@@ -45,9 +41,8 @@ function Form() {
     <Card>
       <Flexbox direction="column" gap="8px" align="flex-start">
         <Text fontSize={sizes.xLarge}>Вход</Text>
-        <Flexbox direction="column">
+        <Flexbox direction="column" width='80%'>
           <Input
-            width={INPUT_WIDTH.WIDTH}
             placeholder="Ваше имя"
             onChange={handleChange(INPUT_TYPES.USERNAME)}
             value={username}
@@ -56,7 +51,6 @@ function Form() {
           />
           {errorMessage}
           <Input
-            width={INPUT_WIDTH.WIDTH}
             placeholder="Ваш пароль"
             onChange={handleChange(INPUT_TYPES.PASSWORD)}
             value={password}
