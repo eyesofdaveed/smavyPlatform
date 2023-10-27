@@ -8,10 +8,9 @@ import Text from '../atoms/Text';
 import Button from '../atoms/Button';
 import { sizes } from '../base/index';
 
-// @TODO: fix width of input
-const StyledInput = styled(Input)`
-  width: 80%;
-`;
+const INPUT_WIDTH = {
+  WIDTH: '80%',
+};
 
 const INPUT_TYPES = {
   USERNAME: 'username',
@@ -30,7 +29,7 @@ function Form() {
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const handleSubmit = event => {
-    console.log('12312');
+    console.log(username, password);
     event.preventDefault();
 
     if (!username.length) return setErrorMessage('Введите имя');
@@ -47,7 +46,8 @@ function Form() {
       <Flexbox direction="column" gap="8px" align="flex-start">
         <Text fontSize={sizes.xLarge}>Вход</Text>
         <Flexbox direction="column">
-          <StyledInput
+          <Input
+            width={INPUT_WIDTH.WIDTH}
             placeholder="Ваше имя"
             onChange={handleChange(INPUT_TYPES.USERNAME)}
             value={username}
@@ -55,7 +55,8 @@ function Form() {
             required
           />
           {errorMessage}
-          <StyledInput
+          <Input
+            width={INPUT_WIDTH.WIDTH}
             placeholder="Ваш пароль"
             onChange={handleChange(INPUT_TYPES.PASSWORD)}
             value={password}
