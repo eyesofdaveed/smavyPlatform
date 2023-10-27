@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 
 const StyledInput = styled.input`
-  display: block;
   background-color: #fff;
   border-radius: 12px;
   outline: none;
