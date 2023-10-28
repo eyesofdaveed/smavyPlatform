@@ -11,6 +11,8 @@ import { sizes } from '../base/index';
 const INPUT_TYPES = {
   USERNAME: 'username',
   PASSWORD: 'password',
+  RADIO_TEACHER: 'teacher',
+  RADIO_STUDENT: 'student',
 };
 
 const ERROR_MESSAGES = {
@@ -21,11 +23,12 @@ const ERROR_MESSAGES = {
 function Form() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [role, setRole] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const handleSubmit = event => {
-    console.log(username, password);
+    console.log(role);
     event.preventDefault();
 
     if (!username.length) return setErrorMessage('Введите имя');
@@ -41,7 +44,7 @@ function Form() {
     <Card>
       <Flexbox direction="column" gap="8px" align="flex-start">
         <Text fontSize={sizes.xLarge}>Вход</Text>
-        <Flexbox direction="column" width='80%'>
+        <Flexbox direction="column" width="80%">
           <Input
             placeholder="Ваше имя"
             onChange={handleChange(INPUT_TYPES.USERNAME)}
@@ -58,6 +61,26 @@ function Form() {
             required
           />
           {errorMessage}
+          <Flexbox>
+            <label>
+              Учитель
+              <Input
+                type="radio"
+                name="group1"
+                onChange={() => setRole('teacher')}
+                required
+              />
+            </label>
+            <label>
+              Ученик
+              <Input
+                type="radio"
+                name="group1"
+                onChange={() => setRole('student')}
+                required
+              />
+            </label>
+          </Flexbox>
           <Button type="submit" text="Войти" onClick={handleSubmit} />
         </Flexbox>
         <Flexbox>
