@@ -12,6 +12,8 @@ class Entity {
         }
     }
 
+    async get() {}
+
     async getAll(res) {
         try {
             const entities = await this.entityModel.find();
@@ -20,6 +22,12 @@ class Entity {
             console.log(err);
         }
     }
+
+    async update() {}
+
+    async delete() {}
+
+    async deleteAll() {}
 }
 
 module.exports = Entity;
