@@ -8,6 +8,7 @@ const cors = require('cors');
 const cookieParser = require('cookie-parser');
 
 const usersRoute = require('./routes/users');
+const assignmentsRoute = require('./routes/assignments');
 const authRoute = require('./routes/auth');
 const logoutRoute = require('./routes/logout');
 const { logger, logEvents } = require('./middleware/logger');
@@ -36,6 +37,7 @@ app.use(cookieParser());
 app.use('/users', usersRoute);
 app.use('/auth', authRoute);
 app.use('/logout', logoutRoute);
+app.use('/assignments', assignmentsRoute);
 
 mongoose.connection.once('open', () => {
   console.log('Connected to MongoDB');
