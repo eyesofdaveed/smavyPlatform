@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const jwt = require('jsonwebtoken');
+
 const Users = require('../models/Users');
 const bcrypt = require('bcrypt');
 
@@ -16,8 +17,8 @@ router.post('/', async (req, res) => {
   //Unauthorized
   if (!foundUser) return res.sendStatus(401);
 
-  // const match = await bcrypt.compare(pwd, foundUser.password);
-  if (pwd === foundUser.password) {
+  const match = await bcrypt.compare(pwd, foundUser.password);
+  if (match) {
     // create JWTs
     const accessToken = jwt.sign(
       {

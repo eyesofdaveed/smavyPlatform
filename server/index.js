@@ -8,6 +8,8 @@ const cors = require('cors');
 const cookieParser = require('cookie-parser');
 
 const usersRoute = require('./routes/users');
+const authRoute = require('./routes/auth');
+const logoutRoute = require('./routes/logout');
 const { logger, logEvents } = require('./middleware/logger');
 
 dotenv.config();
@@ -32,8 +34,8 @@ app.use(cookieParser());
 
 // routes with prefix
 app.use('/users', usersRoute);
-app.use('/users/auth', require('./routes/auth'));
-app.use('/users/logout', require('./routes/logout'));
+app.use('/auth', authRoute);
+app.use('/logout', logoutRoute);
 
 mongoose.connection.once('open', () => {
   console.log('Connected to MongoDB');
