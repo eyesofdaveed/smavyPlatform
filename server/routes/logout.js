@@ -7,16 +7,18 @@ router.get('/', async (req, res) => {
   if (!cookies?.jwt) return res.sendStatus(204); // No content
   const refreshToken = cookies.jwt;
 
-  // Is refreshToken in db?
-  const foundUser = await Users.findOne({ refreshToken }).exec();
-  if (!foundUser) {
+  const filter = { refreshToken: refreshToken };
+  const update = { refreshToken: null };
+  // update user
+  const updatedUser = await Users.findOneAndUpdate(filter, update, {
+    new: true,
+  });
+  if (!updatedUser) {
     res.clearCookie('jwt', { httpOnly: true, sameSite: 'None', secure: true });
     return res.sendStatus(204);
   }
 
-  // Delete refreshToken in db
-  foundUser.refreshToken = '';
-  const result = await foundUser.save();
+  const result = await updatedUser.save();
   console.log(result);
 
   res.clearCookie('jwt', { httpOnly: true, sameSite: 'None', secure: true });

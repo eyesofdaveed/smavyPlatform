@@ -50,6 +50,7 @@ router.post('/', async (req, res) => {
     res.json({
       accessToken,
       message: `Successfully authorized: ${foundUser.email} ${foundUser.firstName} ${foundUser.lastName}`,
+      success: true,
     });
   } else {
     res.sendStatus(401);

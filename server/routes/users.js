@@ -2,14 +2,15 @@ const router = require('express').Router();
 const bcrypt = require('bcrypt');
 
 const Users = require('../models/Users');
+const { hashConstance } = require('../enums');
 
 // register a new user
 router.post('/register', async (req, res) => {
   const { email, password } = req.body;
-  if (!email || !password)
-    return res
-      .status(400)
-      .json({ message: 'Email and password are required.' });
+  if (!email) return res.status(400).json({ message: 'Email is required.' });
+
+  if (!password)
+    return res.status(400).json({ message: 'Password is required.' });
 
   // check for duplicate email in the db
   const duplicateEmail = await Users.findOne({ email: email }).exec();
@@ -17,9 +18,9 @@ router.post('/register', async (req, res) => {
 
   try {
     //encrypt the password
-    const hashedPwd = await bcrypt.hash(password, 10);
+    const hashedPwd = await bcrypt.hash(password, hashConstance);
     const newUser = new Users({
-      email: req.body.email,
+      email: email,
       password: hashedPwd,
       firstName: req.body.firstName,
       lastName: req.body.lastName,
