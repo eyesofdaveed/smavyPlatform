@@ -7,12 +7,11 @@ import Input from '../atoms/Input';
 import Text from '../atoms/Text';
 import Button from '../atoms/Button';
 import { sizes } from '../base/index';
+import { Label } from '../atoms/Label';
 
 const INPUT_TYPES = {
   USERNAME: 'username',
   PASSWORD: 'password',
-  RADIO_TEACHER: 'teacher',
-  RADIO_STUDENT: 'student',
 };
 
 const ERROR_MESSAGES = {
@@ -62,7 +61,7 @@ function Form() {
           />
           {errorMessage}
           <Flexbox>
-            <label>
+            <Label>
               Учитель
               <Input
                 type="radio"
@@ -70,8 +69,8 @@ function Form() {
                 onChange={() => setRole('teacher')}
                 required
               />
-            </label>
-            <label>
+            </Label>
+            <Label>
               Ученик
               <Input
                 type="radio"
@@ -79,7 +78,7 @@ function Form() {
                 onChange={() => setRole('student')}
                 required
               />
-            </label>
+            </Label>
           </Flexbox>
           <Button type="submit" text="Войти" onClick={handleSubmit} />
         </Flexbox>

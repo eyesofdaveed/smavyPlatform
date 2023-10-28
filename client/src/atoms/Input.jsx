@@ -16,8 +16,8 @@ const Input = ({
   required,
   value,
   name,
-  onChange = 'none',
   width,
+  onChange,
 }) => {
   const handleInputChange = e => {
     onChange(e.target.value);
