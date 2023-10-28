@@ -6,7 +6,8 @@ const helmet = require('helmet');
 const morgan = require('morgan');
 const cors = require('cors');
 
-const usersRoute = require('./routes/users');
+const usersRoute = require("./routes/users");
+const assignmentsRoute = require("./routes/assignments");
 const { logger, logEvents } = require('./middleware/logger');
 
 dotenv.config();
@@ -28,7 +29,8 @@ app.use(cors());
 app.options('*', cors());
 
 // routes with prefix
-app.use('/users', usersRoute);
+app.use("/users", usersRoute);
+app.use("/assignments", assignmentsRoute);
 
 mongoose.connection.once('open', () => {
   console.log('Connected to MongoDB');
