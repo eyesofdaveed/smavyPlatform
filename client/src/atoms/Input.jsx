@@ -7,11 +7,24 @@ const StyledInput = styled.input`
   outline: none;
   border: none;
   padding: 12px 16px;
-  width: 100%;
+  width: ${({ width }) => (width ? width : '100%')};
 `;
 
-const Input = ({ placeholder = '', type = 'text' }) => {
-  return <StyledInput type={type} placeholder={placeholder} />;
+const Input = ({ type, placeholder, required, value, onChange, width }) => {
+  const handleInputChange = e => {
+    onChange(e.target.value);
+  };
+
+  return (
+    <StyledInput
+      width={width}
+      type={type}
+      placeholder={placeholder}
+      required={required}
+      value={value}
+      onChange={handleInputChange}
+    />
+  );
 };
 
 export default Input;
