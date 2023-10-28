@@ -8,6 +8,8 @@ import Input from '../atoms/Input';
 import Text from '../atoms/Text';
 import Button from '../atoms/Button';
 import { sizes } from '../base/index';
+import { baseApi } from '../api';
+import { API_METHODS } from '../api/enums';
 
 const INPUT_TYPES = {
   USERNAME: 'username',
@@ -20,18 +22,11 @@ const ERROR_MESSAGES = {
 };
 
 function Form() {
-  const [data, setData] = useState()
+  const [data, setData] = useState();
 
-  const handleSubmitData  = async (data)=>{
-    try{
-      const response = await axios.get('http://localhost:8800/users/')
-      setData(response.data);
-      console.log(response.data)
-    }
-    catch(err){
-      console.log(err)
-    }
-  }
+  const handleSubmitData = async () => {
+    const data = await baseApi('users', API_METHODS.GET);
+  };
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -53,38 +48,43 @@ function Form() {
 
   const renderForm = () => (
     <>
-    {data && data.map(item => console.log(item.firstName,'-', item.email))}
+      {data && data.map(item => console.log(item.firstName, '-', item.email))}
 
-    <Card>
-      <Flexbox direction="column" gap="8px" align="flex-start">
-        <form onSubmit={(e)=>{e.preventDefault(); handleSubmitData()}}>
-        <Text fontSize={sizes.xLarge}>Вход</Text>
-        <Flexbox direction="column" width='80%'>
-          <Input
-            placeholder="Ваше имя"
-            onChange={handleChange(INPUT_TYPES.USERNAME)}
-            value={username}
-            type="text"
-            required
-          />
-          {errorMessage}
-          <Input
-            placeholder="Ваш пароль"
-            onChange={handleChange(INPUT_TYPES.PASSWORD)}
-            value={password}
-            type="password"
-            required
-          />
-          {errorMessage}
-          <input type="submit" />
+      <Card>
+        <Flexbox direction="column" gap="8px" align="flex-start">
+          <form
+            onSubmit={e => {
+              e.preventDefault();
+              handleSubmitData();
+            }}
+          >
+            <Text fontSize={sizes.xLarge}>Вход</Text>
+            <Flexbox direction="column" width="80%">
+              <Input
+                placeholder="Ваше имя"
+                onChange={handleChange(INPUT_TYPES.USERNAME)}
+                value={username}
+                type="text"
+                required
+              />
+              {errorMessage}
+              <Input
+                placeholder="Ваш пароль"
+                onChange={handleChange(INPUT_TYPES.PASSWORD)}
+                value={password}
+                type="password"
+                required
+              />
+              {errorMessage}
+              <input type="submit" />
+            </Flexbox>
+          </form>
+          <Flexbox>
+            <Text fontSize={sizes.small}>Забыли пароль?</Text>
+            <Text fontSize={sizes.small}>Зарегестрироваться </Text>
+          </Flexbox>
         </Flexbox>
-        </form>
-        <Flexbox>
-          <Text fontSize={sizes.small}>Забыли пароль?</Text>
-          <Text fontSize={sizes.small}>Зарегестрироваться </Text>
-        </Flexbox>
-      </Flexbox>
-    </Card>
+      </Card>
     </>
   );
 
