@@ -11,6 +11,10 @@ router.post('/register', async (req, res) => {
       .status(400)
       .json({ message: 'Email and password are required.' });
 
+  // check for duplicate email in the db
+  const duplicateEmail = await Users.findOne({ email: email }).exec();
+  if (duplicateEmail) return res.sendStatus(409); //Conflict
+
   try {
     //encrypt the password
     const hashedPwd = await bcrypt.hash(password, 10);
