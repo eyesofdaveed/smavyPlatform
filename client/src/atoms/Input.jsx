@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const StyledInput = styled.input`
+export const StyledInput = styled.input`
   background-color: #fff;
   border-radius: 12px;
   outline: none;
@@ -27,4 +27,3 @@ const Input = ({ type, placeholder, required, value, onChange, width }) => {
   );
 };
 
-export default Input;

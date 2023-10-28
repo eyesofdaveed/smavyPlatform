@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const StyledButton = styled.button`
+export const StyledButton = styled.button`
   background-color: #fff;
   border-radius: 12px;
   outline: none;
@@ -22,5 +22,3 @@ const Button = ({ type, text, onClick }) => {
     </StyledButton>
   );
 };
-
-export default Button;
