@@ -3,7 +3,7 @@ const router = require('express').Router();
 const Assignments = require('../models/Assignments');
 const Entity = require('../api');
 
-const assignment = new Entity(Assignments);s
+const assignment = new Entity(Assignments);
 
 // add new assignment
 router.post('/add', async (req, res) => {
