@@ -3,14 +3,10 @@ class Entity {
         this.entityModel = entityModel;
     }
 
-    async add(title, description, deadline, res) {
+    async add(entity, res) {
         try {
-            const entity = await this.entityModel.save({
-                title,
-                description,
-                deadline
-            });
-            res.status(200).json(entity);
+            const createdEntity = await this.entityModel.save(entity);
+            res.status(200).json(createdEntity);
         } catch (err) {
             console.log(err);
         }
