@@ -7,6 +7,7 @@ const morgan = require('morgan');
 const cors = require('cors');
 
 const usersRoute = require('./routes/users');
+const { logger, logEvents } = require('./middleware/logger');
 
 dotenv.config();
 
@@ -19,15 +20,27 @@ mongoose
   .catch(err => console.log(err));
 
 // middleware
+app.use(logger);
 app.use(express.json());
 app.use(helmet());
 app.use(morgan('common'));
 app.use(cors());
 app.options('*', cors());
 
-app.listen(8800, () => {
-  console.log('Backend server is running at port 8800!');
-});
-
 // routes with prefix
 app.use('/users', usersRoute);
+
+mongoose.connection.once('open', () => {
+  console.log('Connected to MongoDB');
+  app.listen(8800, () => {
+    console.log('Backend server is running at port 8800!');
+  });
+});
+
+mongoose.connection.on('error', err => {
+  console.log(err);
+  logEvents(
+    `${err.no}: ${err.code}\t${err.syscall}\t${err.hostname}`,
+    'mongoErrLog.log',
+  );
+});
