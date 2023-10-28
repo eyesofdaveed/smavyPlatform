@@ -1,5 +1,13 @@
 const mongoose = require("mongoose");
 
+const ASSIGNMENT_STATUS = {
+    NOT_STARTED: "NOT_STARTED",
+    IN_PROGRESS: "IN_PROGRESS",
+    COMPLETED: "COMPLETED",
+    SUBMITTED: "SUBMITTED",
+};
+
+
 const { Schema } = mongoose;
 
 const AssignmentsSchema = new Schema({
@@ -18,9 +26,14 @@ const AssignmentsSchema = new Schema({
         trim: true,
         required: true
     },
-    completed: {
+    isComplete: {
         type: Boolean,
-        required: true,
+        default: false,
+    },
+    status: {
+        type: String,
+        enum: Object.values(ASSIGNMENT_STATUS),
+        default: ASSIGNMENT_STATUS.NOT_STARTED,
     }
 });
 

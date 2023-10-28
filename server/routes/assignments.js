@@ -5,14 +5,14 @@ const Assignments = require('../models/Assignments');
 // add new assignment
 router.post('/add', async (req, res) => {
     try {
-        const newAssignment = new Assignments({
-            title: req.body.title,
-            description: req.body.description,
-            completed: req.body.completed,
-        });
+        const {title, description, deadline} = req.body;
 
-        const user = await newUser.save();
-        res.status(200).json(user);
+        const assignment = await Assignments.save({
+            title,
+            description,
+            deadline
+        });
+        res.status(200).json(assignment);
     } catch (err) {
         console.log(err);
     }
@@ -31,10 +31,10 @@ router.get('/', async (req, res) => {
 // find a assignment by id, and modify it
 router.put('/:id', async (req, res) => {
     try {
-        const updatedAssignment = await Assignments.findByIdAndUpdate(req.params.id, {
+        const assignment = await Assignments.findByIdAndUpdate(req.params.id, {
             $set: req.body,
         });
-        res.status(200).json(updatedAssignment);
+        res.status(200).json(assignment);
     } catch (err) {
         console.log(err);
     }
@@ -45,9 +45,9 @@ router.put('/:id', async (req, res) => {
 router.put('/:id', async (req, res) => {
     const deletionCriteria = { _id: 123 };
     try {
-        const deletedAssignment = await Assignments.deleteOne({deletionCriteria
+        const assignment = await Assignments.deleteOne({deletionCriteria
         });
-        res.status(200).json(deletedAssignment);
+        res.status(200).json(assignment);
     } catch (err) {
         console.log(err);
     }
