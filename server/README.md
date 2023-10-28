@@ -6,3 +6,5 @@
 
 For auth
 node require("crypto").randomBytes(64).toString('hex')
+ACCESS_TOKEN_SECRET=token
+REFRESH_TOKEN_SECRET=token
