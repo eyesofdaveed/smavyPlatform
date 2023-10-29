@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const StyledButton = styled.button`
+export const StyledButton = styled.button`
   background-color: #fff;
   border-radius: 12px;
   outline: none;
@@ -15,12 +15,10 @@ const StyledButton = styled.button`
   }
 `;
 
-const Button = ({ type, text, onClick }) => {
+export const Button = ({ type, text, onClick }) => {
   return (
     <StyledButton type={type} onClick={onClick}>
       {text}
     </StyledButton>
   );
 };
-
-export default Button;
