@@ -10,7 +10,7 @@ export const StyledInput = styled.input`
   width: ${({ width }) => (width ? width : '100%')};
 `;
 
-const Input = ({ type, placeholder, required, value, onChange, width }) => {
+export const Input = ({ type, placeholder, required, value, onChange, width }) => {
   const handleInputChange = e => {
     onChange(e.target.value);
   };
@@ -26,4 +26,3 @@ const Input = ({ type, placeholder, required, value, onChange, width }) => {
     />
   );
 };
-

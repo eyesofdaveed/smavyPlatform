@@ -15,7 +15,7 @@ export const StyledButton = styled.button`
   }
 `;
 
-const Button = ({ type, text, onClick }) => {
+export const Button = ({ type, text, onClick }) => {
   return (
     <StyledButton type={type} onClick={onClick}>
       {text}

@@ -11,6 +11,6 @@ export const CardContainer = styled.span`
   width: 20%
 `;
 
-const Card = ({ children }) => {
+export const Card = ({ children }) => {
   return <CardContainer>{children}</CardContainer>;
 };

@@ -8,6 +8,6 @@ export const TextContainer = styled.div`
   color: #fff;
 `;
 
-const Text = ({ fontSize, children }) => {
+export const Text = ({ fontSize, children }) => {
   return <TextContainer fontSize={fontSize}>{children}</TextContainer>;
 };
