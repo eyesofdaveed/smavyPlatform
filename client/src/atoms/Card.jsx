@@ -8,11 +8,11 @@ const CardContainer = styled.span`
   border-radius: 30px;
   padding: 24px 16px;
   display: inline-block;
-  width: 20%
+  width: ${({ width }) => (width ? width : '20%')};
 `;
 
-const Card = ({ children }) => {
-  return <CardContainer>{children}</CardContainer>;
+const Card = ({ children, width }) => {
+  return <CardContainer width={width}>{children}</CardContainer>;
 };
 
 export default Card;
