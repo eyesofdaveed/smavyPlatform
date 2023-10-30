@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
 
 import Card from '../atoms/Card';
 import Flexbox from '../atoms/Flexbox';
@@ -61,24 +60,8 @@ function Form() {
           />
           {errorMessage}
           <Flexbox>
-            <Label>
-              Учитель
-              <Input
-                type="radio"
-                name="group1"
-                onChange={() => setRole('teacher')}
-                required
-              />
-            </Label>
-            <Label>
-              Ученик
-              <Input
-                type="radio"
-                name="group1"
-                onChange={() => setRole('student')}
-                required
-              />
-            </Label>
+            <Label text="Учитель" name="teacher" onChange={setRole}></Label>
+            <Label text="Ученик" name="student" onChange={setRole}></Label>
           </Flexbox>
           <Button type="submit" text="Войти" onClick={handleSubmit} />
         </Flexbox>
