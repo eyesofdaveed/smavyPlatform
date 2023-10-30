@@ -4,10 +4,12 @@ const router = require('express').Router();
 
 router.get('/', async (req, res) => {
   const cookies = req.cookies;
-  if (!cookies?.jwt) return res.sendStatus(204); // No content
+  if (!cookies) return res.sendStatus(204); // No content
+  if (!cookies.jwt)
+    return res.sendStatus(204).send({ message: 'JWT is required' });
   const refreshToken = cookies.jwt;
 
-  const filter = { refreshToken: refreshToken };
+  const filter = { refreshToken };
   const update = { refreshToken: null };
   // update user
   const updatedUser = await Users.findOneAndUpdate(filter, update, {
@@ -18,8 +20,7 @@ router.get('/', async (req, res) => {
     return res.sendStatus(204);
   }
 
-  const result = await updatedUser.save();
-  console.log(result);
+  await updatedUser.save();
 
   res.clearCookie('jwt', { httpOnly: true, sameSite: 'None', secure: true });
   res.sendStatus(204);

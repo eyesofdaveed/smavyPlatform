@@ -3,24 +3,31 @@ const bcrypt = require('bcrypt');
 
 const Users = require('../models/Users');
 const { hashConstance } = require('../enums');
+const Entity = require('../api');
+
+const user = new Entity(Users);
 
 // register a new user
 router.post('/register', async (req, res) => {
   const { email, password } = req.body;
-  if (!email) return res.status(400).json({ message: 'Email is required.' });
+  if (!email)
+    return res
+      .status(400)
+      .json({ message: 'Email is required.', success: false });
 
   if (!password)
-    return res.status(400).json({ message: 'Password is required.' });
-
-  // check for duplicate email in the db
-  const duplicateEmail = await Users.findOne({ email: email }).exec();
-  if (duplicateEmail) return res.sendStatus(409); //Conflict
+    return res
+      .status(400)
+      .json({ message: 'Password is required.', success: false });
 
   try {
+    // check for duplicate email in the db
+    const duplicateEmail = await Users.findOne({ email: email }).exec();
+    if (duplicateEmail) return res.sendStatus(409); //Conflict
     //encrypt the password
     const hashedPwd = await bcrypt.hash(password, hashConstance);
     const newUser = new Users({
-      email: email,
+      email,
       password: hashedPwd,
       firstName: req.body.firstName,
       lastName: req.body.lastName,
@@ -41,6 +48,7 @@ router.get('/', async (req, res) => {
   } catch (err) {
     console.log(err);
   }
+  user.getAll(res);
 });
 
 // find a user by id, and modify it
