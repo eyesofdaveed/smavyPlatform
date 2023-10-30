@@ -11,4 +11,3 @@ export const TextContainer = styled.div`
 export const Text = ({ fontSize, children }) => {
   return <TextContainer fontSize={fontSize}>{children}</TextContainer>;
 };
-

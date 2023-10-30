@@ -1,31 +1,20 @@
 const router = require('express').Router();
 
 const Assignments = require('../models/Assignments');
+const Entity = require('../api');
+
+const assignment = new Entity(Assignments);
 
 // add new assignment
 router.post('/add', async (req, res) => {
-    try {
-        const {title, description, deadline} = req.body;
+    const { title, description, deadline } = req.body;
 
-        const assignment = await Assignments.save({
-            title,
-            description,
-            deadline
-        });
-        res.status(200).json(assignment);
-    } catch (err) {
-        console.log(err);
-    }
+    assignment.add({title, description, deadline}, res);
 })
 
 // get all assignments
 router.get('/', async (req, res) => {
-    try {
-        const asssignments = await Assignments.find();
-        res.status(200).json(asssignments);
-    } catch (err) {
-        console.log(err);
-    }
+    assignment.getAll(res);
 })
 
 // find a assignment by id, and modify it

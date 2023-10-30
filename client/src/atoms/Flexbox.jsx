@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const StyledFlexbox = styled.div`
+export const StyledFlexbox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
