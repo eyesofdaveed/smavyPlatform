@@ -60,8 +60,8 @@ function Form() {
           />
           {errorMessage}
           <Flexbox>
-            <Label text="Учитель" name="teacher" onChange={setRole}></Label>
-            <Label text="Ученик" name="student" onChange={setRole}></Label>
+            <Label text="Учитель" role="teacher" onChange={setRole}></Label>
+            <Label text="Ученик" role="student" onChange={setRole}></Label>
           </Flexbox>
           <Button type="submit" text="Войти" onClick={handleSubmit} />
         </Flexbox>
