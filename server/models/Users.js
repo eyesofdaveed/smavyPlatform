@@ -30,6 +30,7 @@ const UsersSchema = new Schema({
     type: String,
     required: true,
   },
+  refreshToken: String,
 });
 
 module.exports = mongoose.model('Users', UsersSchema);
