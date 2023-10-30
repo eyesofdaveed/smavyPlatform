@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const StyledFlexbox = styled.div`
+export const StyledFlexbox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -10,7 +10,7 @@ const StyledFlexbox = styled.div`
   width: ${({width}) => width };
 `;
 
-const Flexbox = ({ direction = 'row', gap, align, children, width }) => {
+export const Flexbox = ({ direction = 'row', gap, align, children, width }) => {
   return (
     <StyledFlexbox direction={direction} gap={gap} align={align} width={width}>
       {children}
@@ -18,4 +18,3 @@ const Flexbox = ({ direction = 'row', gap, align, children, width }) => {
   );
 };
 
-export default Flexbox;

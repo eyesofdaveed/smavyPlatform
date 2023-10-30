@@ -1,6 +1,9 @@
 const router = require('express').Router();
 
 const Users = require('../models/Users');
+const Entity = require('../api');
+
+const user = new Entity(Users);
 
 // register a new user
 router.post('/register', async (req, res) => {
@@ -21,12 +24,7 @@ router.post('/register', async (req, res) => {
 
 // get all users
 router.get('/', async (req, res) => {
-    try {
-        const users = await Users.find();
-        res.status(200).json(users);
-    } catch (err) {
-        console.log(err);
-    }
+    user.getAll(res);
 })
 
 // find a user by id, and modify it
