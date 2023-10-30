@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 
-import Card from '../atoms/Card';
-import Flexbox from '../atoms/Flexbox';
-import Input from '../atoms/Input';
-import Text from '../atoms/Text';
-import Button from '../atoms/Button';
+import { Card } from '../atoms/Card';
+import { Flexbox }from '../atoms/Flexbox';
+import { Input } from '../atoms/Input';
+import { Text } from '../atoms/Text';
+import { Button } from '../atoms/Button';
 import { sizes } from '../base/index';
 import { baseApi } from '../api';
 import { API_METHODS } from '../api/enums';
@@ -21,7 +21,7 @@ const ERROR_MESSAGES = {
   PASSWORD: 'Введите пароль',
 };
 
-function Form() {
+export function Form() {
   const [data, setData] = useState();
 
   const handleSubmitData = async () => {
@@ -91,4 +91,3 @@ function Form() {
   return isSubmitted ? <>User is successfully logged in</> : renderForm();
 }
 
-export default Form;
