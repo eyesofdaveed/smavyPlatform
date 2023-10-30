@@ -19,12 +19,13 @@ router.post('/', async (req, res) => {
 
   const match = await bcrypt.compare(pwd, foundUser.password);
   if (match) {
+    const { email, firstName } = foundUser;
     // create JWTs
     const accessToken = jwt.sign(
       {
         UserInfo: {
-          email: foundUser.email,
-          firstname: foundUser.firstName,
+          email,
+          firstName,
         },
       },
       process.env.ACCESS_TOKEN_SECRET,
