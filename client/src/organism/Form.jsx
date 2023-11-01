@@ -31,14 +31,13 @@ const ROLE_OPTIONS = [
 ];
 
 function Form() {
-  const [username, setUsername] = useState('');
+  const [username, setUsername] = useState();
   const [password, setPassword] = useState('');
   const [role, setRole] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const handleSubmit = event => {
-    console.log(role);
     event.preventDefault();
 
     if (!username.length) return setErrorMessage('Введите имя');
