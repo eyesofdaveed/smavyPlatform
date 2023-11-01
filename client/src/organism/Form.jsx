@@ -7,6 +7,7 @@ import Text from '../atoms/Text';
 import Button from '../atoms/Button';
 import { sizes } from '../base/index';
 import { Label } from '../atoms/Label';
+import RadioButtonGroup from '../atoms/RadioButtonGroup';
 
 const INPUT_TYPES = {
   USERNAME: 'username',
@@ -17,6 +18,17 @@ const ERROR_MESSAGES = {
   USERNAME: 'Введите имя',
   PASSWORD: 'Введите пароль',
 };
+
+const ROLE_OPTIONS = [
+  {
+    label: 'Преподаватель',
+    value: 'teacher',
+  },
+  {
+    label: 'Студент',
+    value: 'student',
+  },
+];
 
 function Form() {
   const [username, setUsername] = useState('');
@@ -37,6 +49,8 @@ function Form() {
     if (inputName === INPUT_TYPES.USERNAME) setUsername(value.trim());
     if (inputName === INPUT_TYPES.PASSWORD) setPassword(value.trim());
   };
+
+  const handleRoleSet = role => setRole(role);
 
   const renderForm = () => (
     <Card>
@@ -60,8 +74,11 @@ function Form() {
           />
           {errorMessage}
           <Flexbox>
-            <Label text="Учитель" role="teacher" onChange={setRole}></Label>
-            <Label text="Ученик" role="student" onChange={setRole}></Label>
+            <RadioButtonGroup
+              options={ROLE_OPTIONS}
+              value={role}
+              onChange={handleRoleSet}
+            />
           </Flexbox>
           <Button type="submit" text="Войти" onClick={handleSubmit} />
         </Flexbox>
