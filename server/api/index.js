@@ -46,7 +46,8 @@ class Entity {
     }
 
     async delete(res) {
-        const deletionCriteria = { _id: 123 };
+        let id = req.params.id;
+        const deletionCriteria = { _id: mongoose.Types.ObjectId(id) };
         try {
             const entities = await this.entityModel.deleteOne({deletionCriteria
             });
@@ -59,7 +60,7 @@ class Entity {
 
     async deleteAll(res) {
         try {
-            const data = await this.entityModel.destroy({where: {}, truncate: true});
+            const data = await this.entityModel.deleteMany({});
         return res.status(200).json({ success: true, data: data });
         } catch (err) {
             console.log(err);
