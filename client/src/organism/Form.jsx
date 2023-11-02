@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 
-import { Card } from '../atoms';
-import { Flexbox } from '../atoms';
-import { Input } from '../atoms';
-import { Text } from '../atoms';
-import { sizes } from '../base/index';
-import { baseApi } from '../api';
-import { API_METHODS } from '../api/enums';
+import { Card } from '@atoms';
+import { Flexbox } from '@atoms';
+import { Input } from '@atoms';
+import { Text } from '@atoms';
+import { sizes } from '@base/index';
+import { baseApi } from '@api';
+import { API_METHODS } from '@api/enums';
 
 const INPUT_TYPES = {
   USERNAME: 'username',
