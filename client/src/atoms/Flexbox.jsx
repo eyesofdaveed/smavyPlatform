@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 export const StyledFlexbox = styled.div`
   display: flex;
-justify  justify-content: ${({ justify }) => (justify ? justify : 'center')};
+  justify-content: ${({ justify }) => (justify ? justify : 'center')};
   align-items: center;
   flex-direction: ${({ direction }) => direction};
   gap: ${({ gap }) => (gap ? gap : '16px')};
