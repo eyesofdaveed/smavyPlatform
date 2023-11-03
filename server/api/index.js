@@ -15,11 +15,11 @@ class Entity {
     async get(res) {
         try {
             let id = req.params.id;
-            let entity = await this.entityModel.findByPk(id);
+            let entity = await this.entityModel.findById(id).exec();
             if (data)
                 return res.status(200).json({ entity })
             else
-                return res.status(400).json({ success: false, error: "No such user present", data: [] });
+                return res.status(400).json({ success: false, error: `No such ${entity} present`, data: [] });
             } catch (err) {
                 console.log(err);
             }
