@@ -84,6 +84,5 @@ export function Form() {
       </Card>
     </>
   );
-
   return isSubmitted ? <>User is successfully logged in</> : renderForm();
 }
