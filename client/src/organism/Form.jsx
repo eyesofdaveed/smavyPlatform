@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import axios from 'axios';
 
 import { Card } from '../atoms/Card';
-import { Flexbox }from '../atoms/Flexbox';
+import { Flexbox } from '../atoms/Flexbox';
 import { Input } from '../atoms/Input';
 import { Text } from '../atoms/Text';
 import { Button } from '../atoms/Button';
@@ -87,7 +87,6 @@ export function Form() {
       </Card>
     </>
   );
-
   return isSubmitted ? <>User is successfully logged in</> : renderForm();
 }
 
