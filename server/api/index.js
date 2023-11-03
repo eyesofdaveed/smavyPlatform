@@ -5,7 +5,7 @@ class Entity {
 
     async add(entity, res) {
         try {
-            const createdEntity = await this.entityModel.save(entity);
+            const createdEntity = await this.entityModel.create(entity);
             res.status(200).json(createdEntity);
         } catch (err) {
             console.log(err);
