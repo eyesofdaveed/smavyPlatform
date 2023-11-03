@@ -63,4 +63,13 @@ router.put('/:id', async (req, res) => {
   }
 });
 
+router.delete('/', async (req, res) => {
+  try {
+    user.deleteAll(res);
+  } catch (err) {
+    return res.status(400).json({ success: false, message: `Cannot delete: ${err.errors}` });
+  }
+  
+});
+
 module.exports = router;
