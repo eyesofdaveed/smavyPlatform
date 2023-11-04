@@ -4,6 +4,7 @@ const Users = require('../models/Users');
 const Entity = require('../api');
 const checkRole = require('../middleware/checkRole');
 const { roles } = require('../enums');
+const errorHandler = require('../middleware/errorHandler')
 
 const user = new Entity(Users);
 
@@ -24,7 +25,7 @@ router.put('/:id', checkRole(Array(roles.at(0))), async (req, res) => {
     });
     res.status(200).json(updatedUser);
   } catch (err) {
-    return res.status(400).json({ message: err.errors });
+    errorHandler(err, req, res);
   }
 });
 
