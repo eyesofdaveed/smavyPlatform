@@ -12,19 +12,16 @@ class Entity {
     }
   }
 
-  async get(res) {
+  async get(req, res) {
     try {
       let id = req.params.id;
-      let entity = await this.entityModel.findById(id).exec();
-      if (data) return res.status(200).json({ entity });
+      const data = await this.entityModel.findById(id).exec();
+      if (data) return res.status(200).json({ data: data });
       else
-        return res
-          .status(400)
-          .json({
-            success: false,
-            error: `No such ${entity} present`,
-            data: [],
-          });
+        return res.status(400).json({
+          error: `No such ${data} present`,
+          data: [],
+        });
     } catch (err) {
       console.log(err);
     }
@@ -39,7 +36,7 @@ class Entity {
     }
   }
 
-  async update(res) {
+  async update(req, res) {
     try {
       const entities = await this.entityModel.findByIdAndUpdate(req.params.id, {
         $set: req.body,
@@ -50,11 +47,10 @@ class Entity {
     }
   }
 
-  async delete(res) {
+  async deleteById(req, res) {
     let id = req.params.id;
-    const deletionCriteria = { _id: mongoose.Types.ObjectId(id) };
     try {
-      const entities = await this.entityModel.deleteOne({ deletionCriteria });
+      const entities = await this.entityModel.deleteOne({ _id: id });
       res.status(200).json(entities);
     } catch (err) {
       console.log(err);
