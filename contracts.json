@@ -1,5 +1,5 @@
 {
-    "/login": {
+    "POST: /login": {
         "req": {
             "method": "post",
             "body": {
@@ -15,7 +15,7 @@
             }
         }
     },
-    "/register": {
+    "POST: /register": {
         "req": {
             "method": "post",
             "body": {
@@ -39,7 +39,7 @@
             }
         }
     },
-    "/logout": {
+    "GET: /logout": {
         "req": {
             "method": "get",
             "headers": {
@@ -53,7 +53,7 @@
             "status": 200
         }
     },
-    "GET: users": {
+    "GET: /users": {
         "req": {
             "method": "get",
             "body": {
@@ -78,7 +78,7 @@
             }
         }
     },
-    "PUT: user/{id}": {
+    "PATCH: /user/{id}": {
         "req": {
             "method": "put",
             "body": {
@@ -104,6 +104,20 @@
                     "status": "string"
                 }
             }
+        }
+    },
+    "DELETE: /user/{id}": {
+        "req": {
+            "method": "delete",
+            "headers": {
+                "Access-Bearer-Token": {
+                    "type": "string",
+                    "description": "access token"
+                }
+            }
+        },
+        "res": {
+            "status": 200
         }
     },
     "GET: /students": {
@@ -158,7 +172,7 @@
                 }
             }
     },
-    "PUT: /students/{id}": {
+    "PATCH: /students/{id}": {
         "req": {
             "method": "put",
             "body": {
@@ -200,7 +214,7 @@
             "status": 200
             }
     },
-    "GET: /teachers/{id}" :{
+    "GET: /teachers/{id}":{
         "req": {
             "method": "get",
             "headers": {
@@ -223,6 +237,53 @@
                     "courses": "array of course objects"
                     }
                 }
+            }
+    },
+    "PUT: /teachers/{id}": {
+        "req": {
+            "method": "put",
+            "body": {
+                "firstName": "string",
+                "lastName": "string",
+                "bio": "string",
+                "email": "string",
+                "groups": "array of group objects",
+                "courses": "array of course objects"
+                },
+            "headers": {
+                "Access-Bearer-Token": {
+                    "type": "string",
+                    "description": "access token"
+                    }
+                }
+            },
+        "res": {
+            "status": 200,
+            "body": {
+                "data": {
+                    "_id": "string",
+                    "firstName": "string",
+                    "lastName": "string",
+                    "bio": "string",
+                    "email": "string",
+                    "groups": "array of group objects",
+                    "courses": "array of course objects"
+                    }
+                }
+            }
+    },
+    "DELETE: /teachers/{id}": {
+        "req": {
+            "method": "delete",
+            "headers": {
+                "Access-Bearer-Token": {
+                    "type": "string",
+                    "description": "access token"
+                    }
+                }
+            },
+        "res": {
+            "status": 200
             }
     },
     "GET: /assignments": {
@@ -314,6 +375,159 @@
                     "updatedAt": "string"
                     }
                 }
+            }
+    },
+    "PATCH: /assignments/{id}": {
+        "req": {
+            "method": "put",
+            "body": {
+                "title": "string",
+                "description": "string",
+                "course": "string",
+                "group": "string",
+                "link": "string",
+                "status": "string",
+                "dueDate": "string"
+                },
+            "headers": {
+                "Access-Bearer-Token": {
+                    "type": "string",
+                    "description": "access token"
+                    }
+                }
+            },
+        "res": {
+            "status": 200,
+            "body": {
+                "data": {
+                    "_id": "string",
+                    "title": "string",
+                    "description": "string",
+                    "course": "string",
+                    "group": "string",
+                    "link": "string",
+                    "status": "string",
+                    "dueDate": "string",
+                    "createdAt": "string",
+                    "updatedAt": "string"
+                    }
+                }
+            }
+    },
+    "DELETE: /assignments/{id}": {
+        "req": {
+            "method": "delete",
+            "headers": {
+                "Access-Bearer-Token": {
+                    "type": "string",
+                    "description": "access token"
+                    }
+                }
+            },
+        "res": {
+            "status": 200
+            }
+    },
+    "GET: /quizzes": {
+        "req": {
+            "method": "get",
+            "body": {
+                "filter": {
+                    "course": "string",
+                    "group": "string",
+                    "status": "string",
+                    "pageNumber": "string",
+                    "pageSize": "string"
+                    }
+                },
+            "headers": {
+                "Access-Bearer-Token": {
+                    "type": "string",
+                    "description": "access token"
+                    }
+                }
+            },
+        "res": {
+            "status": 200,
+            "body": {
+                "data": "array of quiz objects"
+                }
+            }
+    },
+    "GET: /quizzes/{id}": {
+        "req": {
+            "method": "get",
+            "headers": {
+                "Access-Bearer-Token": {
+                    "type": "string",
+                    "description": "access token"
+                    }
+                }
+            },
+        "res": {
+            "status": 200,
+            "body": {
+                "data": {
+                    "_id": "string",
+                    "title": "string",
+                    "description": "string",
+                    "course": "string",
+                    "group": "string",
+                    "status": "string",
+                    "dueDate": "string",
+                    "createdAt": "string",
+                    "updatedAt": "string"
+                    }
+                }
+            }
+    },
+    "PUT: /quizzes/{id}": {
+        "req": {
+            "method": "put",
+            "body": {
+                "title": "string",
+                "description": "string",
+                "course": "string",
+                "group": "string",
+                "status": "string",
+                "dueDate": "string"
+                },
+            "headers": {
+                "Access-Bearer-Token": {
+                    "type": "string",
+                    "description": "access token"
+                    }
+                }
+            },
+        "res": {
+            "status": 200,
+            "body": {
+                "data": {
+                    "_id": "string",
+                    "title": "string",
+                    "description": "string",
+                    "course": "string",
+                    "group": "string",
+                    "status": "string",
+                    "dueDate": "string",
+                    "createdAt": "string",
+                    "updatedAt": "string"
+                    }
+                }
+            }
+    },
+    "DELETE: /quizzes/{id}": {
+        "req": {
+            "method": "delete",
+            "headers": {
+                "Access-Bearer-Token": {
+                    "type": "string",
+                    "description": "access token"
+                    }
+                }
+            },
+        "res": {
+            "status": 200
             }
     }
 }
