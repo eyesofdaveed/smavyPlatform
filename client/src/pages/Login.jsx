@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Form } from '@organism';
+import { LoginForm } from '../organism/LoginForm';
 
 const LoginWrapper = styled.div`
   display: flex;
@@ -12,7 +12,7 @@ const LoginWrapper = styled.div`
 const Login = () => {
   return (
     <LoginWrapper>
-      <Form />
+      <LoginForm />
     </LoginWrapper>
   );
 };
