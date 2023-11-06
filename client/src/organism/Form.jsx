@@ -1,15 +1,12 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
-import axios from 'axios';
 
-import { Card } from '../atoms/Card';
-import { Flexbox }from '../atoms/Flexbox';
-import { Input } from '../atoms/Input';
-import { Text } from '../atoms/Text';
-import { Button } from '../atoms/Button';
-import { sizes } from '../base/index';
-import { baseApi } from '../api';
-import { API_METHODS } from '../api/enums';
+import { Card } from '@atoms';
+import { Flexbox } from '@atoms';
+import { Input } from '@atoms';
+import { Text } from '@atoms';
+import { sizes } from '@base/index';
+import { baseApi } from '@api';
+import { API_METHODS } from '@api/enums';
 
 const INPUT_TYPES = {
   USERNAME: 'username',
@@ -87,7 +84,5 @@ export function Form() {
       </Card>
     </>
   );
-
   return isSubmitted ? <>User is successfully logged in</> : renderForm();
 }
-
