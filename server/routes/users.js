@@ -20,10 +20,13 @@ router.route('/').get(checkRole(ROLES.ADMIN), async (req, res) => {
 // find a user by id, and modify it
 router.put('/:id', checkRole(ROLES.ADMIN), async (req, res) => {
   try {
-    const updatedUser = await Users.findByIdAndUpdate(req.params.id, {
-      $set: req.body,
-    });
-    res.status(200).json(updatedUser);
+    const entityId = req.params.id;
+    const fieldsToUpdate = {
+      status: req.body.status,
+      role: req.body.role,
+    }
+
+    await user.update({ entityId, fieldsToUpdate, res });
   } catch (err) {
     return res.status(400).json({ message: err.errors });
   }

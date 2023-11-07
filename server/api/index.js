@@ -1,3 +1,5 @@
+const { isEmptyObject } = require('../utils');
+
 class Entity {
   constructor(entityModel) {
     this.entityModel = entityModel;
@@ -29,7 +31,18 @@ class Entity {
     }
   }
 
-  async update() {}
+  async update({entityId, fieldsToUpdate, res}) {
+    try {
+      if (isEmptyObject(fieldsToUpdate)) return;
+
+      const entities = await this.entityModel.findByIdAndUpdate(entityId, {
+        $set: fieldsToUpdate,
+      });
+      res.status(200).json(entities);
+    } catch (err) {
+      return res.status(400).json({ message: err.errors });
+    }
+  }
 
   async delete() {}
 
