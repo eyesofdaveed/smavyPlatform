@@ -14,10 +14,16 @@ class Entity {
 
   async get() {}
 
-  async getAll(res) {
+  async getAll({ res, pageSize = '25', pageNumber = '2' }) {
     try {
-      const entities = await this.entityModel.find();
-      res.status(200).json(entities);
+      const pageSizeInt = parseInt(pageSize);
+      const pageNumberInt = parseInt(pageNumber);
+
+      const results = await this.entityModel.find().sort({
+        createdAt: -1,
+      }).skip(pageSizeInt * (pageNumberInt - 1)).limit(pageSizeInt);
+
+      res.status(200).json(results);
     } catch (err) {
       console.log(err);
     }
