@@ -12,7 +12,9 @@ const assignmentsRoute = require('./routes/assignments');
 const studentsRoute = require('./routes/students');
 const authRoute = require('./routes/auth');
 const logoutRoute = require('./routes/logout');
+const registerRoute = require('./routes/register');
 const { logger, logEvents } = require('./middleware/logger');
+const verifyJwt = require('./middleware/verifyJwt');
 
 dotenv.config();
 
@@ -33,11 +35,13 @@ app.use(cors());
 app.options('*', cors());
 // middleware for cookies
 app.use(cookieParser());
-
 // routes with prefix
-app.use('/users', usersRoute);
+app.use('/register', registerRoute);
 app.use('/auth', authRoute);
 app.use('/logout', logoutRoute);
+
+app.use(verifyJwt);
+app.use('/users', usersRoute);
 app.use('/assignments', assignmentsRoute);
 app.use('/students', studentsRoute);
 

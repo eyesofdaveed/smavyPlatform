@@ -6,8 +6,8 @@ const Students = require('../models/Students');
 router.post('/add', async (req, res) => {
   try {
     const { email, password, firstName, lastName } = req.body;
-    const post = new Students({ email, password, firstName, lastName });
-    post.save().then(res.status(200).json(post));
+    const student = new Students({ email, password, firstName, lastName });
+    student.save().then(res.status(200).json(student));
   } catch (error) {
     console.log(error);
   }
@@ -20,8 +20,8 @@ router.get('/:id', async (req, res) => {
     if (!id) {
       res.status(400).json({ message: 'Id not found', success: false });
     } else {
-      const post = await Students.findById(id);
-      res.status(200).json({ post, success: true });
+      const student = await Students.findById(id);
+      res.status(200).json({ student });
     }
   } catch (error) {
     console.log(error);
@@ -30,10 +30,11 @@ router.get('/:id', async (req, res) => {
 
 // get all
 router.get('/', async (req, res) => {
+  console.log('here');
   try {
-    const posts = await Students.find();
+    const students = await Students.find();
 
-    res.status(200).json({ posts });
+    res.status(200).json({ students });
   } catch (error) {
     console.log(error);
   }
@@ -61,9 +62,8 @@ router.delete('/:id', async (req, res) => {
     if (req.params.id != null) {
       res.status(404).json({ message: 'Id not found', success: false });
     } else {
-      const post = await Students.findByIdAndDelete(req.params.id).then(
-        res.status(200).json(post),
-      );
+      const student = await Students.findByIdAndDelete(req.params.id);
+      res.status(200).json(student);
     }
   } catch (err) {
     console.log(err);
