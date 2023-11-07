@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { Flexbox } from '../atoms/Flexbox';
+import { colors } from '@base';
 
 const NotFoundWrapper = styled.div`
   display: flex;
@@ -11,7 +12,7 @@ const NotFoundWrapper = styled.div`
 `;
 
 const Title = styled.p`
-  color: #737399;
+  color: ${colors.cardBg};
   font-size: 150px;
   font-weight: bold;
 
