@@ -12,7 +12,7 @@ class Entity {
     }
   }
 
-  async get() {}
+  async getById() {}
 
   async getAll({ res, pageSize = '25', pageNumber = '2' }) {
     try {
