@@ -1,10 +1,9 @@
 import React from 'react';
-import { Route, Routes } from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom';
 
 import Login from './pages/Login';
 import NotFoundPage from './pages/404/404';
 import ProfiCard from './organism/ProfiCard';
-
 
 const App = () => {
   return (
