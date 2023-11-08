@@ -3,6 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 
 import Login from './pages/Login';
 import NotFoundPage from './pages/404/404';
+import PersonalData from './organism/PersonalData'
 
 const App = () => {
   return (
@@ -10,6 +11,7 @@ const App = () => {
       <Routes>
         <Route path="*" element={<NotFoundPage />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/personaldata" element={<PersonalData />} />
         <Route path="/" element={<Login />} />
       </Routes>
     </>
