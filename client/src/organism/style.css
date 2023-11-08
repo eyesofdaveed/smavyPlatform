@@ -1,0 +1,24 @@
+.profiAvaImg {
+    width: 150px;
+    border-radius: 100px;
+
+}
+
+.circleAva {
+    width: 160px;
+    height: 160px;
+    border-radius: 150px;
+    border: 6px solid #C0FDB6;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.profiIcon {
+    width: 60px;
+}
+
+.gpa {
+    font-size: 53px;
+    color: #76FFF7;
+}
