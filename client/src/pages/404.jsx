@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import { Link } from 'react-router-dom';
 import { Flexbox } from '../atoms/Flexbox';
 import { colors } from '@base';
 
@@ -45,7 +46,7 @@ const NotFoundPage = () => {
         <Subtitle>Not found</Subtitle>
         <Instruction>
           Эта страница недоступна. <br /> Вернитесь на{' '}
-          <a href="/">главную страницу</a> нашего сайта.
+          <Link to="/">главную страницу</Link> нашего сайта.
         </Instruction>
       </Flexbox>
     </NotFoundWrapper>
