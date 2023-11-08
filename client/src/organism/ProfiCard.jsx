@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import './style.css'
 
 import { ProfiAva } from '@atoms';
 import { ProfiProgress } from '@atoms';
@@ -36,7 +35,7 @@ const ProfiCard = () => {
                     </Flexbox>
                 </Flexbox>
 
-                <Flexbox width='45%' justify='space-between' align = "end">
+                <Flexbox width='45%' justify='space-between' align="end">
                     <ProfiProgress></ProfiProgress>
                 </Flexbox>
             </Flexbox>
