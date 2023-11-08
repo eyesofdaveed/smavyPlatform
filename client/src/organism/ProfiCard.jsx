@@ -16,10 +16,11 @@ import { API_METHODS } from '@api/enums';
 const ProfiCardWrapper = styled.div`
   background-color: ${colors.profileHeaderBG};
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
   margin: 5%;
-  padding: 2% 5%;
+  padding: 2% 8%;
   box-shadow: 1px 2px 8px 0px #00000026;
   border-radius: 28px;
   max-width: 100%;
