@@ -41,7 +41,7 @@ export function LoginForm() {
       {data && data.map(item => console.log(item.firstName, '-', item.email))}
 
       <Card width="20%">
-        <Flexbox direction="column" gap="8px">
+        <Flexbox direction="column" gap="8px" align="flex-start">
           <form
             onSubmit={e => {
               e.preventDefault();
