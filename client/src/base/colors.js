@@ -9,5 +9,6 @@ export const colors = {
   eventBlue: "#BEBDF9",
   notificationColor: "#E4F3FB",
   profileHeaderBG: "#3B4051",
-  test_taskCardBG: "#E5F5FC"
+  test_taskCardBG: "#E5F5FC",
+  activeBlue: "#2E5BF0"
 };
