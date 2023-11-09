@@ -6,7 +6,7 @@ import { Flexbox } from '@atoms';
 import { sizes } from '@base/index';
 import { colors } from '@base';
 
-const PersonalDataCard = styled.div`
+export const PersonalDataCard = styled.div`
   background-color: ${colors.personalDataCardBg};
   border-radius: 30px;
   padding: 2%;
@@ -16,7 +16,7 @@ const PersonalDataCard = styled.div`
   
 `;
 
-const PersonalDataCardText = styled.div`
+export const PersonalDataCardText = styled.div`
   background-color: ${colors.white};
   border-radius: 18px;
   padding: 10px;
@@ -25,7 +25,7 @@ const PersonalDataCardText = styled.div`
   // justify-content: space-between;
 `;
 
-const TextOfPerson = styled.p`
+export const TextOfPerson = styled.p`
   font-weight: 400;
   line-height: 22px;
   font-size: ${({ fontSize }) => (fontSize ? fontSize : '18px')};
@@ -34,7 +34,7 @@ const TextOfPerson = styled.p`
   
 `;
 
-const PersonalData = () => {
+export const PersonalData = () => {
   return (
     <PersonalDataCard>
       <Flexbox direction="column" gap="22px" align="start">
@@ -66,6 +66,3 @@ const PersonalData = () => {
     </PersonalDataCard>
   );
 };
-
-export default PersonalData;
-
