@@ -2,7 +2,7 @@ export const colors = {
   white: '#FFFFFF',
   black: '#000000',
   cardBg: '#737399',
-  personalDataCardBg: '#E4F3FB',
+  cardMainBg: '#E4F3FB',
   btnPrimary: '#5BAFFC',
   sidebarColor: '#EDEEF2',
   eventRed: "#F9BDBD",
