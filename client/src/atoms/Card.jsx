@@ -11,6 +11,6 @@ export const CardContainer = styled.div`
   width: ${({ width }) => (width ? width : '100%')};
 `;
 
-export const Card = ({ width,  children , color, borderRadius, padding , display , bgColor}) => {
+export const Card = ({ width,  children , color, borderRadius, padding, display, bgColor}) => {
   return <CardContainer width={width} color={color} borderRadius={borderRadius} padding={padding} bgColor={bgColor} display={display} >{children}</CardContainer>;
 };

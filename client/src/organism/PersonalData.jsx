@@ -1,16 +1,18 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { Flexbox, Text , Card } from '@atoms';
-import { sizes, colors } from '@base';
-
+import { Flexbox } from '@atoms';
+import { Text } from '@atoms';
+import { Card } from '@atoms';
+import { sizes } from '@base';
+import { colors } from '@base';
 
 export const ValueBackround = styled.div`
   background-color: ${colors.white};
   border-radius: 18px;
   padding: 2px 10px;
   margin-left:10px; 
-  // margin-right:30px;
+  margin-right:30px;
   width: 300px;
 `;
 
