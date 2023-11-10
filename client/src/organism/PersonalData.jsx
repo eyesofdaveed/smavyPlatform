@@ -4,13 +4,6 @@ import styled from 'styled-components';
 import { Flexbox, Text , Card } from '@atoms';
 import { sizes, colors } from '@base';
 
-// export const PersonalDataCard = styled.div`
-//   background-color: ${colors.cardMainBg};
-//   border-radius: 30px;
-//   padding: 20px;
-//   display: flex;
-//   width: fit-content;
-// `;
 
 export const ValueBackround = styled.div`
   background-color: ${colors.white};
