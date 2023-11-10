@@ -3,12 +3,13 @@ const router = require('express').Router();
 const Users = require('../models/Users');
 const Entity = require('../api');
 const checkRole = require('../middleware/checkRole');
-const { roles } = require('../enums');
+const { ROLES } = require('../enums');
 
 const user = new Entity(Users);
 
 // get all users
-router.route('/').get(checkRole(Array(roles.at(0))), async (req, res) => {
+// @TODO: add checkRole middleware to the route
+router.route('/').get(checkRole(ROLES.ADMIN), async (req, res) => {
   try {
     await user.getAll(res);
   } catch (err) {
@@ -17,12 +18,15 @@ router.route('/').get(checkRole(Array(roles.at(0))), async (req, res) => {
 });
 
 // find a user by id, and modify it
-router.put('/:id', checkRole(Array(roles.at(0))), async (req, res) => {
+router.put('/:id', checkRole(ROLES.ADMIN), async (req, res) => {
   try {
-    const updatedUser = await Users.findByIdAndUpdate(req.params.id, {
-      $set: req.body,
-    });
-    res.status(200).json(updatedUser);
+    const entityId = req.params.id;
+    const fieldsToUpdate = {
+      status: req.body.status,
+      role: req.body.role,
+    }
+
+    await user.update({ entityId, fieldsToUpdate, res });
   } catch (err) {
     return res.status(400).json({ message: err.errors });
   }

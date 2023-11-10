@@ -17,7 +17,6 @@ const verifyJwt = require('./middleware/verifyJwt');
 
 dotenv.config();
 
-/* MongoDB Connection */
 mongoose
   .connect(
     'mongodb+srv://user:user@smavyplatform.eyoabnp.mongodb.net/?retryWrites=true&w=majority',
@@ -32,14 +31,12 @@ app.use(helmet());
 app.use(morgan('common'));
 app.use(cors());
 app.options('*', cors());
-// middleware for cookies
 app.use(cookieParser());
-// routes with prefix
+
 app.use('/register', registerRoute);
+app.use(verifyJwt);
 app.use('/auth', authRoute);
 app.use('/logout', logoutRoute);
-
-app.use(verifyJwt);
 app.use('/users', usersRoute);
 app.use('/assignments', assignmentsRoute);
 
