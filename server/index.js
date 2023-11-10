@@ -34,8 +34,8 @@ app.options('*', cors());
 app.use(cookieParser());
 
 app.use('/register', registerRoute);
-app.use(verifyJwt);
 app.use('/auth', authRoute);
+app.use(verifyJwt);
 app.use('/logout', logoutRoute);
 app.use('/users', usersRoute);
 app.use('/assignments', assignmentsRoute);
