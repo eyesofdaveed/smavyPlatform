@@ -1,8 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 
+
 export const StyledButton = styled.button`
-  background-color: #fff;
+  background-color:${({ bgColor }) => (bgColor ? bgColor : '#fff')};
   border-radius: 12px;
   outline: none;
   border: none;
@@ -15,9 +16,9 @@ export const StyledButton = styled.button`
   }
 `;
 
-export const Button = ({ type, text, onClick }) => {
+export const Button = ({ type, text, onClick, bgColor}) => {
   return (
-    <StyledButton type={type} onClick={onClick}>
+    <StyledButton type={type} onClick={onClick} bgColor={bgColor}>
       {text}
     </StyledButton>
   );
