@@ -3,7 +3,9 @@ const router = require('express').Router();
 const Users = require('../models/Users');
 const Entity = require('../api');
 const checkRole = require('../middleware/checkRole');
+const errorHandler = require('../middleware/errorHandler')
 const { ROLES } = require('../enums');
+
 
 const user = new Entity(Users);
 
@@ -28,7 +30,7 @@ router.put('/:id', checkRole(ROLES.ADMIN), async (req, res) => {
 
     await user.update({ entityId, fieldsToUpdate, res });
   } catch (err) {
-    return res.status(400).json({ message: err.errors });
+    errorHandler(err, req, res);
   }
 });
 
