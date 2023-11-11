@@ -7,6 +7,7 @@ import { Text } from '@atoms';
 import { sizes } from '@base/index';
 import { baseApi } from '@api';
 import { API_METHODS } from '@api/enums';
+import { Button } from '../atoms/Button';
 
 const INPUT_TYPES = {
   USERNAME: 'username',
@@ -18,7 +19,7 @@ const ERROR_MESSAGES = {
   PASSWORD: 'Введите пароль',
 };
 
-export function Form() {
+export function LoginForm() {
   const [data, setData] = useState();
 
   const handleSubmitData = async () => {
@@ -30,14 +31,6 @@ export function Form() {
   const [errorMessage, setErrorMessage] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const handleSubmit = event => {
-    console.log(username, password);
-    event.preventDefault();
-
-    if (!username.length) return setErrorMessage('Введите имя');
-    if (!password.length) return setErrorMessage('Введите пароль');
-  };
-
   const handleChange = inputName => value => {
     if (inputName === INPUT_TYPES.USERNAME) setUsername(value.trim());
     if (inputName === INPUT_TYPES.PASSWORD) setPassword(value.trim());
@@ -47,7 +40,7 @@ export function Form() {
     <>
       {data && data.map(item => console.log(item.firstName, '-', item.email))}
 
-      <Card>
+      <Card width="20%">
         <Flexbox direction="column" gap="8px" align="flex-start">
           <form
             onSubmit={e => {
@@ -56,7 +49,7 @@ export function Form() {
             }}
           >
             <Text fontSize={sizes.xLarge}>Вход</Text>
-            <Flexbox direction="column" width="80%">
+            <Flexbox direction="column">
               <Input
                 placeholder="Ваше имя"
                 onChange={handleChange(INPUT_TYPES.USERNAME)}
@@ -73,7 +66,7 @@ export function Form() {
                 required
               />
               {errorMessage}
-              <input type="submit" />
+              <Button type="submit" text="Отправить" />
             </Flexbox>
           </form>
           <Flexbox>

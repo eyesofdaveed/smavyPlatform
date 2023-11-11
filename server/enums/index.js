@@ -1,4 +1,4 @@
 const hashConstance = require('./hash');
-const roles = require('./roles');
+const ROLES = require('./roles');
 
-module.exports = { hashConstance, roles };
+module.exports = { hashConstance, ROLES };
