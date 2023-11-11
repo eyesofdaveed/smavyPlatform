@@ -20,12 +20,12 @@ const user = new Entity(Users);
  *           type: string
  *         description: Filter users by role
  *       - in: query
- *         name: pageNumber
+ *         name: page
  *         schema:
  *           type: integer
  *         description: Page number
  *       - in: query
- *         name: pageSize
+ *         name: take
  *         schema:
  *           type: integer
  *         description: Number of users to take per page
@@ -62,8 +62,79 @@ router.route('/').get(checkRole(ROLES.ADMIN), async (req, res) => {
   }
 });
 
-// find a user by id, and modify it
-router.put('/').get(checkRole(ROLES.ADMIN), async (req, res) => {
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     User:
+ *       type: object
+ *       properties:
+ *         id:
+ *           type: string
+ *         firstName:
+ *           type: string
+ *         lastName:
+ *           type: string
+ *         email:
+ *           type: string
+ *         role:
+ *           type: string
+ */
+/**
+ * @swagger
+ * /users/{userId}:
+ *   put:
+ *     summary: Update user by ID
+ *     tags: [Users]
+ *     parameters:
+ *       - in: path
+ *         name: userId
+ *         required: true
+ *         type: string
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               id:
+ *                 type: string
+ *               firstName:
+ *                 type: string
+ *               lastName:
+ *                 type: string
+ *               email:
+ *                 type: string
+ *               role:
+ *                 type: string
+ *           examples:
+ *             example1:
+ *               value:
+ *                 id: "12345"
+ *                 firstName: "John"
+ *                 lastName: "Doe"
+ *                 email: "john@example.com"
+ *                 role: "admin"
+ *     responses:
+ *       200:
+ *         description: User updated successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/User'
+ *             example:
+ *               data:
+ *                 id: "12345"
+ *                 firstName: "John"
+ *                 lastName: "Doe"
+ *                 email: "john@example.com"
+ *                 role: "admin"
+ *               message: "Успешно сохранено"
+ *       400:
+ *         description: Bad request
+ */
+router.put('/:id', checkRole(ROLES.ADMIN), async (req, res) => {
   try {
     const entityId = req.params.id;
     const fieldsToUpdate = {
