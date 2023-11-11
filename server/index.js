@@ -14,6 +14,23 @@ const logoutRoute = require('./routes/logout');
 const registerRoute = require('./routes/register');
 const { logger, logEvents } = require('./middleware/logger');
 const verifyJwt = require('./middleware/verifyJwt');
+const swaggerJsdoc = require('swagger-jsdoc');
+const swaggerUi = require('swagger-ui-express');
+
+const options = {
+  definition: {
+    openapi: '3.0.0',
+    info: {
+      title: 'Your API',
+      version: '1.0.0',
+    },
+  },
+  apis: ['routes/*.js'], // Укажите путь к вашим файлам маршрутов
+};
+
+const specs = swaggerJsdoc(options);
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
 
 dotenv.config();
 
