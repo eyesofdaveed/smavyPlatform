@@ -4,8 +4,7 @@ import styled from 'styled-components';
 import { Flexbox } from '@atoms';
 import { Text } from '@atoms';
 import { Card } from '@atoms';
-import { sizes } from '@base';
-import { colors } from '@base';
+import { sizes,colors } from '@base';
 import { ValueBackround } from '../atoms';
 
 export const PersonalData = () => {
