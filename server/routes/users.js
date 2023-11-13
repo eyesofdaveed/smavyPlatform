@@ -59,7 +59,7 @@ const user = new Entity(Users);
  */
 router.route('/').get(checkRole(ROLES.ADMIN), async (req, res) => {
   try {
-    await user.getAll(res);
+    await user.getAll(req, res);
   } catch (err) {
     errorHandler(err, req, res);
   }

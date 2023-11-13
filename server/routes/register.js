@@ -5,7 +5,7 @@ const handleNewUser = require('../controllers/registerController');
 // register a new user
 /**
  * @swagger
- * /users/register:
+ * /register:
  *   post:
  *     summary: Register a new user
  *     tags: [Users]

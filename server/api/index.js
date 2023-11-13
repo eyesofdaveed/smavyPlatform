@@ -1,4 +1,5 @@
 const { isEmptyObject } = require('../utils');
+const errorHandler = require('../middleware/errorHandler')
 
 class Entity {
   constructor(entityModel) {
@@ -16,7 +17,7 @@ class Entity {
 
   async getById() {}
 
-  async getAll({ res, pageSize = '25', pageNumber = '2' }) {
+  async getAll({ req, res, pageSize = '25', pageNumber = '1' }) {
     try {
       const pageSizeInt = parseInt(pageSize);
       const pageNumberInt = parseInt(pageNumber);
@@ -24,10 +25,10 @@ class Entity {
       const results = await this.entityModel.find().sort({
         createdAt: -1,
       }).skip(pageSizeInt * (pageNumberInt - 1)).limit(pageSizeInt);
-
-      res.status(200).json(results);
+      return res
+      .json({ data: results });
     } catch (err) {
-      console.log(err);
+      errorHandler(err, req, res);
     }
   }
 
