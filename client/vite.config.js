@@ -12,9 +12,10 @@ export default defineConfig({
       '@base': path.resolve(__dirname, './src/base'),
       '@organism': path.resolve(__dirname, './src/organism'),
       '@pages': path.resolve(__dirname, './src/pages'),
+      '@assets': path.resolve(__dirname, './public/assets'),
     },
   },
-  
+
   server: {
     open: true,
     port: 3000,

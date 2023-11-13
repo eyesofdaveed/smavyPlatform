@@ -5,3 +5,4 @@ export * from '../atoms/Text';
 export * from '../atoms/Button';
 export * from '../atoms/Progress';
 export * from '../atoms/ProfiAva';
+export * from '../atoms/Gridbox';
