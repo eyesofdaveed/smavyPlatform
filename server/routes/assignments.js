@@ -14,7 +14,13 @@ router.post('/add', async (req, res) => {
 
 // get all assignments
 router.get('/', async (req, res) => {
-    assignment.getAll(res);
+    const { pageSize, pageNumber} = req.body.filter;
+
+    assignment.getAll({
+        res,
+        pageSize,
+        pageNumber,
+    });
 })
 
 // find a assignment by id, and modify it

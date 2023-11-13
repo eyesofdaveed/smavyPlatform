@@ -14,10 +14,26 @@ const logoutRoute = require('./routes/logout');
 const registerRoute = require('./routes/register');
 const { logger, logEvents } = require('./middleware/logger');
 const verifyJwt = require('./middleware/verifyJwt');
+const swaggerJsdoc = require('swagger-jsdoc');
+const swaggerUi = require('swagger-ui-express');
+
+const options = {
+  definition: {
+    openapi: '3.0.0',
+    info: {
+      title: 'Your API',
+      version: '1.0.0',
+    },
+  },
+  apis: ['routes/*.js'], // Укажите путь к вашим файлам маршрутов
+};
+
+const specs = swaggerJsdoc(options);
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
 
 dotenv.config();
 
-/* MongoDB Connection */
 mongoose
   .connect(
     'mongodb+srv://user:user@smavyplatform.eyoabnp.mongodb.net/?retryWrites=true&w=majority',
@@ -32,14 +48,12 @@ app.use(helmet());
 app.use(morgan('common'));
 app.use(cors());
 app.options('*', cors());
-// middleware for cookies
 app.use(cookieParser());
-// routes with prefix
+
 app.use('/register', registerRoute);
 app.use('/auth', authRoute);
-app.use('/logout', logoutRoute);
-
 app.use(verifyJwt);
+app.use('/logout', logoutRoute);
 app.use('/users', usersRoute);
 app.use('/assignments', assignmentsRoute);
 

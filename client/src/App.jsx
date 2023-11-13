@@ -2,8 +2,8 @@ import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 
 import Login from './pages/Login';
-import NotFoundPage from './pages/404/404';
 import { Registration } from './pages/Registration';
+import NotFoundPage from './pages/NotFoundPage';
 
 const App = () => {
   return (
