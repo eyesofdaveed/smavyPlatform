@@ -6,20 +6,7 @@ import { Text } from '@atoms';
 import { Card } from '@atoms';
 import { sizes } from '@base';
 import { colors } from '@base';
-// import contrastData from '../../.././contracts.json';
-
-export const ValueBackround = styled.div`
-  background-color: ${colors.white};
-  border-radius: 18px;
-  padding: 2px 10px;
-  margin-left:10px; 
-  margin-right:30px;
-  width: 300px;
-  @media (max-width: 600px) {
-    width: 100%;
-    margin: 10px 0;
-  }
-`;
+import { ValueBackround } from '../atoms';
 
 export const PersonalData = () => {
   return (
@@ -27,7 +14,7 @@ export const PersonalData = () => {
       <Flexbox direction="column" gap="22px" align="start">
         <Flexbox justify="space-between" width="100%">
           <Text color= 'black'fontSize={sizes.medium} >ИИН</Text>
-          <ValueBackround>
+          <ValueBackround margin="0px 3px 0px 10px" padding="2px 15px ">
             <Text fontSize={sizes.medium} color= 'black'>010722547645</Text>
           </ValueBackround>
         </Flexbox>
@@ -35,13 +22,13 @@ export const PersonalData = () => {
           <Text color= 'black' fontSize={sizes.medium} >
             Дата рождения
           </Text>
-          <ValueBackround>
+          <ValueBackround margin="0px 3px 0px 10px" padding="2px 15px ">
             <Text color= 'black' fontSize={sizes.medium}>22-07-2001</Text>
-          </ValueBackround>
+          </ValueBackround >
         </Flexbox>
         <Flexbox justify="space-between" width="100%">
           <Text color= 'black' fontSize={sizes.medium} >Пол</Text>
-          <ValueBackround>
+          <ValueBackround margin="0px 3px 0px 10px" padding="2px 15px ">
             <Text color= 'black' fontSize={sizes.medium}>Женский</Text>
           </ValueBackround>
         </Flexbox>
