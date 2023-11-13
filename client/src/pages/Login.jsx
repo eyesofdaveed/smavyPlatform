@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import { LoginForm } from '../organism/LoginForm';
-import { PersonalData } from '../organism/PersonalData';
 
 const LoginWrapper = styled.div`
   display: flex;
@@ -12,10 +11,9 @@ const LoginWrapper = styled.div`
 
 const Login = () => {
   return (
-    // <LoginWrapper>
-    //   <LoginForm />
-    // </LoginWrapper>
-    <PersonalData />
+    <LoginWrapper>
+      <LoginForm />
+    </LoginWrapper>
   );
 };
 
