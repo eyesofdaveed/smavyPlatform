@@ -71,3 +71,10 @@ mongoose.connection.on('error', err => {
     'mongoErrLog.log',
   );
 });
+
+//It should be at the end
+app.use(function(req, res) {
+  return res
+      .status(404)
+      .json({ message: 'Endpoint not found' });
+});
