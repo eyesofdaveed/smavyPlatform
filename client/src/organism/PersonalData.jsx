@@ -6,6 +6,7 @@ import { Text } from '@atoms';
 import { Card } from '@atoms';
 import { sizes } from '@base';
 import { colors } from '@base';
+// import contrastData from '../../.././contracts.json';
 
 export const ValueBackround = styled.div`
   background-color: ${colors.white};
@@ -14,6 +15,10 @@ export const ValueBackround = styled.div`
   margin-left:10px; 
   margin-right:30px;
   width: 300px;
+  @media (max-width: 600px) {
+    width: 100%;
+    margin: 10px 0;
+  }
 `;
 
 export const PersonalData = () => {
