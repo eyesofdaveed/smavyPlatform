@@ -77,11 +77,11 @@ export const ProfileAva = ({ children }) => {
             <ProfiColumn>
                 <Flexbox direction="column" gap="10px">
                     <Icon src={GroupIcon} alt="img" />
-                    <Text fontSize={sizes.large} fontSizePhone={'12px'} lineHeightPhone={'18px'}>Группа: ITIS-1916R</Text>
+                    <Text fontSize={sizes.medium} fontSizePhone={'12px'} lineHeightPhone={'18px'}>Группа: ITIS-1916R</Text>
                 </Flexbox>
                 <Flexbox direction="column" gap="10px">
                     <Icon src={GroupIcon} alt="img" />
-                    <Text fontSize={sizes.large}  fontSizePhone={'14px'} lineHeightPhone={'20px'}>14 одногруппников</Text>
+                    <Text fontSize={sizes.medium}  fontSizePhone={'14px'} lineHeightPhone={'20px'}>14 одногруппников</Text>
                 </Flexbox>
             </ProfiColumn>
         </ProfileWrapper>
