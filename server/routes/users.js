@@ -2,6 +2,7 @@ const router = require('express').Router();
 
 const Users = require('../models/Users');
 const Entity = require('../api');
+
 const checkRole = require('../middleware/checkRole');
 const errorHandler = require('../middleware/errorHandler')
 const { ROLES } = require('../enums');
@@ -60,7 +61,7 @@ router.route('/').get(checkRole(ROLES.ADMIN), async (req, res) => {
   try {
     await user.getAll(res);
   } catch (err) {
-    console.log(err);
+    errorHandler(err, req, res);
   }
 });
 
