@@ -3,19 +3,24 @@ import styled from 'styled-components';
 
 export const StyledFlexbox = styled.div`
   display: flex;
+  flex-wrap: ${({ flexWrap }) => (flexWrap ? flexWrap : 'nowrap')};
   justify-content: ${({ justify }) => (justify ? justify : 'center')};
-  align-items: center;
+  align-items: ${({ align }) => (align ? align : 'center')}; 
   flex-direction: ${({ direction }) => direction};
   gap: ${({ gap }) => (gap ? gap : '16px')};
   width: ${({ width }) => width};
+
+  @media screen and (max-width: 450px) {
+    visibility: ${({ visibility }) => visibility};
+    gap: ${({ gapPhone }) => gapPhone};
+  }
 `;
 
-export const Flexbox = ({ direction = 'row', gap, align, children, width, justify }) => {
+export const Flexbox = ({ direction = 'row', gap, gapPhone, align, children, width, justify, flexWrap, visibility }) => {
   return (
-    <StyledFlexbox direction={direction} gap={gap} align={align} width={width} justify={justify}>
+    <StyledFlexbox direction={direction} gap={gap} gapPhone={gapPhone} align={align} width={width} justify={justify} flexWrap={flexWrap} visibility={visibility}>
       {children}
     </StyledFlexbox>
   );
 };
 
-export default Flexbox;
