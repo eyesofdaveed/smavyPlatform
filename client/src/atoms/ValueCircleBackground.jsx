@@ -8,9 +8,8 @@ export const ValueContainer = styled.div`
   border-radius:  ${({ borderRadius }) => (borderRadius ? borderRadius : `18px`)};
   padding: ${({ padding }) => (padding ? padding : `2px 0px 5px 10px`)};
   margin : ${({ margin }) => (margin ? margin : `0px`)} ;
-//   margin-left:10px; 
-//   margin-right:30px;
   width: ${({ width }) => (width ? width : `300px`)};
+  
   @media (max-width: 600px) {
     width: 100%;
     margin: 10px 0;
