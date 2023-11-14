@@ -15,10 +15,10 @@ class Entity {
     }
   }
 
-  async getById(req, res, entity) {
+  async getById(req, res, entityName) {
     try {
       if (!req && !req.params && !req.params.id) {
-        return res.status(400).json({ message: `${entity} ID required.` });
+        return res.status(400).json({ message: `${entityName} ID required.` });
       }
 
       const requestedEntity = await this.entityModel
@@ -28,7 +28,7 @@ class Entity {
       if (!requestedEntity) {
         return res
           .status(400)
-          .json({ message: `${entity} ID ${req.params.id} not found` });
+          .json({ message: `${entityName} ID ${req.params.id} not found` });
       }
 
       res.json(requestedEntity);
@@ -68,10 +68,10 @@ class Entity {
     }
   }
 
-  async delete(req, res, entity) {
+  async delete(req, res, entityName) {
     try {
       if (!req && !req.params && !req.params.id) {
-        return res.status(400).json({ message: `${entity} ID required.` });
+        return res.status(400).json({ message: `${entityName} ID required.` });
       }
 
       const requestedEntity = await this.entityModel
@@ -81,7 +81,7 @@ class Entity {
       if (!requestedEntity) {
         return res
           .status(400)
-          .json({ message: `${entity} ID ${req.body.id} not found` });
+          .json({ message: `${entityName} ID ${req.body.id} not found` });
       }
 
       const result = await this.entityModel
