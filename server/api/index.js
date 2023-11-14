@@ -1,5 +1,5 @@
 const { isEmptyObject } = require('../utils');
-const errorHandler = require('../middleware/errorHandler')
+const errorHandler = require('../middleware/errorHandler');
 
 class Entity {
   constructor(entityModel) {
@@ -15,24 +15,47 @@ class Entity {
     }
   }
 
-  async getById() {}
+  async getById(req, res, entity) {
+    try {
+      if (!req && !req.params && !req.params.id) {
+        return res.status(400).json({ message: `${entity} ID required.` });
+      }
+
+      const requestedEntity = await this.entityModel
+        .findOne({ _id: req.params.id })
+        .exec();
+
+      if (!requestedEntity) {
+        return res
+          .status(400)
+          .json({ message: `${entity} ID ${req.params.id} not found` });
+      }
+
+      res.json(requestedEntity);
+    } catch (err) {
+      errorHandler(err, req, res);
+    }
+  }
 
   async getAll({ req, res, pageSize = '25', pageNumber = '1' }) {
     try {
       const pageSizeInt = parseInt(pageSize);
       const pageNumberInt = parseInt(pageNumber);
 
-      const results = await this.entityModel.find().sort({
-        createdAt: -1,
-      }).skip(pageSizeInt * (pageNumberInt - 1)).limit(pageSizeInt);
-      return res
-      .json({ data: results });
+      const results = await this.entityModel
+        .find()
+        .sort({
+          createdAt: -1,
+        })
+        .skip(pageSizeInt * (pageNumberInt - 1))
+        .limit(pageSizeInt);
+      return res.json({ data: results });
     } catch (err) {
       errorHandler(err, req, res);
     }
   }
 
-  async update({entityId, fieldsToUpdate, res}) {
+  async update({ entityId, fieldsToUpdate, res }) {
     try {
       if (isEmptyObject(fieldsToUpdate)) return;
 
@@ -45,9 +68,39 @@ class Entity {
     }
   }
 
-  async delete() {}
+  async delete(req, res, entity) {
+    try {
+      if (!req && !req.params && !req.params.id) {
+        return res.status(400).json({ message: `${entity} ID required.` });
+      }
 
-  async deleteAll() {}
+      const requestedEntity = await this.entityModel
+        .findOne({ _id: req.body.id })
+        .exec();
+
+      if (!requestedEntity) {
+        return res
+          .status(400)
+          .json({ message: `${entity} ID ${req.body.id} not found` });
+      }
+
+      const result = await this.entityModel
+        .deleteOne({ _id: req.body.id })
+        .exec();
+
+      res.json(result);
+    } catch (err) {
+      errorHandler(err, req, res);
+    }
+  }
+
+  async deleteAll(req, res, obj) {
+    try {
+      await this.entityModel.deleteMany(obj).exec();
+    } catch (err) {
+      errorHandler(err, req, res);
+    }
+  }
 }
 
 module.exports = Entity;
