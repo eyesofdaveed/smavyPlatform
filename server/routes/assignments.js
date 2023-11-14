@@ -17,6 +17,7 @@ router.get('/', async (req, res) => {
     const { pageSize, pageNumber} = req.body.filter;
 
     assignment.getAll({
+        req,
         res,
         pageSize,
         pageNumber,
