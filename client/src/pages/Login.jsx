@@ -1,8 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import { LoginForm } from '../organism/LoginForm';
-import { SpecialtyCard } from '../organism/SpecialtyCard';
-// import { PersonalData } from '../organism/PersonalData';
 
 
 const LoginWrapper = styled.div`
@@ -15,10 +13,7 @@ const LoginWrapper = styled.div`
 const Login = () => {
   return (
     <LoginWrapper>
-      {/* <LoginForm /> */}
-      <SpecialtyCard />
-      {/* <PersonalData /> */}
-      
+      <LoginForm />
     </LoginWrapper>
     
   );
