@@ -14,6 +14,7 @@ const ResetPasswordWrapper = styled.div`
 
 
 
+
 const PasswordReset = () => {
   return (
     <ResetPasswordWrapper>
@@ -32,7 +33,7 @@ const PasswordReset = () => {
             <Button width="70vh" type="submit" text="Восстановить пароль" bgColor={colors.btnPrimary}/>
           </Flexbox>
           <Flexbox>
-            <Text fontSize={sizes.medium} textAlign={aligns.right} weight={weight.light}>Вернуться на страницу входа</Text>
+            <a href="/login"><Text fontSize={sizes.medium} textAlign={aligns.right} weight={weight.light}>Вернуться на страницу входа</Text></a>
           </Flexbox>
         </Flexbox>
       </Card>
