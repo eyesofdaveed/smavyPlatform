@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 export const TextContainer = styled.div`
   text-align: ${({textAlign }) => textAlign};
+  text-align: ${({ textAlign }) => (textAlign ? textAlign : 'center')};
   font-weight: ${({ fontWeight }) => (fontWeight ? fontWeight : '500')};
   line-height: ${({ lineHeight }) => (lineHeight ? lineHeight : '26px')};
   font-size: ${({ fontSize }) => (fontSize ? fontSize : '16px')};
