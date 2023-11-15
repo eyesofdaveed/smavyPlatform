@@ -13,6 +13,7 @@ const ResetPasswordWrapper = styled.div`
 `;
 
 
+
 const PasswordReset = () => {
   return (
     <ResetPasswordWrapper>
@@ -25,10 +26,10 @@ const PasswordReset = () => {
             </Text>
           </Flexbox>
           <Flexbox direction="column">
-            <Input placeholder="Ваш e-mail" type="email"/>
+            <Input width="65vh" placeholder="Ваш e-mail" type="email"/>
           </Flexbox>
           <Flexbox>
-            <Button type="submit" text="Восстановить пароль" bgColor={colors.btnPrimary}/>
+            <Button width="70vh" type="submit" text="Восстановить пароль" bgColor={colors.btnPrimary}/>
           </Flexbox>
           <Flexbox>
             <Text fontSize={sizes.medium} textAlign={aligns.right} weight={weight.light}>Вернуться на страницу входа</Text>

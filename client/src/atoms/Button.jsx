@@ -14,11 +14,13 @@ export const StyledButton = styled.button`
     cursor: pointer;
     background-color: #f2f2f2;
   }
+  width: ${({ width }) => (width ? width : '100%')};
+  color: ${({ color }) => (color ? color : 'white')};
 `;
 
-export const Button = ({ type, text, onClick, bgColor}) => {
+export const Button = ({ type, text, onClick, bgColor, width, color}) => {
   return (
-    <StyledButton type={type} onClick={onClick} bgColor={bgColor}>
+    <StyledButton type={type} onClick={onClick} bgColor={bgColor} width={width} color={color} >
       {text}
     </StyledButton>
   );
