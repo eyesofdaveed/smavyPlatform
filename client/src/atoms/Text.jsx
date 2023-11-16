@@ -3,9 +3,7 @@ import styled from 'styled-components';
 
 
 export const TextContainer = styled.div`
-
-  // src: url('fonts/Inter.ttf');    
-  // font-family:'sans-serif';
+  text-align: ${({textAlign }) => textAlign};
   font-weight: ${({ weight }) => (weight ? weight : '400')};
   line-height: 32px;
   font-size: ${({ fontSize }) => (fontSize ? fontSize : '16px')};
@@ -27,6 +25,6 @@ export const Text = ({ fontSize, children, weight, textAlign }) => {
   }
 `;
 
-export const Text = ({ fontSize, children, fontSizePhone, fontWeight, lineHeight, lineHeightPhone }) => {
-  return <TextContainer fontSize={fontSize} fontSizePhone={fontSizePhone} fontWeight={fontWeight} lineHeight={lineHeight} lineHeightPhone={lineHeightPhone}>{children}</TextContainer>;
+export const Text = ({ fontSize, children, fontSizePhone, fontWeight, lineHeight, lineHeightPhone , color }) => {
+  return <TextContainer fontSize={fontSize} fontSizePhone={fontSizePhone} color={color} fontWeight={fontWeight} lineHeight={lineHeight} lineHeightPhone={lineHeightPhone}>{children}</TextContainer>;
 };
