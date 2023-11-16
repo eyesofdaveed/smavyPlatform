@@ -53,7 +53,7 @@ export const SpecialtyCard = () => {
           </ValueBackround>
         </Flexbox>
         <Flexbox justify="space-between" width="100%">
-          <Text  color={colors.black} fontSize={sizes.medium} >Сетрификат гранта</Text>
+          <Text  color={colors.black} fontSize={sizes.medium} >Сертификат гранта</Text>
           <ValueBackround width='600px' margin="0px 3px 0px 40px" padding="5px 15px ">
             <Text  color={colors.black} fontSize={sizes.medium}>Женский</Text>
           </ValueBackround>
