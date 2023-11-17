@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 import { Card, Button, Text, Input, Flexbox } from '@atoms';
-import { sizes, colors, weight, aligns } from '@base';
+import { sizes, colors } from '@base';
 
 const ResetPasswordWrapper = styled.div`
   display: flex;
@@ -18,22 +18,20 @@ const ResetPasswordWrapper = styled.div`
 const PasswordReset = () => {
   return (
     <ResetPasswordWrapper>
-      <Card width="500px">
+      <Card width="400px">
         <Flexbox direction="column" gap="12px" align="flex-start">
-          <Text textAlign={aligns.left} fontSize={sizes.xLarge} weight={weight.middle}>Восстановить пароль</Text>
+          <Text fontSize={sizes.xLarge} weight="bold">Восстановить пароль</Text>
           <Flexbox direction="column">
-            <Text fontSize={sizes.medium}>
+            <Text fontSize={sizes.small}>
               На Ваш e-mail будет выслана ссылка для восстановления пароля
             </Text>
           </Flexbox>
-          <Flexbox direction="column">
-            <Input width="65vh" placeholder="Ваш e-mail" type="email"/>
+          <Flexbox direction="column" width='100%' >
+            <Input placeholder="Ваш e-mail" type="email" width='95%' height='48px'/>
+            <Button type="submit" fontSize='23px' text="Восстановить пароль" bgColor={colors.btnPrimary}/>
           </Flexbox>
-          <Flexbox>
-            <Button width="70vh" type="submit" text="Восстановить пароль" bgColor={colors.btnPrimary}/>
-          </Flexbox>
-          <Flexbox>
-            <a href="/login"><Text fontSize={sizes.medium} textAlign={aligns.right} weight={weight.light}>Вернуться на страницу входа</Text></a>
+          <Flexbox justify='flex-end' width='100%'>
+            <a style={{textDecoration:'none'}} href="/login"><Text fontSize={sizes.small} >Вернуться на страницу входа</Text></a>
           </Flexbox>
         </Flexbox>
       </Card>
