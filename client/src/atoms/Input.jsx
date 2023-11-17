@@ -10,9 +10,19 @@ export const StyledInput = styled.input`
   width: ${({ width }) => (width ? width : '100%')};
   box-shadow: ${({ boxShadow }) => boxShadow};
   font-size: ${({ fontSize }) => (fontSize ? fontSize : '14px')};
+
+  @media screen and (max-width: 1620px) {
+    width: ${({widthLaptop }) => widthLaptop};
+  }
+  @media screen and (max-width: 768px) {
+    width: ${({widthTablet }) => widthTablet};
+  }
+  @media screen and (max-width: 450px) {
+    width: ${({widthPhone }) => widthPhone};
+  }
 `;
 
-export const Input = ({ type, placeholder, required, value, onChange, width, boxShadow, fontSize }) => {
+export const Input = ({ type, placeholder, required, value, onChange, width, widthLaptop, widthTablet, widthPhone, boxShadow, fontSize }) => {
   const handleInputChange = e => {
     onChange(e.target.value);
   };
@@ -20,6 +30,9 @@ export const Input = ({ type, placeholder, required, value, onChange, width, box
   return (
     <StyledInput
       width={width}
+      widthLaptop={widthLaptop}
+      widthTablet={widthTablet}
+      widthPhone={widthPhone}
       type={type}
       placeholder={placeholder}
       required={required}

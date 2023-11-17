@@ -12,23 +12,23 @@ export const PersonalData = () => {
     <Card padding="30px" display="flex" width="fit-content" bgColor={colors.cardMainBg} >
       <Flexbox direction="column" gap="22px" align="start">
         <Flexbox justify="space-between" width="100%">
-          <Text color= 'black'fontSize={sizes.medium} >ИИН</Text>
+          <Text  color={colors.black} fontSize={sizes.medium} >ИИН</Text>
           <ValueBackround margin="0px 3px 0px 10px" padding="2px 15px ">
-            <Text fontSize={sizes.medium} color= 'black'>010722547645</Text>
+            <Text  color={colors.black} fontSize={sizes.medium} >010722547645</Text>
           </ValueBackround>
         </Flexbox>
         <Flexbox justify="space-between" width="100%">
-          <Text color= 'black' fontSize={sizes.medium} >
+          <Text  color={colors.black} fontSize={sizes.medium} >
             Дата рождения
           </Text>
           <ValueBackround margin="0px 3px 0px 10px" padding="2px 15px ">
-            <Text color= 'black' fontSize={sizes.medium}>22-07-2001</Text>
+            <Text color={colors.black} fontSize={sizes.medium}>22-07-2001</Text>
           </ValueBackround >
         </Flexbox>
         <Flexbox justify="space-between" width="100%">
-          <Text color= 'black' fontSize={sizes.medium} >Пол</Text>
+          <Text  color={colors.black} fontSize={sizes.medium} >Пол</Text>
           <ValueBackround margin="0px 3px 0px 10px" padding="2px 15px ">
-            <Text color= 'black' fontSize={sizes.medium}>Женский</Text>
+            <Text  color={colors.black} fontSize={sizes.medium}>Женский</Text>
           </ValueBackround>
         </Flexbox>
       </Flexbox>

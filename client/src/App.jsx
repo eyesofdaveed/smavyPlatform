@@ -1,18 +1,15 @@
 import React from 'react';
+
 import { BrowserRouter } from 'react-router-dom'
 
-import MainLayout from './MainLayout.jsx';
+import { Auth } from './pages/Auth';
 
 
 const App = () => {
   return (
-    <>
-      <BrowserRouter>
-        <translate>
-          <MainLayout />
-        </translate>
-      </BrowserRouter>
-    </>
+    <BrowserRouter>
+      <Auth />
+    </BrowserRouter>
   );
 };
 

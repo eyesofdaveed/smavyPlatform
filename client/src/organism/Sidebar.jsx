@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
@@ -9,6 +9,8 @@ import ScheduleIcon from '@assets/icons/calendar.svg'
 import DisciplineIcon from '@assets/icons/book.svg'
 import JournalIcon from '@assets/icons/book-open.svg'
 import MessageIcon from '@assets/icons/message-square.svg'
+import Toggle from '@assets/icons/toggle.svg'
+
 
 export const SidebarBox = styled.div`
     background-color: #EDEEF2;
@@ -16,19 +18,34 @@ export const SidebarBox = styled.div`
     width: auto;
     height: 100vh;
     padding: 30px 40px; 
-    @media screen and (max-width: 450px) {
+    z-index: 5;
+    
+    transition: 0.5s;
+    @media screen and (max-width: 850px) {
+        height: 96vh;
+        width: 25px;
+        padding: 10px; 
+        margin: 20px 0;
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+
     }
 `;
 
 export const Logo = styled.img`
     width: 100%;
-    @media screen and (max-width: 450px) {
+    visibility: visible;
+    @media screen and (max-width: 850px) {
+        visibility: hidden;
     }
 `;
 
 export const Navigation = styled.nav`
     margin-top: 20px;
-    @media screen and (max-width: 450px) {
+    visibility: visible;
+
+    @media screen and (max-width: 850px) {
+        // visibility: hidden;
     }
 `;
 
@@ -51,45 +68,89 @@ const StyledLink = styled(Link)`
     text-align: left;
 `;
 
+const ToggleStyle = styled.button`
+    width: 40px;
+    height: 40px;
+    border-radius: 100px;
+    border: none;
+    box-shadow: 1px 2px 8px 0px #00000026;
+    background: #EDEEF2;
+    margin-right: -20px;
+    margin-bottom: 20px;
+    visibility: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    float: right;
+
+    @media screen and (max-width: 850px) {
+        visibility: visible;
+    }
+`;
+
+
+
 const Sidebar = () => {
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const checkIfMobile = () => {
+        const mediaQuery = window.matchMedia('(max-width: 850px)');
+        setIsMobile(mediaQuery.matches);
+        };
+
+        checkIfMobile();
+        window.addEventListener('resize', checkIfMobile);
+
+        return () => {
+        window.removeEventListener('resize', checkIfMobile);
+        };
+    }, []);
+    function showBlocks() {
+        setIsMobile(prevState => !prevState)
+    }
+
     return (
-        <SidebarBox>
-            <Logo src={LogoImg} alt="Logo"/>
-            <Navigation>
+        <SidebarBox style={{ width: isMobile ? '25px' : '250px', padding: isMobile ? '10px 0px' : '15px 40px' }}>
+            <ToggleStyle onClick={showBlocks}>
+                <img src={Toggle} alt="toggle" />
+            </ToggleStyle>
+            <Logo src={LogoImg} alt="Logo" style={{ visibility: isMobile ? 'hidden' : 'visible' }}/>
+            <Navigation style={{ visibility: isMobile ? 'hidden' : 'visible' }}>
                 <ul style={{ listStyleType: 'none', padding: 0 }}>
                     <Li>
                         <StyledLink to="/">
-                            <img src={ProfileIcon}/>
+                            <img src={ProfileIcon} />
                             Профиль
                         </StyledLink>
                     </Li>
                     <Li>
                         <StyledLink to="/">
-                            <img src={NewsIcon}/>
+                            <img src={NewsIcon} />
                             Новости
                         </StyledLink>
                     </Li>
                     <Li>
                         <StyledLink to="/">
-                            <img src={ScheduleIcon}/>
+                            <img src={ScheduleIcon} />
                             Расписание
                         </StyledLink>
                     </Li>
                     <Li>
                         <StyledLink to="/">
-                            <img src={DisciplineIcon}/>
+                            <img src={DisciplineIcon} />
                             Дисциплины
                         </StyledLink>
                     </Li>
                     <Li>
                         <StyledLink to="/">
-                            <img src={JournalIcon}/>
-                            Журнал 
+                            <img src={JournalIcon} />
+                            Журнал
                         </StyledLink>
                     </Li>
                     <Li>
                         <StyledLink to="/">
-                            <img src={MessageIcon}/>
+                            <img src={MessageIcon} />
                             Чаты
                         </StyledLink>
                     </Li>

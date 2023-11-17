@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
+
 export const TextContainer = styled.div`
   text-align: ${({textAlign }) => textAlign};
   font-weight: ${({ fontWeight }) => (fontWeight ? fontWeight : '500')};

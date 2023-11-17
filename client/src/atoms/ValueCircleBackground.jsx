@@ -12,7 +12,8 @@ export const ValueContainer = styled.div`
   
   @media (max-width: 600px) {
     width: 100%;
-    margin: 10px 0;
+    margin: ${({ margin }) => (margin ? '10px 0' : '10px 0')};
+    padding: ${({ padding }) => (padding ? '2px 0px 5px 10px' : '2px 0px 5px 10px')}; 
   }
 `;
 
