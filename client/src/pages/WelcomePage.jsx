@@ -6,7 +6,7 @@ import { Flexbox, Title, Text } from '@atoms';
 import { Button } from '../atoms/Button';
 import { colors } from '../base';
 
-const NotFoundWrapper = styled.div`
+const WelcomePageWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -17,7 +17,7 @@ export const WelcomePage = () => {
   const navigate = useNavigate();
 
   return (
-    <NotFoundWrapper>
+    <WelcomePageWrapper>
       <Flexbox direction="column" align="center">
         <Title>Welcome page</Title>
           <Button onClick={()=> navigate('/registration')} bgColor={colors.btnPrimary} color='white' text='Зарегестрироватся' />
@@ -25,6 +25,6 @@ export const WelcomePage = () => {
           Уже есть аккаунт? <Link to="/login">Войти</Link>
         </Text>
       </Flexbox>
-    </NotFoundWrapper>
+    </WelcomePageWrapper>
   );
 };
