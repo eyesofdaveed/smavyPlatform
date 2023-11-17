@@ -3,12 +3,10 @@ import styled from 'styled-components';
 
 
 export const TextContainer = styled.div`
-  // src: url('fonts/Inter.ttf');    
-  // font-family:'sans-serif';
-  font-weight: ${({ weight }) => (weight ? weight : '400')};
-  line-height: 32px;
+line-height: 32px;
+color: #fff;
+font-weight: ${({ weight }) => (weight ? weight : '300')};
   font-size: ${({ fontSize }) => (fontSize ? fontSize : '16px')};
-  color: #fff;
   text-align: ${({ textAlign }) => (textAlign ? textAlign : 'center')};
 `;
 
