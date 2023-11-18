@@ -9,17 +9,19 @@ export const StyledButton = styled.button`
   outline: none;
   border: none;
   padding: 12px 16px;
-  font-size: 16px;
+  font-size: ${({fontSize}) => fontSize ? fontSize : '16px'};
 
   &:hover {
     cursor: pointer;
     background-color: #f2f2f2;
   }
+  width: ${({ width }) => (width ? width : '100%')};
+  color: ${({ color }) => (color ? color : 'white')};
 `;
 
-export const Button = ({ type, text, onClick, bgColor,color}) => {
+export const Button = ({ type, text, onClick, bgColor, width, color, fontSize}) => {
   return (
-    <StyledButton type={type} onClick={onClick} bgColor={bgColor} color={color}>
+    <StyledButton type={type} onClick={onClick} bgColor={bgColor} width={width} color={color} fontSize={fontSize} >
       {text}
     </StyledButton>
   );
