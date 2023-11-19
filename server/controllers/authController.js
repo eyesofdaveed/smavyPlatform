@@ -4,8 +4,8 @@ const bcrypt = require('bcrypt');
 const Users = require('../models/Users');
 
 const handleLogin = async (req, res) => {
-  const { email, pwd } = req.body;
-  if (!email || !pwd) {
+  const { email, password } = req.body;
+  if (!email || !password) {
     return res
       .status(400)
       .json({ message: 'Email and password are required.' });
@@ -21,7 +21,7 @@ const handleLogin = async (req, res) => {
     });
   }
 
-  const isMatch = await bcrypt.compare(pwd, foundUser.password);
+  const isMatch = await bcrypt.compare(password, foundUser.password);
   if (isMatch) {
     const { email, firstName } = foundUser;
     // create JWTs

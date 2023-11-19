@@ -1,10 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
-import { Flexbox } from '../../atoms/Flexbox';
-
-// @Move styles to styled-components, and remove css file
-import './index.css';
+import { Flexbox, Title, Text } from '@atoms';
 
 const NotFoundWrapper = styled.div`
   display: flex;
@@ -17,12 +15,12 @@ const NotFoundPage = () => {
   return (
     <NotFoundWrapper>
       <Flexbox direction="column" align="center">
-        <p className="notFoundPageTitle">404</p>
-        <p className="notFoundPageSubTitle">Not found</p>
-        <p className="notFoundPageText">
+        <Title>404</Title>
+        <Text color={"#000"} fontSize={"32px"} fontWeight={"600"}>Not found</Text>
+        <Text color={"#000"} fontSize={"18px"}>
           Эта страница недоступна. <br /> Вернитесь на{' '}
-          <a href="/">главную страницу</a> нашего сайта.
-        </p>
+          <Link to="/">главную страницу</Link> нашего сайта.
+        </Text>
       </Flexbox>
     </NotFoundWrapper>
   );

@@ -6,11 +6,12 @@ export const StyledInput = styled.input`
   border-radius: 12px;
   outline: none;
   border: none;
-  padding: 12px 16px;
+  padding: 0 10px;
+  height: ${({ height }) => (height ? height : '100%')};
   width: ${({ width }) => (width ? width : '100%')};
 `;
 
-export const Input = ({ type, placeholder, required, value, onChange, width }) => {
+export const Input = ({ type, placeholder, required, value, onChange, width,height }) => {
   const handleInputChange = e => {
     onChange(e.target.value);
   };
@@ -22,6 +23,7 @@ export const Input = ({ type, placeholder, required, value, onChange, width }) =
       placeholder={placeholder}
       required={required}
       value={value}
+      height={height}
       onChange={handleInputChange}
     />
   );
