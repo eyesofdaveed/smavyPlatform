@@ -165,12 +165,9 @@ router
 router.put('/:id', checkRole(ROLES.ADMIN), async (req, res) => {
   try {
     const entityId = req.params.id;
-    const fieldsToUpdate = {
-      status: req.body.status,
-      role: req.body.role,
-    };
+    const fieldsToUpdate = req.body;
 
-    await user.update({ entityId, fieldsToUpdate, res });
+    await user.update({ entityId, fieldsToUpdate, req, res });
   } catch (err) {
     errorHandler(err, req, res);
   }

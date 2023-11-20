@@ -56,19 +56,27 @@ class Entity {
     }
   }
 
-  async update({ entityId, fieldsToUpdate, res }) {
+  async update({ entityId, fieldsToUpdate, req, res }) {
     try {
       if (isEmptyObject(fieldsToUpdate)) return;
 
+      for (let key in fieldsToUpdate) {
+        if (!(key in this.entityModel)) {
+          throw new Error(`wrong key ${key} on request`);
+        }
+      }
       const entities = await this.entityModel.findByIdAndUpdate(entityId, {
         $set: fieldsToUpdate,
       });
       res.status(200).json(entities);
     } catch (err) {
-      return errorHandler({
-        statusCode: 400,
-        message: err.errors,
-      });
+      return errorHandler(
+        {
+          message: err.message,
+        },
+        req,
+        res,
+      );
       //res.status(400).json({ message: err.errors });
     }
   }

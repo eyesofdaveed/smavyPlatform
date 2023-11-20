@@ -1,7 +1,7 @@
-const isEmptyObject = (obj) => {
-    return Object.keys(obj).length === 0 && obj.constructor === Object;
+const isEmptyObject = obj => {
+  return Object.keys(obj).length === 0 && obj.constructor === Object;
 };
 
 module.exports = {
-    isEmptyObject,
+  isEmptyObject,
 };
