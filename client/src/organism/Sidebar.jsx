@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
-import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 
+import { colors } from '@base';
 import LogoImg from '@assets/img/logo.png'
 import ProfileIcon from '@assets/icons/profileIcon.svg'
 import NewsIcon from '@assets/icons/server.svg'
@@ -13,14 +14,15 @@ import Toggle from '@assets/icons/toggle.svg'
 
 
 export const SidebarBox = styled.div`
-    background-color: #EDEEF2;
+    background-color: ${colors.sidebarColor};
     position: fixed;
+    left: 0;
     width: auto;
     height: 100vh;
     padding: 30px 40px; 
     z-index: 5;
-    
     transition: 0.5s;
+
     @media screen and (max-width: 850px) {
         height: 96vh;
         width: 25px;
@@ -28,31 +30,31 @@ export const SidebarBox = styled.div`
         margin: 20px 0;
         border-top-right-radius: 10px;
         border-bottom-right-radius: 10px;
-
     }
 `;
 
 export const Logo = styled.img`
     width: 100%;
     visibility: visible;
+    margin-top: 20px;
+
     @media screen and (max-width: 850px) {
         visibility: hidden;
+        margin-top: 0px;
     }
 `;
 
 export const Navigation = styled.nav`
-    margin-top: 20px;
+    margin-top: 50px;
     visibility: visible;
 
     @media screen and (max-width: 850px) {
-        // visibility: hidden;
+        margin-top: 20px;
     }
 `;
 
 export const Li = styled.li`
     padding: 20px;
-    @media screen and (max-width: 450px) {
-    }
 `;
 
 const StyledLink = styled(Link)`
@@ -74,25 +76,21 @@ const ToggleStyle = styled.button`
     border-radius: 100px;
     border: none;
     box-shadow: 1px 2px 8px 0px #00000026;
-    background: #EDEEF2;
+    background: ${colors.sidebarColor};
     margin-right: -20px;
     margin-bottom: 20px;
-    visibility: hidden;
-    display: flex;
     justify-content: center;
     align-items: center;
     float: right;
+    display: none;
 
     @media screen and (max-width: 850px) {
-        visibility: visible;
+        display: flex;
     }
 `;
 
-
-
 const Sidebar = () => {
     const [isMobile, setIsMobile] = useState(false);
-
     useEffect(() => {
         const checkIfMobile = () => {
         const mediaQuery = window.matchMedia('(max-width: 850px)');
@@ -111,7 +109,7 @@ const Sidebar = () => {
     }
 
     return (
-        <SidebarBox style={{ width: isMobile ? '25px' : '250px', padding: isMobile ? '10px 0px' : '15px 40px' }}>
+        <SidebarBox style={{ width: isMobile ? '25px' : '250px', padding: isMobile ? '10px 0px' : '20px 40px' }}>
             <ToggleStyle onClick={showBlocks}>
                 <img src={Toggle} alt="toggle" />
             </ToggleStyle>
