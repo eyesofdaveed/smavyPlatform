@@ -20,12 +20,6 @@ class Entity {
   async getById(req, res, entityName) {
     try {
       const entityId = _.get(req, 'params.id');
-      if (!entityId) {
-        return errorHandler({
-          statusCode: 400,
-          message: `${entityName} ID required.`,
-        });
-      }
 
       const requestedEntity = await this.entityModel
         .findOne({ _id: entityId })
@@ -33,7 +27,6 @@ class Entity {
 
       if (!requestedEntity) {
         return errorHandler({
-          statusCode: 400,
           message: `${entityName} ID ${entityId} not found`,
         });
       }
@@ -88,19 +81,20 @@ class Entity {
       }
 
       const requestedEntity = await this.entityModel
-        .findOne({ _id: req.body.id })
+        .findOne({ _id: entityId })
         .exec();
 
       if (!requestedEntity) {
-        return errorHandler({
-          statusCode: 400,
-          message: `${entityName} ID ${req.body.id} not found`,
-        });
+        return errorHandler(
+          {
+            message: `${entityName} ID ${entityId} not found`,
+          },
+          req,
+          res,
+        );
       }
 
-      const result = await this.entityModel
-        .deleteOne({ _id: req.body.id })
-        .exec();
+      const result = await this.entityModel.deleteOne({ _id: entityId }).exec();
 
       res.json(result);
     } catch (err) {
@@ -110,7 +104,8 @@ class Entity {
 
   async deleteAll(req, res, obj) {
     try {
-      await this.entityModel.deleteMany(obj).exec();
+      const result = await this.entityModel.deleteMany(obj).exec();
+      res.json(result);
     } catch (err) {
       errorHandler(err, req, res);
     }

@@ -67,7 +67,7 @@ router.route('/').get(checkRole(ROLES.ADMIN), async (req, res) => {
 
 router.route('/delete').delete(async (req, res) => {
   try {
-    await user.deleteAll(req, res, { role: req.body.role });
+    await user.deleteAll(req, res, req.body);
   } catch (err) {
     errorHandler(err, req, res);
   }
