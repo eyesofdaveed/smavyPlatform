@@ -8,9 +8,8 @@ import HeaderMenu from './organism/HeaderMenu';
 
 const Content = styled.div`
   width: 100%;
-  height: 150vh;  
-  background: #ccc;
 `;
+
 const ContentWrapper = styled.div`
   margin-left: 328px;
   padding: 150px 50px 100px 50px;
