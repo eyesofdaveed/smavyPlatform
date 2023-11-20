@@ -26,20 +26,14 @@ const BackgroundWrapper = styled.div`
 
 export const Auth = () => {
   return (
-    // <BackgroundWrapper>
-    //   <Routes>
-    //     <Route path='/' element={<WelcomePage />} />
-    //     <Route path='/login' element={<LoginForm />} />
-    //     <Route path='/registration' element={<RegistrationForm />} />
-    //     <Route path='/mainLayout' element={<MainLayout />} />
-
-    //   </Routes>
-    // </BackgroundWrapper>
-    <Routes>
-      <Route path='/mainLayout' element={<MainLayout />} />
-    </Routes>
-
-
+    <BackgroundWrapper>
+      <Routes>
+        <Route path='/' element={<WelcomePage />} />
+        <Route path='/login' element={<LoginForm />} />
+        <Route path='/registration' element={<RegistrationForm />} />
+        <Route path='/mainLayout' element={<MainLayout />} />
+      </Routes>
+    </BackgroundWrapper>
   );
 };
 
