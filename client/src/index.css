@@ -3,6 +3,11 @@
   src: url('../public/assets/fonts/Montserrat/Montserrat-VariableFont_wght.ttf') format('truetype');
 }
 
+@font-face {
+  font-family: 'Lato';
+  src: url('../public/assets/fonts/Lato/Lato-Black.ttf') format('truetype');
+}
+
 body,
 html {
   margin: 0;
