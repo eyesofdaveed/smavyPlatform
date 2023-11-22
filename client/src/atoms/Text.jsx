@@ -3,11 +3,11 @@ import styled from 'styled-components';
 
 
 export const TextContainer = styled.div`
-  color: ${({ color }) => (color ? color : '#fff')};
+  text-align: ${({textAlign }) => textAlign};
+  font-weight: ${({ fontWeight }) => (fontWeight ? fontWeight : '500')};
   line-height: ${({ lineHeight }) => (lineHeight ? lineHeight : '26px')};
-  font-weight: ${({ fontWeight }) => (fontWeight ? fontWeight : '300')};
   font-size: ${({ fontSize }) => (fontSize ? fontSize : '16px')};
-  text-align: ${({ textAlign }) => textAlign};
+  color: ${({ color }) => (color ? color : '#fff')};
 
   @media screen and (max-width: 450px) {
     font-size: ${({ fontSizePhone }) => (fontSizePhone ? fontSizePhone : '16px')};
