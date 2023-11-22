@@ -6,7 +6,8 @@ export const StyledInput = styled.input`
   border-radius: 12px;
   outline: none;
   border: none;
-  padding: 12px 16px;
+  padding: 0 10px;
+  height: ${({ height }) => (height ? height : '100%')};
   width: ${({ width }) => (width ? width : '100%')};
   box-shadow: ${({ boxShadow }) => boxShadow};
   font-size: ${({ fontSize }) => (fontSize ? fontSize : '14px')};
@@ -39,6 +40,7 @@ export const Input = ({ type, placeholder, required, value, onChange, width, wid
       value={value}
       boxShadow={boxShadow}
       fontSize={fontSize}
+      height={height}
       onChange={handleInputChange}
     />
   );

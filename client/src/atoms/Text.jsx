@@ -15,6 +15,6 @@ export const TextContainer = styled.div`
   }
 `;
 
-export const Text = ({ fontSize, children, fontSizePhone, fontWeight, lineHeight, lineHeightPhone, color }) => {
-  return <TextContainer fontSize={fontSize} color={color} fontSizePhone={fontSizePhone} fontWeight={fontWeight} lineHeight={lineHeight} lineHeightPhone={lineHeightPhone}>{children}</TextContainer>;
+export const Text = ({ fontSize, children, fontSizePhone, fontWeight, lineHeight, lineHeightPhone, color, textAlign }) => {
+  return <TextContainer fontSize={fontSize} fontSizePhone={fontSizePhone} fontWeight={fontWeight} lineHeight={lineHeight} lineHeightPhone={lineHeightPhone} color={color} textAlign={textAlign}>{children}</TextContainer>;
 };

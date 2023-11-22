@@ -5,11 +5,10 @@ export const StyledFlexbox = styled.div`
   display: flex;
   flex-wrap: ${({ flexWrap }) => (flexWrap ? flexWrap : 'nowrap')};
   justify-content: ${({ justify }) => (justify ? justify : 'center')};
-  align-items:  ${({ align }) => (align ? align : 'center')};
-  align-items: ${({ align }) => (align ? align : 'center')}; 
+  align-items: ${({align}) => align ? align : 'center'};
   flex-direction: ${({ direction }) => direction};
   gap: ${({ gap }) => (gap ? gap : '16px')};
-  width: ${({ width }) => width};
+  width: ${({ width }) => width ? width :100};
 
   @media screen and (max-width: 1620px) {
     gap: ${({ gaLaptop }) => gaLaptop};
