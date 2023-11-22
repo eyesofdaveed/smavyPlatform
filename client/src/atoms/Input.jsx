@@ -23,7 +23,7 @@ export const StyledInput = styled.input`
   }
 `;
 
-export const Input = ({ type, placeholder, required, value, onChange, width, widthLaptop, widthTablet, widthPhone, boxShadow, fontSize }) => {
+export const Input = ({ type, placeholder, required, value, onChange, width, widthLaptop, widthTablet, widthPhone, boxShadow, fontSize, height }) => {
   const handleInputChange = e => {
     onChange(e.target.value);
   };
