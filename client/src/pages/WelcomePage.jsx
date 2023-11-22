@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link, useNavigate } from 'react-router-dom';
 
+import { Flexbox, Title, Text } from '@atoms';
 import { Button } from '../atoms/Button';
 import { colors } from '../base';
 
