@@ -12,7 +12,7 @@ export default defineConfig({
       '@base': path.resolve(__dirname, './src/base'),
       '@organism': path.resolve(__dirname, './src/organism'),
       '@pages': path.resolve(__dirname, './src/pages'),
-      '@assets': path.resolve(__dirname, './public/assets'),
+      '@assets': path.resolve(__dirname, './src/assets'),
     },
   },
 
