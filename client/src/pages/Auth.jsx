@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { LoginForm } from '../organism/LoginForm';
 import { RegistrationForm } from '../organism/RegistrationForm';
 import { WelcomePage } from './WelcomePage';
-import GradeBook from './GradeBook';
 
 import { Route, Routes } from 'react-router-dom';
 
@@ -26,17 +25,13 @@ const BackgroundWrapper = styled.div`
 
 export const Auth = () => {
   return (
-    // <BackgroundWrapper>
-    //   <Routes>
-    //     <Route path='/' element={<WelcomePage />} />
-    //     <Route path='/login' element={<LoginForm />} />
-    //     <Route path='/registration' element={<RegistrationForm />} />
-    //   </Routes>
-    // </BackgroundWrapper>
-    <Routes>
-      <Route path='/gradebook' element={<GradeBook />} />
-    </Routes>
-
+    <BackgroundWrapper>
+      <Routes>
+        <Route path='/' element={<WelcomePage />} />
+        <Route path='/login' element={<LoginForm />} />
+        <Route path='/registration' element={<RegistrationForm />} />
+      </Routes>
+    </BackgroundWrapper>
   );
 };
 
