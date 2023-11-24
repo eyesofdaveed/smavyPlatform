@@ -5,6 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Flexbox, Title, Text } from '@atoms';
 import { Button } from '../atoms/Button';
 import { colors } from '../base';
+import CalendarCard from '../atoms/CalendarCard';
 
 const WelcomePageWrapper = styled.div`
   display: flex;
@@ -18,13 +19,14 @@ export const WelcomePage = () => {
 
   return (
     <WelcomePageWrapper>
-      <Flexbox direction="column" align="center">
+      {/* <Flexbox direction="column" align="center">
         <Title>Welcome page</Title>
           <Button onClick={()=> navigate('/registration')} bgColor={colors.btnPrimary} color='white' text='Зарегестрироватся' />
         <Text color={"#000"} fontSize={"18px"}>
           Уже есть аккаунт? <Link to="/login">Войти</Link>
         </Text>
-      </Flexbox>
+      </Flexbox> */}
+      <CalendarCard />
     </WelcomePageWrapper>
   );
 };

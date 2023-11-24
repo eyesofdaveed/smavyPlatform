@@ -50,16 +50,25 @@ const styles = {
     backgroundColor: '#f4f4f4',
     marginBottom: '1rem',
   },
+  hideLabel: {
+    '& .MuiInputLabel-root': {
+      display: 'none',
+    },
+  },
 };
 
-const cssString = Object.keys(styles).map((key) => {
-  const styleObj = styles[key];
-  const styleString = Object.keys(styleObj).map((prop) => {
-    return `${prop}: ${styleObj[prop]};`;
-  }).join('');
+const cssString = Object.keys(styles)
+  .map(key => {
+    const styleObj = styles[key];
+    const styleString = Object.keys(styleObj)
+      .map(prop => {
+        return `${prop}: ${styleObj[prop]};`;
+      })
+      .join('');
 
-  return `.${key} { ${styleString} }`;
-}).join('');
+    return `.${key} { ${styleString} }`;
+  })
+  .join('');
 
 const CalendarCard = () => {
   const [value, setValue] = useState(new Date());
@@ -70,13 +79,46 @@ const CalendarCard = () => {
       <style>{cssString}</style>
       <LocalizationProvider dateAdapter={AdapterDateFns}>
         <StaticDatePicker
-          variant='static'
-          orientation='portrait'
+          variant="static"
+          orientation="portrait"
           value={value}
           disableFuture
-          onChange={(newValue) => setValue(newValue)}
-          renderInput={(params) => (
-            <TextField {...params} />
+          sx={{
+            '& .MuiPickersCalendarHeader-switchHeader': {
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              flexDirection: 'column',
+              textAlign: 'center',
+            },
+            '& .MuiPickersCalendarHeader-label': {
+              
+
+            },
+            '& .MuiPickersDay-root.Mui-selected': {
+              backgroundColor: '#B6EEC3',
+            },
+            '& .MuiPickersDay-root.Mui-selected:hover': {
+              backgroundColor: '#B6EEC3',
+            },
+            '& .MuiPickersDay-root:not(.Mui-selected)': {
+              border: 'none',
+            },
+            
+            '& .MuiTypography-root': {
+              display: 'none',
+            },
+            '& .MuiButton-root': {
+              display: 'none',
+            },
+          }}
+          onChange={newValue => setValue(newValue)}
+          renderInput={params => (
+            <TextField
+              {...params}
+              InputLabelProps={{ shrink: true }}
+              sx={styles.hideLabel}
+            />
           )}
           renderDay={(day, _value, DayComponentProps) => {
             const isSelected =
@@ -86,8 +128,10 @@ const CalendarCard = () => {
             return (
               <Badge
                 key={day.toString()}
-                overlap='circular'
-                badgeContent={isSelected ? <CheckIcon color='red' /> : undefined}
+                overlap="circular"
+                badgeContent={
+                  isSelected ? <CheckIcon color="red" /> : undefined
+                }
               >
                 <PickersDay {...DayComponentProps} />
               </Badge>
@@ -98,5 +142,4 @@ const CalendarCard = () => {
     </div>
   );
 };
-
 export default CalendarCard;
