@@ -9,4 +9,6 @@ export * from '../atoms/Progress';
 export * from '../atoms/ProfiAva';
 export * from '../atoms/Gridbox';
 export * from '../atoms/SubjectCard';
+export * from '../atoms/Messages';
+export * from '../atoms/OneMessage';
 

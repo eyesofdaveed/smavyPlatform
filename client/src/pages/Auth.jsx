@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import { LoginForm } from '../organism/LoginForm';
 import { RegistrationForm } from '../organism/RegistrationForm';
 import { WelcomePage } from './WelcomePage';
+import  MainLayout  from '../MainLayout';
+
 import { Route, Routes } from 'react-router-dom';
 
 import backgroundImage from '@assets/img/background.png'
@@ -29,9 +31,9 @@ export const Auth = () => {
         <Route path='/' element={<WelcomePage />} />
         <Route path='/login' element={<LoginForm />} />
         <Route path='/registration' element={<RegistrationForm />} />
+        <Route path='/mainLayout' element={<MainLayout />} />
       </Routes>
     </BackgroundWrapper>
-
   );
 };
 
