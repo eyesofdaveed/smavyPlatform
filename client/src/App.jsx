@@ -1,8 +1,8 @@
 import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
+
+import { BrowserRouter } from 'react-router-dom'
 
 import { Auth } from './pages/Auth';
-
 
 
 const App = () => {
@@ -12,5 +12,5 @@ const App = () => {
     </BrowserRouter>
   );
 };
- 
+
 export default App;
