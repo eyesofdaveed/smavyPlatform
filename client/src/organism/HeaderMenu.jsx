@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { Flexbox } from '@atoms'
@@ -19,9 +18,6 @@ export const HeaderBox = styled.div`
     max-width: 100%;
     width: 100%;
     z-index: 3;
-    
-    @media screen and (max-width: 450px) {
-    }
 `;
 export const HeaderWrapper = styled.div`
     width: 100%;
@@ -93,7 +89,7 @@ const HeaderMenu = () => {
                 <Flexbox gap={'100px'} gaLaptop={'50px'}>
                     <Text fontSize={sizes.xLarge} color={'#000'} fontWeight={'600'} fontSizePhone={'24px'}>Расписание</Text>
                     <InputDisplay>
-                        <Input width={'500px'} widthLaptop={'300px'} boxShadow={'1px 2px 8px 0px #00000026'} placeholder={'Поиск'} fontSize={'18px'} displayLaptopL={'none'}/>
+                        <Input width={'500px'} height={'60px'} widthLaptop={'300px'} boxShadow={'1px 2px 8px 0px #00000026'} placeholder={'Поиск'} fontSize={'18px'} displayLaptopL={'none'}/>
                         <SearchButton><img src={Search} alt="Serach Icon" /></SearchButton>
                     </InputDisplay>
                 </Flexbox>
