@@ -2,8 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import { Progress, Space } from 'antd';
 
-import { Flexbox, Text } from '@atoms';
-import { colors } from '../base';
+import { Text } from './Text';
+import { Flexbox } from './Flexbox';
+import { colors } from '@base';
 
 export const SubjectCardStyle = styled.div`
     width: 32%;
