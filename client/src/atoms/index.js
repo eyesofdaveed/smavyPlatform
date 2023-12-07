@@ -11,4 +11,6 @@ export * from '../atoms/Gridbox';
 export * from '../atoms/SubjectCard';
 export * from '../atoms/Messages';
 export * from '../atoms/OneMessage';
+export * from '../atoms/DisciplinesCard';
+
 
