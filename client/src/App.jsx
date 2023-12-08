@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { BrowserRouter } from 'react-router-dom';
-import { Public } from './routes/Public';
-import { Protected } from './routes/Protected';
+import { Public } from './routes/PublicRoutes';
+import { Protected } from './routes/ProtectedRoutes';
 
 const App = () => {
   const [isAuthorized] = useState(false);
@@ -10,7 +10,7 @@ const App = () => {
     <BrowserRouter>
       {isAuthorized ? <Protected /> : <Public />}
     </BrowserRouter>
-  );
+  );   
 };
 
 export default App;
