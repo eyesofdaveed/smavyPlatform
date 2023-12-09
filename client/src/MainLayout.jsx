@@ -6,7 +6,7 @@ import HeaderMenu from './organism/HeaderMenu';
 
 const ContentWrapper = styled.div`
   margin-left: 328px;
-  padding: 150px 50px 100px 50px;
+  padding: 150px 40px 100px 80px;
 
   @media screen and (max-width: 850px) {  
     margin-left: 20px;
