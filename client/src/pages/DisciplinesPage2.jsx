@@ -8,26 +8,65 @@ const PageWrapper = styled.div`
     flex-wrap: wrap;
     justify-content: space-between;
     max-width: 100%;
-    padding: 36px;
-    padding-right: 450px;
 
-    @media screen and (max-width: 1620px){
-    padding: 20px;
+    @media screen and (max-width: 1620px) {
+        padding: 20px;
     }
 `;
 
+const subjectsData = [
+    {
+        name: 'Философия',
+        teacher: 'Фио преподавателя',
+        period: 'Текущая неделя - 3',
+        task: 'Lorem ipsum dolor sit amet consectetur. Sit quam duis pharetra leo ut quam. At tortor porttitor quis maecenas.'
+    },
+    {
+        name: 'Философия',
+        teacher: 'Фио преподавателя',
+        period: 'Текущая неделя - 3',
+        task: 'Lorem ipsum dolor sit amet consectetur. Sit quam duis pharetra leo ut quam. At tortor porttitor quis maecenas.'
+    },
+    {
+        name: 'Философия',
+        teacher: 'Фио преподавателя',
+        period: 'Текущая неделя - 3',
+        task: 'Lorem ipsum dolor sit amet consectetur. Sit quam duis pharetra leo ut quam. At tortor porttitor quis maecenas.'
+    },
+    {
+        name: 'Философия',
+        teacher: 'Фио преподавателя',
+        period: 'Текущая неделя - 3',
+        task: 'Lorem ipsum dolor sit amet consectetur. Sit quam duis pharetra leo ut quam. At tortor porttitor quis maecenas.'
+    },
+    {
+        name: 'Философия',
+        teacher: 'Фио преподавателя',
+        period: 'Текущая неделя - 3',
+        task: 'Lorem ipsum dolor sit amet consectetur. Sit quam duis pharetra leo ut quam. At tortor porttitor quis maecenas.'
+    },
+    {
+        name: 'Философия',
+        teacher: 'Фио преподавателя',
+        period: 'Текущая неделя - 3',
+        task: 'Lorem ipsum dolor sit amet consectetur. Sit quam duis pharetra leo ut quam. At tortor porttitor quis maecenas.'
+    },
+];
 
 const DisciplinesPage2 = () => {
     return (
         <PageWrapper>
-            <DisciplinesSubject />
-            <DisciplinesSubject />
-            <DisciplinesSubject />
-            <DisciplinesSubject />
-            <DisciplinesSubject />
-            <DisciplinesSubject />
+            {subjectsData.map((subject, index) => (
+                <DisciplinesSubject
+                    key={index}
+                    name={subject.name}
+                    teacher={subject.teacher}
+                    period={subject.period}
+                    task={subject.task}
+                />
+            ))}
         </PageWrapper>
-    )
+    );
 };
 
 export default DisciplinesPage2;
