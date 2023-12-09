@@ -31,7 +31,7 @@ class Entity {
         });
       }
 
-      res.json(requestedEntity);
+      res.status(200).json({data: requestedEntity});
     } catch (err) {
       errorHandler(err, req, res);
     }
@@ -39,24 +39,24 @@ class Entity {
 
   async getAll({ req, res }) {
     try {
-      const pageSizeInt = parseInt(_.get(req, 'body.filter', '25'));
-      const pageNumberInt = parseInt(_.get(req, 'body.filter', '1'));
+      const pageSizeInt = parseInt(_.get(req, 'body.filter.pageSize', '25'));
+      const pageNumberInt = parseInt(_.get(req, 'body.filter.pageNumber', '1'));
 
-      const results = await this.entityModel
+      const data = await this.entityModel
         .find()
         .sort({
           createdAt: -1,
         })
         .skip(pageSizeInt * (pageNumberInt - 1))
-
         .limit(pageSizeInt);
-      return res.json({ data: results });
+        
+      return res.status(200).json({ data });
     } catch (err) {
       errorHandler(err, req, res);
     }
   }
 
-  async update({ entityId, fieldsToUpdate, req, res }) {
+  async updateById({ entityId, fieldsToUpdate, req, res }) {
     try {
       if (isEmptyObject(fieldsToUpdate)) return;
 
@@ -65,10 +65,10 @@ class Entity {
           throw new Error(`wrong key ${key} on request`);
         }
       }
-      const entities = await this.entityModel.findByIdAndUpdate(entityId, {
+      const entity = await this.entityModel.findByIdAndUpdate(entityId, {
         $set: fieldsToUpdate,
       });
-      res.status(200).json(entities);
+      res.status(200).json({data: entity});
     } catch (err) {
       return errorHandler(
         {
@@ -77,11 +77,10 @@ class Entity {
         req,
         res,
       );
-      //res.status(400).json({ message: err.errors });
     }
   }
 
-  async delete(req, res, entityName) {
+  async deleteById(req, res, entityName) {
     try {
       const entityId = _.get(req, 'params.id');
       if (!entityId) {
@@ -103,17 +102,7 @@ class Entity {
       }
 
       const result = await this.entityModel.deleteOne({ _id: entityId }).exec();
-
-      res.json(result);
-    } catch (err) {
-      errorHandler(err, req, res);
-    }
-  }
-
-  async deleteAll(req, res, obj) {
-    try {
-      const result = await this.entityModel.deleteMany(obj).exec();
-      res.json(result);
+      res.status(200).json(result);
     } catch (err) {
       errorHandler(err, req, res);
     }
