@@ -10,6 +10,14 @@ const { ROLES } = require('../enums');
 const assignment = new Entity(Assignments);
 const modelName = 'Assignment';
 
+router.route('/').post(async (req, res) => {
+  try {
+    await assignment.add(req, res);
+  } catch (err) {
+    errorHandler(err, req, res);
+  }
+});
+
 router.route('/').get(async (req, res) => {
   try {
     await assignment.getAll(req, res);
