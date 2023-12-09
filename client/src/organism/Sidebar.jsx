@@ -1,5 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { colors } from '@base';
@@ -11,7 +11,6 @@ import DisciplineIcon from '@assets/icons/book.svg'
 import JournalIcon from '@assets/icons/book-open.svg'
 import MessageIcon from '@assets/icons/message-square.svg'
 import Toggle from '@assets/icons/toggle.svg'
-
 
 export const SidebarBox = styled.div`
     background-color: ${colors.sidebarColor};
@@ -91,19 +90,32 @@ const ToggleStyle = styled.button`
 
 const Sidebar = () => {
     const [isMobile, setIsMobile] = useState(false);
+    const [currentPage, setCurrentPage] = useState('profile');
+    const location = useLocation();
+    const navigate = useNavigate();
+
     useEffect(() => {
         const checkIfMobile = () => {
-        const mediaQuery = window.matchMedia('(max-width: 850px)');
-        setIsMobile(mediaQuery.matches);
+            const mediaQuery = window.matchMedia('(max-width: 850px)');
+            setIsMobile(mediaQuery.matches);
         };
 
         checkIfMobile();
         window.addEventListener('resize', checkIfMobile);
 
         return () => {
-        window.removeEventListener('resize', checkIfMobile);
+            window.removeEventListener('resize', checkIfMobile);
         };
     }, []);
+
+
+    useEffect(() => {
+        if (location.pathname === '/') {
+            setCurrentPage('profile');
+            navigate('/profile');
+        }
+    }, [location, navigate]);
+
     function showBlocks() {
         setIsMobile(prevState => !prevState)
     }
@@ -113,41 +125,41 @@ const Sidebar = () => {
             <ToggleStyle onClick={showBlocks}>
                 <img src={Toggle} alt="toggle" />
             </ToggleStyle>
-            <Logo src={LogoImg} alt="Logo" style={{ visibility: isMobile ? 'hidden' : 'visible' }}/>
+            <Logo src={LogoImg} alt="Logo" style={{ visibility: isMobile ? 'hidden' : 'visible' }} />
             <Navigation style={{ visibility: isMobile ? 'hidden' : 'visible' }}>
                 <ul style={{ listStyleType: 'none', padding: 0 }}>
                     <Li>
-                        <StyledLink to="/">
+                        <StyledLink to="/profile" $isActive={currentPage === 'profile'}>
                             <img src={ProfileIcon} />
                             Профиль
                         </StyledLink>
                     </Li>
                     <Li>
-                        <StyledLink to="/">
+                        <StyledLink to="/news" $isActive={currentPage === 'news'}>
                             <img src={NewsIcon} />
                             Новости
                         </StyledLink>
                     </Li>
                     <Li>
-                        <StyledLink to="/">
+                        <StyledLink to="/schedule" $isActive={currentPage === 'schedule'}>
                             <img src={ScheduleIcon} />
                             Расписание
                         </StyledLink>
                     </Li>
                     <Li>
-                        <StyledLink to="/">
+                        <StyledLink to="/disciplines" $isActive={currentPage === 'disciplines'}>
                             <img src={DisciplineIcon} />
                             Дисциплины
                         </StyledLink>
                     </Li>
                     <Li>
-                        <StyledLink to="/">
+                        <StyledLink to="/gradebook" $isActive={currentPage === 'gradebook'}>
                             <img src={JournalIcon} />
                             Журнал
                         </StyledLink>
                     </Li>
                     <Li>
-                        <StyledLink to="/">
+                        <StyledLink to="/chat" $isActive={currentPage === 'chat'}>
                             <img src={MessageIcon} />
                             Чаты
                         </StyledLink>

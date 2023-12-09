@@ -1,11 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import { LoginForm } from '../organism/LoginForm';
-import { RegistrationForm } from '../organism/RegistrationForm';
-import { WelcomePage } from './WelcomePage';
-
 import { Route, Routes } from 'react-router-dom';
 
+import { LoginForm } from '@organism/LoginForm';
+import { RegistrationForm } from '@organism/RegistrationForm';
+import { WelcomePage } from '@pages/WelcomePage';
 import backgroundImage from '@assets/img/background.png'
 import backgroundMobileImage from '@assets/img/backgroundMobile.png'
 
@@ -23,7 +22,7 @@ const BackgroundWrapper = styled.div`
   }
 `;
 
-export const Auth = () => {
+export const Public = () => {
   return (
     <BackgroundWrapper>
       <Routes>
