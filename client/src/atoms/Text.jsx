@@ -34,4 +34,3 @@ export const Text = ({ fontSize, children, fontSizeTablet, fontSizePhone, fontWe
       {children}
     </TextContainer>;
 };
-
