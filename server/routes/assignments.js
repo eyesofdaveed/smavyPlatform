@@ -34,10 +34,11 @@ router.route('/:id').get(async (req, res) => {
   }
 });
 
-router.put('/:id', checkRole(ROLES.ADMIN), async (req, res) => {
+router.put('/:id', async (req, res) => {
   try {
     const entityId = req.params.id;
-    const fieldsToUpdate = req.body;
+    const {} = req.body;
+    const fieldsToUpdate = {};
 
     await assignment.update({ entityId, fieldsToUpdate, req, res });
   } catch (err) {
