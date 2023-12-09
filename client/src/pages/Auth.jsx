@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { LoginForm } from '../organism/LoginForm';
 import { RegistrationForm } from '../organism/RegistrationForm';
 import { WelcomePage } from './WelcomePage';
+
 import { Route, Routes } from 'react-router-dom';
 
 import backgroundImage from '@assets/img/background.png'
@@ -31,7 +32,6 @@ export const Auth = () => {
         <Route path='/registration' element={<RegistrationForm />} />
       </Routes>
     </BackgroundWrapper>
-
   );
 };
 
