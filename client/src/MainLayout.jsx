@@ -1,14 +1,8 @@
 import React from 'react';
-import { Route, Routes } from 'react-router-dom';
 import styled from 'styled-components';
 
-import NotFoundPage from './pages/NotFoundPage'
 import Sidebar from './organism/Sidebar';
 import HeaderMenu from './organism/HeaderMenu';
-
-const Content = styled.div`
-  width: 100%;
-`;
 
 const ContentWrapper = styled.div`
   margin-left: 328px;
@@ -24,19 +18,12 @@ const ContentWrapper = styled.div`
   }
 `;
 
-const MainLayout = () => {
+const MainLayout = ({ children }) => {
   return (
     <>
       <Sidebar />
       <HeaderMenu />
-      <Content>
-        <ContentWrapper>
-          <Routes>
-            <Route path="*" element={<NotFoundPage />} />
-          </Routes>
-        </ContentWrapper>
-      </Content>
-
+      <ContentWrapper> {children} </ContentWrapper>
     </>
   );
 };
