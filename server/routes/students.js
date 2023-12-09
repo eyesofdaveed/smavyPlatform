@@ -1,6 +1,8 @@
 const router = require('express').Router();
+const _ = require('lodash');
 
 const Students = require('../models/Students');
+const modelName = 'Student';
 
 // add new student
 router.post('/add', async (req, res) => {
@@ -23,11 +25,11 @@ router.post('/add', async (req, res) => {
 // get by id
 router.get('/:id', async (req, res) => {
   try {
-    const id = req.params.id;
-    if (!id) {
+    const studentID = _.get(req, 'params.id');
+    if (!studentID) {
       res.status(400).json({ message: 'Id not found', success: false });
     } else {
-      const student = await Students.findById(id);
+      const student = await Students.findById(studentID);
       res.status(200).json({ data: student });
     }
   } catch (error) {
@@ -48,8 +50,9 @@ router.get('/', async (req, res) => {
 
 router.put('/:id', async (req, res) => {
   try {
+    const studentID = _.get(req, 'params.id');
     const { email, firstName, lastName, group, course } = req.body;
-    const updatedStudent = await Students.findByIdAndUpdate(req.params.id, {
+    const updatedStudent = await Students.findByIdAndUpdate(studentID, {
       email,
       firstName,
       lastName,
@@ -66,10 +69,11 @@ router.put('/:id', async (req, res) => {
 //delete an student by id
 router.delete('/:id', async (req, res) => {
   try {
-    if (req.params.id != null) {
-      res.status(404).json({ message: 'Id not found' });
+    const studentId = _.get(req, 'params.id');
+    if (!studentId) {
+      return res.status(400).json({ message: `${modelName} ID required.` });
     } else {
-      await Students.findByIdAndDelete(req.params.id).then(res.status(200));
+      await Students.findByIdAndDelete(studentId).then(res.status(200));
     }
   } catch (err) {
     console.log(err);
