@@ -10,6 +10,7 @@ const cookieParser = require('cookie-parser');
 const usersRoute = require('./routes/users');
 const assignmentsRoute = require('./routes/assignments');
 const authRoute = require('./routes/auth');
+const studentRoute = require('./routes/students');
 const logoutRoute = require('./routes/logout');
 const registerRoute = require('./routes/register');
 const { logger, logEvents } = require('./middleware/logger');
@@ -52,6 +53,7 @@ app.use(cookieParser());
 
 app.use('/register', registerRoute);
 app.use('/auth', authRoute);
+app.use('/students', studentRoute);
 app.use(verifyJwt);
 app.use('/logout', logoutRoute);
 app.use('/users', usersRoute);
@@ -73,8 +75,6 @@ mongoose.connection.on('error', err => {
 });
 
 //It should be at the end
-app.use(function(req, res) {
-  return res
-      .status(404)
-      .json({ message: 'Endpoint not found' });
+app.use(function (req, res) {
+  return res.status(404).json({ message: 'Endpoint not found' });
 });

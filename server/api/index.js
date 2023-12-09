@@ -1,53 +1,109 @@
+const _ = require('lodash');
+
 const { isEmptyObject } = require('../utils');
-const errorHandler = require('../middleware/errorHandler')
+const errorHandler = require('../middleware/errorHandler');
 
 class Entity {
   constructor(entityModel) {
     this.entityModel = entityModel;
   }
 
-  async add(entity, res) {
+  async add({ entity, res }) {
     try {
-      const createdEntity = await this.entityModel.save(entity);
+      const newEntity = new this.entityModel(entity);
+      const createdEntity = await newEntity.save();
       res.status(200).json(createdEntity);
     } catch (err) {
       console.log(err);
     }
   }
 
-  async getById() {}
-
-  async getAll({ req, res, pageSize = '25', pageNumber = '1' }) {
+  async getById(req, res, entityName) {
     try {
-      const pageSizeInt = parseInt(pageSize);
-      const pageNumberInt = parseInt(pageNumber);
+      const entityId = _.get(req, 'params.id');
 
-      const results = await this.entityModel.find().sort({
-        createdAt: -1,
-      }).skip(pageSizeInt * (pageNumberInt - 1)).limit(pageSizeInt);
-      return res
-      .json({ data: results });
+      const requestedEntity = await this.entityModel
+        .findOne({ _id: entityId })
+        .exec();
+
+      if (!requestedEntity) {
+        return errorHandler({
+          message: `${entityName} ID ${entityId} not found`,
+        });
+      }
+
+      res.status(200).json({ data: requestedEntity });
     } catch (err) {
       errorHandler(err, req, res);
     }
   }
 
-  async update({entityId, fieldsToUpdate, res}) {
+  async getAll({ req, res }) {
     try {
-      if (isEmptyObject(fieldsToUpdate)) return;
+      const pageSizeInt = parseInt(_.get(req, 'body.filter.pageSize', '25'));
+      const pageNumberInt = parseInt(_.get(req, 'body.filter.pageNumber', '1'));
 
-      const entities = await this.entityModel.findByIdAndUpdate(entityId, {
-        $set: fieldsToUpdate,
-      });
-      res.status(200).json(entities);
+      const data = await this.entityModel
+        .find()
+        .sort({
+          createdAt: -1,
+        })
+        .skip(pageSizeInt * (pageNumberInt - 1))
+        .limit(pageSizeInt);
+
+      return res.status(200).json({ data });
     } catch (err) {
-      return res.status(400).json({ message: err.errors });
+      errorHandler(err, req, res);
     }
   }
 
-  async delete() {}
+  async updateById({ entityId, fieldsToUpdate, req, res }) {
+    try {
+      if (isEmptyObject(fieldsToUpdate) || _.isUndefined(fieldsToUpdate))
+        return;
 
-  async deleteAll() {}
+      const entity = await this.entityModel.findByIdAndUpdate(entityId, {
+        $set: fieldsToUpdate,
+      });
+      res.status(200).json({ data: entity });
+    } catch (err) {
+      return errorHandler(
+        {
+          message: err.message,
+        },
+        req,
+        res,
+      );
+    }
+  }
+
+  async deleteById(req, res, entityName) {
+    try {
+      const entityId = _.get(req, 'params.id');
+      if (!entityId) {
+        return res.status(400).json({ message: `${entityName} ID required.` });
+      }
+
+      const requestedEntity = await this.entityModel
+        .findOne({ _id: entityId })
+        .exec();
+
+      if (!requestedEntity) {
+        return errorHandler(
+          {
+            message: `${entityName} ID ${entityId} not found`,
+          },
+          req,
+          res,
+        );
+      }
+
+      const result = await this.entityModel.deleteOne({ _id: entityId }).exec();
+      res.status(200).json(result);
+    } catch (err) {
+      errorHandler(err, req, res);
+    }
+  }
 }
 
 module.exports = Entity;

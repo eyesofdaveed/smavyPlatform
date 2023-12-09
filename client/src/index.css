@@ -1,6 +1,11 @@
 @font-face {
   font-family: 'Montserrat';
-  src: url('../public/assets/fonts/Montserrat/Montserrat-VariableFont_wght.ttf') format('truetype');
+  src: url('../src/assets/fonts/Montserrat/Montserrat-VariableFont_wght.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Lato';
+  src: url('../src/assets/fonts/Lato/Lato-Black.ttf') format('truetype');
 }
 
 body,

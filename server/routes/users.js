@@ -1,14 +1,15 @@
 const router = require('express').Router();
+const _ = require('lodash');
 
 const Users = require('../models/Users');
-const Entity = require('../api');
+const ApiOptimizer = require('../api');
 
 const checkRole = require('../middleware/checkRole');
-const errorHandler = require('../middleware/errorHandler')
+const errorHandler = require('../middleware/errorHandler');
 const { ROLES } = require('../enums');
 
-
-const user = new Entity(Users);
+const user = new ApiOptimizer(Users);
+const modelName = 'User';
 
 /**
  * @swagger
@@ -64,6 +65,23 @@ router.route('/').get(checkRole(ROLES.ADMIN), async (req, res) => {
     errorHandler(err, req, res);
   }
 });
+
+router.route('/:id').delete(async (req, res) => {
+    try {
+      await user.deleteById(req, res, modelName);
+    } catch (err) {
+      errorHandler(err, req, res);
+    }
+  })
+
+
+router.route('/:id').get(async (req, res) => {
+    try {
+      await user.getById(req, res, modelName);
+    } catch (err) {
+      errorHandler(err, req, res);
+    }
+  });
 
 /**
  * @swagger
@@ -139,13 +157,11 @@ router.route('/').get(checkRole(ROLES.ADMIN), async (req, res) => {
  */
 router.put('/:id', checkRole(ROLES.ADMIN), async (req, res) => {
   try {
-    const entityId = req.params.id;
-    const fieldsToUpdate = {
-      status: req.body.status,
-      role: req.body.role,
-    }
+    const entityId = _.get(req, 'params.id');
+    const { role } = req.body;
+    const fieldsToUpdate = {role};
 
-    await user.update({ entityId, fieldsToUpdate, res });
+    await user.update({ entityId, fieldsToUpdate, req, res });
   } catch (err) {
     errorHandler(err, req, res);
   }

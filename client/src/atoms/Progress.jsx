@@ -4,7 +4,7 @@ import { Progress, Space } from 'antd';
 
 import { Flexbox } from './Flexbox';
 import { Text } from './Text';
-import { colors, sizes } from '../base';
+import { colors, sizes } from '@base';
 
 export const ProgressWrapper = styled.div`
     grid-column: 2 / span 1;

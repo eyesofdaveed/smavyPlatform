@@ -10,15 +10,21 @@ export const StyledFlexbox = styled.div`
   gap: ${({ gap }) => (gap ? gap : '16px')};
   width: ${({ width }) => width ? width :100};
 
+  @media screen and (max-width: 1620px) {
+    gap: ${({ gaLaptop }) => gaLaptop};
+  }
+  @media screen and (max-width: 768px) {
+    gap: ${({ gapTablet }) => gapTablet};
+  }
   @media screen and (max-width: 450px) {
     visibility: ${({ visibility }) => visibility};
     gap: ${({ gapPhone }) => gapPhone};
   }
 `;
 
-export const Flexbox = ({ direction = 'row', gap, gapPhone, align, children, width, justify, flexWrap, visibility }) => {
+export const Flexbox = ({ direction = 'row', gap, gaLaptop, gapTablet, gapPhone, align, children, width, justify, flexWrap, visibility }) => {
   return (
-    <StyledFlexbox direction={direction} gap={gap} gapPhone={gapPhone} align={align} width={width} justify={justify} flexWrap={flexWrap} visibility={visibility}>
+    <StyledFlexbox direction={direction} gap={gap} gaLaptop={gaLaptop} gapTablet={gapTablet} gapPhone={gapPhone} align={align} width={width} justify={justify} flexWrap={flexWrap} visibility={visibility}>
       {children}
     </StyledFlexbox>
   );

@@ -1,16 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter } from 'react-router-dom';
-
-import { Auth } from './pages/Auth';
-
-
+import { Public } from './routes/PublicRoutes';
+import { Protected } from './routes/ProtectedRoutes';
 
 const App = () => {
+  const [isAuthorized] = useState(false);
+
   return (
     <BrowserRouter>
-      <Auth />
+      {isAuthorized ? <Protected /> : <Public />}
     </BrowserRouter>
-  );
+  );   
 };
- 
+
 export default App;
