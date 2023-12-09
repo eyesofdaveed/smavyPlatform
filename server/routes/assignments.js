@@ -3,9 +3,7 @@ const router = require('express').Router();
 const Assignments = require('../models/Assignments');
 const Entity = require('../api');
 
-const checkRole = require('../middleware/checkRole');
 const errorHandler = require('../middleware/errorHandler');
-const { ROLES } = require('../enums');
 
 const assignment = new Entity(Assignments);
 const modelName = 'Assignment';
@@ -45,8 +43,17 @@ router.route('/:id').get(async (req, res) => {
 router.put('/:id', async (req, res) => {
   try {
     const entityId = req.params.id;
-    const {} = req.body;
-    const fieldsToUpdate = {};
+    const { title, description, course, group, link, status, dueDate } =
+      req.body;
+    const fieldsToUpdate = {
+      title,
+      description,
+      course,
+      group,
+      link,
+      status,
+      dueDate,
+    };
 
     await assignment.update({ entityId, fieldsToUpdate, req, res });
   } catch (err) {
