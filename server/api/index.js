@@ -8,9 +8,10 @@ class Entity {
     this.entityModel = entityModel;
   }
 
-  async add(entity, res) {
+  async add({ entity, res }) {
     try {
-      const createdEntity = await this.entityModel.save(entity);
+      const newEntity = new this.entityModel(entity);
+      const createdEntity = await newEntity.save();
       res.status(200).json(createdEntity);
     } catch (err) {
       console.log(err);
@@ -60,11 +61,6 @@ class Entity {
     try {
       if (isEmptyObject(fieldsToUpdate)) return;
 
-      for (let key in fieldsToUpdate) {
-        if (!(key in this.entityModel)) {
-          throw new Error(`wrong key ${key} on request`);
-        }
-      }
       const entity = await this.entityModel.findByIdAndUpdate(entityId, {
         $set: fieldsToUpdate,
       });

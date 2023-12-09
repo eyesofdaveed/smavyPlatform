@@ -10,7 +10,10 @@ const modelName = 'Assignment';
 
 router.route('/').post(async (req, res) => {
   try {
-    await assignment.add(req, res);
+    const { title, description, course, group, link, status, dueDate } =
+      req.body;
+    const entity = { title, description, course, group, link, status, dueDate };
+    await assignment.add({ entity, res });
   } catch (err) {
     errorHandler(err, req, res);
   }
@@ -43,19 +46,21 @@ router.route('/:id').get(async (req, res) => {
 router.put('/:id', async (req, res) => {
   try {
     const entityId = req.params.id;
+    const entity = await assignment.getById(req, res, modelName);
     const { title, description, course, group, link, status, dueDate } =
       req.body;
     const fieldsToUpdate = {
+      ...entity,
       title,
       description,
       course,
       group,
       link,
       status,
-      dueDate,
+      dueDate: new Date(dueDate),
     };
 
-    await assignment.update({ entityId, fieldsToUpdate, req, res });
+    await assignment.updateById({ entityId, fieldsToUpdate, req, res });
   } catch (err) {
     errorHandler(err, req, res);
   }
