@@ -1,13 +1,14 @@
 const router = require('express').Router();
+const _ = require('lodash');
 
 const Users = require('../models/Users');
-const Entity = require('../api');
+const ApiOptimizer = require('../api');
 
 const checkRole = require('../middleware/checkRole');
 const errorHandler = require('../middleware/errorHandler');
 const { ROLES } = require('../enums');
 
-const user = new Entity(Users);
+const user = new ApiOptimizer(Users);
 const modelName = 'User';
 
 /**
@@ -65,24 +66,16 @@ router.route('/').get(checkRole(ROLES.ADMIN), async (req, res) => {
   }
 });
 
-router.route('/delete').delete(async (req, res) => {
-  try {
-    await user.deleteAll(req, res, req.body);
-  } catch (err) {
-    errorHandler(err, req, res);
-  }
-});
-
-router
-  .route('/:id')
-  .delete(async (req, res) => {
+router.route('/:id').delete(async (req, res) => {
     try {
-      await user.delete(req, res, modelName);
+      await user.deleteById(req, res, modelName);
     } catch (err) {
       errorHandler(err, req, res);
     }
   })
-  .get(async (req, res) => {
+
+
+router.route('/:id').get(async (req, res) => {
     try {
       await user.getById(req, res, modelName);
     } catch (err) {
@@ -164,8 +157,9 @@ router
  */
 router.put('/:id', checkRole(ROLES.ADMIN), async (req, res) => {
   try {
-    const entityId = req.params.id;
-    const fieldsToUpdate = req.body;
+    const entityId = _.get(req, 'params.id');
+    const { role } = req.body;
+    const fieldsToUpdate = {role};
 
     await user.update({ entityId, fieldsToUpdate, req, res });
   } catch (err) {

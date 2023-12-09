@@ -1,5 +1,5 @@
 const isEmptyObject = obj => {
-  return Object.keys(obj).length === 0 && obj.constructor === Object;
+  return obj.constructor === Object && Object.keys(obj).length === 0;
 };
 
 module.exports = {

@@ -58,7 +58,7 @@ class Entity {
 
   async updateById({ entityId, fieldsToUpdate, req, res }) {
     try {
-      if (isEmptyObject(fieldsToUpdate)) return;
+      if (isEmptyObject(fieldsToUpdate) || _.isUndefined(fieldsToUpdate)) return;
 
       for (let key in fieldsToUpdate) {
         if (!(key in this.entityModel)) {
