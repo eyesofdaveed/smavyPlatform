@@ -18,10 +18,10 @@ const DisciplinesSubjectStyle = styled.div`
     border-radius: 24px;
     margin-top: 20px;
 
-    @media screen and (max-width: 1250px){
+    @media screen and (max-width: 1420px){
         width: 48%;
     }
-    @media screen and (max-width: 750px){
+    @media screen and (max-width: 1050px){
         width: 100%;
     }
 `;
@@ -52,23 +52,29 @@ const StyledLink = styled(Link)`
     margin-top: 30px;
     display: flex;
     gap: 20px;
+
+    @media screen and (max-width: 1050px){
+        font-size: 13px;
+        margin-top: 20px;
+        gap: 15px;
+    }
 `;
 
-export const DisciplinesSubject = ({ title, text }) => {
+export const DisciplinesSubject = ({ name, teacher, period, task }) => {
     return (
         <DisciplinesSubjectStyle>
             <CardContent>
                 <Flexbox justify={'start'} gap={'40px'}>
                     <SubjectImage><img src={Philosophy}/></SubjectImage>
                     <Flexbox direction={'column'} justify={'start'} align={'left'} gap={'10px'}>
-                        <Text color={'#000'} fontSize={'18px'} lineHeight={'20px'} fontWeight={'600'}>Философия</Text>
-                        <Text color={'#000'} fontSize={'16px'} lineHeight={'20px'} fontWeight={'500'}>Фио преподавателя</Text>
+                        <Text color={'#000'} fontSize={'18px'} fontSizePhone={'16px'} lineHeight={'20px'} lineHeightPhone={'18px'} fontWeight={'600'}>{name}</Text>
+                        <Text color={'#000'} fontSize={'16px'} fontSizePhone={'14px'} lineHeight={'20px'} lineHeightPhone={'16px'} fontWeight={'500'}>{teacher}</Text>
                     </Flexbox>
                 </Flexbox>
                 <Task>
-                    <Text color={'#000'} fontSize={'14px'} lineHeight={'30px'} fontWeight={'500'}>Текущая неделя - 3</Text>
-                    <Text color={'#000'} fontSize={'13px'} lineHeight={'16px'} fontWeight={'400'}>Lorem ipsum dolor sit amet consectetur. Sit quam duis pharetra leo ut quam. At tortor porttitor quis maecenas. </Text>
-                    <StyledLink to="/">
+                    <Text color={'#000'} fontSize={'15px'} fontSizePhone={'13px'} lineHeight={'30px'} lineHeightPhone={'24px'} fontWeight={'500'}>{period}</Text>
+                    <Text color={'#000'} fontSize={'14px'} fontSizePhone={'12px'} lineHeight={'16px'} lineHeightPhone={'18px'} fontWeight={'400'}>{task}</Text>
+                    <StyledLink to="/tasks">
                         Перейти к заданиям
                         <img src={AroowIcon} alt="" />
                     </StyledLink>
