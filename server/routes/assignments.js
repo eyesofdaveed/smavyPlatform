@@ -3,51 +3,46 @@ const router = require('express').Router();
 const Assignments = require('../models/Assignments');
 const Entity = require('../api');
 
+const checkRole = require('../middleware/checkRole');
+const errorHandler = require('../middleware/errorHandler');
+const { ROLES } = require('../enums');
+
 const assignment = new Entity(Assignments);
+const modelName = 'Assignment';
 
-// add new assignment
-router.post('/add', async (req, res) => {
-    const { title, description, deadline } = req.body;
+router.route('/').get(async (req, res) => {
+  try {
+    await assignment.getAll(req, res);
+  } catch (err) {
+    errorHandler(err, req, res);
+  }
+});
 
-    assignment.add({title, description, deadline}, res);
-})
+router.route('/:id').delete(async (req, res) => {
+  try {
+    await assignment.delete(req, res, modelName);
+  } catch (err) {
+    errorHandler(err, req, res);
+  }
+});
 
-// get all assignments
-router.get('/', async (req, res) => {
-    const { pageSize, pageNumber} = req.body.filter;
+router.route('/:id').get(async (req, res) => {
+  try {
+    await assignment.getById(req, res, modelName);
+  } catch (err) {
+    errorHandler(err, req, res);
+  }
+});
 
-    assignment.getAll({
-        req,
-        res,
-        pageSize,
-        pageNumber,
-    });
-})
+router.put('/:id', checkRole(ROLES.ADMIN), async (req, res) => {
+  try {
+    const entityId = req.params.id;
+    const fieldsToUpdate = req.body;
 
-// find a assignment by id, and modify it
-router.put('/:id', async (req, res) => {
-    try {
-        const assignment = await Assignments.findByIdAndUpdate(req.params.id, {
-            $set: req.body,
-        });
-        res.status(200).json(assignment);
-    } catch (err) {
-        console.log(err);
-    }
-})
-
-
-//delete an assignment by id
-router.put('/:id', async (req, res) => {
-    const deletionCriteria = { _id: 123 };
-    try {
-        const assignment = await Assignments.deleteOne({deletionCriteria
-        });
-        res.status(200).json(assignment);
-    } catch (err) {
-        console.log(err);
-    }
-})
-
+    await assignment.update({ entityId, fieldsToUpdate, req, res });
+  } catch (err) {
+    errorHandler(err, req, res);
+  }
+});
 
 module.exports = router;

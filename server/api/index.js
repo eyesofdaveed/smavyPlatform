@@ -8,23 +8,6 @@ class Entity {
     this.entityModel = entityModel;
   }
 
-  async getById(res) {
-    try {
-      const id = req.params.id;
-      const entity = await this.entityModel.findById(id).exec();
-
-      if (!data)
-        return res.status(400).json({
-          success: false,
-          message: `No such ${entity} present`,
-          data: [],
-        });
-      return res.status(200).json({ entity });
-    } catch (err) {
-      console.log(err);
-    }
-  }
-
   async getById(req, res, entityName) {
     try {
       const entityId = _.get(req, 'params.id');
@@ -39,7 +22,7 @@ class Entity {
         });
       }
 
-      res.status(200).json({data: requestedEntity});
+      res.status(200).json({ data: requestedEntity });
     } catch (err) {
       console.log(err);
     }
@@ -57,7 +40,7 @@ class Entity {
         })
         .skip(pageSizeInt * (pageNumberInt - 1))
         .limit(pageSizeInt);
-        
+
       return res.status(200).json({ data });
     } catch (err) {
       errorHandler(err, req, res);
@@ -76,7 +59,7 @@ class Entity {
       const entity = await this.entityModel.findByIdAndUpdate(entityId, {
         $set: fieldsToUpdate,
       });
-      res.status(200).json({data: entity});
+      res.status(200).json({ data: entity });
     } catch (err) {
       return errorHandler(
         {
