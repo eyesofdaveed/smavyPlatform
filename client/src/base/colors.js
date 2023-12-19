@@ -11,5 +11,6 @@ export const colors = {
   notificationColor: "#E4F3FB",
   profileHeaderBG: "#3B4051",
   taskCardBg: "#E5F5FC",
-  activeBlue: "#2E5BF0"
+  activeBlue: "#2E5BF0",
+  linkColor: "#3950C9",
 };
