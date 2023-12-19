@@ -13,6 +13,7 @@ export * from '../atoms/Messages';
 export * from '../atoms/OneMessage';
 export * from '../atoms/DisciplinesCard';
 export * from '../atoms/DisciplinesSubject';
+export * from '../atoms/TaskCard';
 
 
 
