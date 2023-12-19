@@ -2,13 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-
-import { Text } from './Text';
-import { Flexbox } from './Flexbox';
-import { colors } from '@base';
 import Philosophy from '@assets/img/Philosophy.png'
 import AroowIcon from '@assets/icons/arrow.svg'
-
+import { Text } from './Text';
+import { Flexbox } from './Flexbox';
 
 const DisciplinesSubjectStyle = styled.div`
     width: 32%;
