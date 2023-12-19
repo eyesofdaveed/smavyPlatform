@@ -2,9 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom'
 
+import { colors } from '@base';
 import { Text } from './Text';
 import { Flexbox } from './Flexbox';
-import { colors } from '@base';
 
 export const TaskCardStyle = styled.div`
     background-color: ${colors.taskCardBg};
