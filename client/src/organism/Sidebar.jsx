@@ -52,8 +52,36 @@ export const Navigation = styled.nav`
     }
 `;
 
+export const Submenu = styled.div`
+    opacity: 0;
+    position: absolute;
+    right: -160px;
+    top: 0px;
+    background-color: #fff;
+    padding: 20px 40px;
+    border: none;
+    border-radius: 16px;
+    z-index: 5;
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+    transition: 0.3s all ease;
+
+    &:hover {
+        opacity: 1;
+    }
+
+    @media screen and (max-width: 550px) {
+        right: -60px;
+
+    }
+`;
+
 export const Li = styled.li`
+    position: relative;
     padding: 20px;
+
+    &:hover ${Submenu}{
+        opacity: 1;
+    }
 `;
 
 const StyledLink = styled(Link)`
@@ -67,6 +95,18 @@ const StyledLink = styled(Link)`
     line-height: 22px;
     letter-spacing: 0em;
     text-align: left;
+
+    &:hover{
+        color: ${colors.activeBlue};
+    }
+
+    ${({ $isActive }) =>
+        $isActive &&
+        `
+        color: ${colors.activeBlue};
+
+        `
+    }
 `;
 
 const ToggleStyle = styled.button`
@@ -86,6 +126,10 @@ const ToggleStyle = styled.button`
     @media screen and (max-width: 850px) {
         display: flex;
     }
+`;
+
+export const SubmenuItem = styled(StyledLink)`
+    padding: 10px 0px;
 `;
 
 const Sidebar = () => {
@@ -108,7 +152,6 @@ const Sidebar = () => {
         };
     }, []);
 
-
     useEffect(() => {
         if (location.pathname === '/') {
             setCurrentPage('profile');
@@ -129,37 +172,41 @@ const Sidebar = () => {
             <Navigation style={{ visibility: isMobile ? 'hidden' : 'visible' }}>
                 <ul style={{ listStyleType: 'none', padding: 0 }}>
                     <Li>
-                        <StyledLink to="/profile" $isActive={currentPage === 'profile'}>
+                        <StyledLink onClick={() => setCurrentPage('profile')} to="/profile" $isActive={currentPage === 'profile'}>
                             <img src={ProfileIcon} />
                             Профиль
                         </StyledLink>
                     </Li>
                     <Li>
-                        <StyledLink to="/news" $isActive={currentPage === 'news'}>
+                        <StyledLink onClick={() => setCurrentPage('news')} to="/news" $isActive={currentPage === 'news'}>
                             <img src={NewsIcon} />
                             Новости
                         </StyledLink>
                     </Li>
                     <Li>
-                        <StyledLink to="/schedule" $isActive={currentPage === 'schedule'}>
+                        <StyledLink onClick={() => setCurrentPage('schedule')} to="/schedule" $isActive={currentPage === 'schedule'}>
                             <img src={ScheduleIcon} />
                             Расписание
                         </StyledLink>
                     </Li>
                     <Li>
-                        <StyledLink to="/disciplines" $isActive={currentPage === 'disciplines'}>
+                        <StyledLink $isActive={currentPage === 'disciplines'}>
                             <img src={DisciplineIcon} />
                             Дисциплины
                         </StyledLink>
+                        <Submenu>
+                            <SubmenuItem onClick={() => setCurrentPage('disciplines')} to="/disciplines" $isActive={currentPage === 'disciplines'}>Дисциплины 1</SubmenuItem>
+                            <SubmenuItem onClick={() => setCurrentPage('disciplines')} to="/disciplines2" $isActive={currentPage === 'disciplines2'}>Дисциплины 2</SubmenuItem>
+                        </Submenu>
                     </Li>
                     <Li>
-                        <StyledLink to="/gradebook" $isActive={currentPage === 'gradebook'}>
+                        <StyledLink onClick={() => setCurrentPage('gradebook')} to="/gradebook" $isActive={currentPage === 'gradebook'}>
                             <img src={JournalIcon} />
                             Журнал
                         </StyledLink>
                     </Li>
                     <Li>
-                        <StyledLink to="/chat" $isActive={currentPage === 'chat'}>
+                        <StyledLink onClick={() => setCurrentPage('chat')} to="/chat" $isActive={currentPage === 'chat'}>
                             <img src={MessageIcon} />
                             Чаты
                         </StyledLink>
