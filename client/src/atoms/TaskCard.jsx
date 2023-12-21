@@ -36,7 +36,7 @@ export const TaskCard = ({ week, text, doc1, doc2, doc3, test, homeTask }) => {
             <StyledLink to="/">{test}</StyledLink>
 
             <Text color={'#000'} fontSize={'19px'} fontWeight={'400'} lineHeight={'50px'}>Домашнее задание:</Text>
-            <StyledLink to="/">{homeTask}</StyledLink>
+            <StyledLink to="/hometask">{homeTask}</StyledLink>
         </TaskCardStyle>
     );
 };

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { TaskCard } from '@atoms';
+import { TaskCard, Text } from '@atoms';
 
 const TasksWrapper = styled.div`
   display: grid;
@@ -35,6 +35,7 @@ const TasksPage = () => {
 
     return (
         <TasksWrapper>
+            <Text color={'#000'} fontWeight={'600'} fontSize={'30px'} lineHeight={'50px'}>Философия</Text>
             {tasks.map((task, index) => (
                 <TaskCard
                     key={index}
