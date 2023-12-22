@@ -4,7 +4,7 @@ import { Public } from './routes/PublicRoutes';
 import { Protected } from './routes/ProtectedRoutes';
 
 const App = () => {
-  const [isAuthorized] = useState(false);
+  const [isAuthorized] = useState(true);
 
   return (
     <BrowserRouter>

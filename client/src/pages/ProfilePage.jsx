@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { ProfiCard, PersonalData } from '@organism';
+import { ProfiCard, PersonalData, ProfileBar } from '@organism';
 
 const ProfilePageWrapper = styled.div`
 
@@ -13,7 +13,8 @@ const ProfilePage = () => {
     return (
         <ProfilePageWrapper>
             <ProfiCard />
-            <PersonalData />
+            <ProfileBar/>
+            {/* <PersonalData /> */}
         </ProfilePageWrapper>
     );
 };
