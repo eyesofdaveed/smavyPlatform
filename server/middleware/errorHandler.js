@@ -1,6 +1,10 @@
+ const logger = require('./logger');
+
 function errorHandler(err, req, res) {
   if (err.name === 'CastError') {
     res.status(400).json({ error: 'Invalid ID', message: err.message });
+  } else if (err.name == 'Invalid EntityId') {
+    res.status(403).json({error: 'Invalid Entity Id'})
   } else if (err.name === 'ValidationError') {
     res.status(400).json({ error: err.message });
   } else if (err.name === 'MongoServerError') {
@@ -8,7 +12,8 @@ function errorHandler(err, req, res) {
   } else {
     res.status(500).json({ error: 'Internal Server Error', message: err.message });
   }
-  console.error(err);
+  
+  logger.error(err);
 }
   
 module.exports = errorHandler;
