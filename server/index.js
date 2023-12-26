@@ -18,6 +18,8 @@ const verifyJwt = require('./middleware/verifyJwt');
 const swaggerJsdoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
 
+const BASE_API_URL = 'https://smavyplatform-production.up.railway.app/'
+
 const options = {
   definition: {
     openapi: '3.0.0',
@@ -61,8 +63,8 @@ app.use('/assignments', assignmentsRoute);
 
 mongoose.connection.once('open', () => {
   console.log('Connected to MongoDB');
-  app.listen(8800, () => {
-    console.log('Backend server is running at port 8800!');
+  app.listen(BASE_API_URL, () => {
+    console.log('Backend server is running!');
   });
 });
 
