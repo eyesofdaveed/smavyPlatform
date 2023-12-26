@@ -64,7 +64,7 @@ app.use('/assignments', assignmentsRoute);
 mongoose.connection.once('open', () => {
   console.log('Connected to MongoDB');
   app.listen(port, () => {
-    console.log('Backend server is running!');
+    console.log('Backend server is running at: ', port);
   });
 });
 
