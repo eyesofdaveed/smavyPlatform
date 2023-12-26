@@ -1,4 +1,5 @@
 const _ = require('lodash');
+const mongoose = require('mongoose')
 
 const { isEmptyObject } = require('../utils');
 const errorHandler = require('../middleware/errorHandler');
@@ -21,6 +22,7 @@ class Entity {
   async getById(req, res, entityName) {
     try {
       const entityId = _.get(req, 'params.id');
+      if (!mongoose.Types.ObjectId.isValid(entityId)) throw new Error('invalid id') 
 
       const requestedEntity = await this.entityModel
         .findOne({ _id: entityId })
@@ -59,6 +61,8 @@ class Entity {
 
   async updateById({ entityId, fieldsToUpdate, req, res }) {
     try {
+      if (!mongoose.Types.ObjectId.isValid(entityId)) throw new Error('invalid id') 
+
       if (isEmptyObject(fieldsToUpdate) || _.isUndefined(fieldsToUpdate))
         return;
 
@@ -83,6 +87,7 @@ class Entity {
       if (!entityId) {
         return res.status(400).json({ message: `${entityName} ID required.` });
       }
+      if (!mongoose.Types.ObjectId.isValid(entityId)) throw new Error('invalid id') 
 
       const requestedEntity = await this.entityModel
         .findOne({ _id: entityId })
