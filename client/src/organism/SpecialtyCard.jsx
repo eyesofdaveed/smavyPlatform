@@ -11,51 +11,51 @@ export const SpecialtyCard = () => {
     <Card padding="30px" display="flex" width="fit-content" bgColor={colors.cardMainBg} >
       <Flexbox direction="column" gap="22px" align="start">
         <Flexbox justify="space-between" width="100%">
-          <Text  color={colors.black} fontSize={sizes.medium} >Дата поступления</Text>
-          <ValueBackround width='600px' margin="0px 3px 0px 40px" padding="5px 15px ">
-            <Text  color={colors.black} fontSize={sizes.medium} >010722547645</Text>
+          <Text fontWeight={400} color={colors.black} fontSize={'19px'} >Дата поступления</Text>
+          <ValueBackround width='600px' margin="0px 3px 0px 40px" padding="8px 20px">
+            <Text fontWeight={400} color={colors.black} fontSize={'19px'} >010722547645</Text>
           </ValueBackround>
         </Flexbox>
         <Flexbox justify="space-between" width="100%">
-          <Text  color={colors.black} fontSize={sizes.medium} >Группа </Text>
-          <ValueBackround width='600px' margin="0px 3px 0px 40px" padding="5px 15px ">
-            <Text color={colors.black} fontSize={sizes.medium}>22-07-2001</Text>
+          <Text fontWeight={400} color={colors.black} fontSize={'19px'} >Группа </Text>
+          <ValueBackround width='600px' margin="0px 3px 0px 40px" padding="8px 20px ">
+            <Text fontWeight={400} color={colors.black} fontSize={'19px'}>22-07-2001</Text>
           </ValueBackround >
         </Flexbox>
         <Flexbox justify="space-between" width="100%">
-          <Text  color={colors.black} fontSize={sizes.medium} >Вид финансирования</Text>
-          <ValueBackround width='600px' margin="0px 3px 0px 40px" padding="5px 15px ">
-            <Text  color={colors.black} fontSize={sizes.medium}>Женский</Text>
+          <Text fontWeight={400} color={colors.black} fontSize={'19px'} >Вид финансирования</Text>
+          <ValueBackround width='600px' margin="0px 3px 0px 40px" padding="8px 20px ">
+            <Text fontWeight={400} color={colors.black} fontSize={'19px'}>Женский</Text>
           </ValueBackround>
         </Flexbox>
         <Flexbox justify="space-between" width="100%">
-          <Text  color={colors.black} fontSize={sizes.medium} >Обучение по квоте</Text>
-          <ValueBackround width='600px'margin="0px 3px 0px 40px" padding="5px 15px ">
-            <Text  color={colors.black} fontSize={sizes.medium}>Женский</Text>
+          <Text fontWeight={400} color={colors.black} fontSize={'19px'} >Обучение по квоте</Text>
+          <ValueBackround width='600px'margin="0px 3px 0px 40px" padding="8px 20px ">
+            <Text fontWeight={400} color={colors.black} fontSize={'19px'}>Женский</Text>
           </ValueBackround>
         </Flexbox>
         <Flexbox justify="space-between" width="100%">
-          <Text  color={colors.black} fontSize={sizes.medium} >Серия свидетельства о гранте</Text>
-          <ValueBackround width='600px' margin="0px 3px 0px 40px" padding="5px 15px ">
-            <Text  color={colors.black} fontSize={sizes.medium}>Женский</Text>
+          <Text fontWeight={400} color={colors.black} fontSize={'19px'} >Серия свидетельства о гранте</Text>
+          <ValueBackround width='600px' margin="0px 3px 0px 40px" padding="8px 20px ">
+            <Text fontWeight={400} color={colors.black} fontSize={'19px'}>Женский</Text>
           </ValueBackround>
         </Flexbox>
         <Flexbox justify="space-between" width="100%">
-          <Text  color={colors.black} fontSize={sizes.medium} >Номер свидетельства о гранте</Text>
-          <ValueBackround width='600px' margin="0px 3px 0px 40px" padding="5px 15px ">
-            <Text  color={colors.black} fontSize={sizes.medium}>Женский</Text>
+          <Text fontWeight={400} color={colors.black} fontSize={'19px'} >Номер свидетельства о гранте</Text>
+          <ValueBackround width='600px' margin="0px 3px 0px 40px" padding="8px 20px ">
+            <Text fontWeight={400} color={colors.black} fontSize={'19px'}>Женский</Text>
           </ValueBackround>
         </Flexbox>
         <Flexbox justify="space-between" width="100%">
-          <Text  color={colors.black} fontSize={sizes.medium} >Дата присуждения гранта</Text>
-          <ValueBackround width='600px' margin="0px 3px 0px 40px" padding="5px 15px ">
-            <Text  color={colors.black} fontSize={sizes.medium}>Женский</Text>
+          <Text fontWeight={400} color={colors.black} fontSize={'19px'} >Дата присуждения гранта</Text>
+          <ValueBackround width='600px' margin="0px 3px 0px 40px" padding="8px 20px ">
+            <Text fontWeight={400} color={colors.black} fontSize={'19px'}>Женский</Text>
           </ValueBackround>
         </Flexbox>
         <Flexbox justify="space-between" width="100%">
-          <Text  color={colors.black} fontSize={sizes.medium} >Сертификат гранта</Text>
-          <ValueBackround width='600px' margin="0px 3px 0px 40px" padding="5px 15px ">
-            <Text  color={colors.black} fontSize={sizes.medium}>Женский</Text>
+          <Text fontWeight={400} color={colors.black} fontSize={'19px'} >Сертификат гранта</Text>
+          <ValueBackround width='600px' margin="0px 3px 0px 40px" padding="8px 20px ">
+            <Text fontWeight={400} color={colors.black} fontSize={'19px'}>Женский</Text>
           </ValueBackround>
         </Flexbox>
         

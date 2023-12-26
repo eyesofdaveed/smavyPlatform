@@ -9,6 +9,7 @@ export const StyledFlexbox = styled.div`
   flex-direction: ${({ direction }) => direction};
   gap: ${({ gap }) => (gap ? gap : '16px')};
   width: ${({ width }) => width ? width :100};
+  position: ${({ position }) => position};
 
   @media screen and (max-width: 1620px) {
     gap: ${({ gaLaptop }) => gaLaptop};
@@ -22,9 +23,9 @@ export const StyledFlexbox = styled.div`
   }
 `;
 
-export const Flexbox = ({ direction = 'row', gap, gaLaptop, gapTablet, gapPhone, align, children, width, justify, flexWrap, visibility }) => {
+export const Flexbox = ({ direction = 'row', gap, gaLaptop, gapTablet, gapPhone, align, children, width, justify, flexWrap, visibility, position }) => {
   return (
-    <StyledFlexbox direction={direction} gap={gap} gaLaptop={gaLaptop} gapTablet={gapTablet} gapPhone={gapPhone} align={align} width={width} justify={justify} flexWrap={flexWrap} visibility={visibility}>
+    <StyledFlexbox direction={direction} gap={gap} gaLaptop={gaLaptop} gapTablet={gapTablet} gapPhone={gapPhone} align={align} width={width} justify={justify} flexWrap={flexWrap} visibility={visibility} position={position}>
       {children}
     </StyledFlexbox>
   );
