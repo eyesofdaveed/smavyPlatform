@@ -11,12 +11,15 @@ const usersRoute = require('./routes/users');
 const assignmentsRoute = require('./routes/assignments');
 const authRoute = require('./routes/auth');
 const studentRoute = require('./routes/students');
+const teacherRoute = require('./routes/teachers');
 const logoutRoute = require('./routes/logout');
 const registerRoute = require('./routes/register');
 const { logger, logEvents } = require('./middleware/logger');
 const verifyJwt = require('./middleware/verifyJwt');
 const swaggerJsdoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
+
+const port = process.env.PORT || 8800;
 
 const options = {
   definition: {
@@ -53,16 +56,19 @@ app.use(cookieParser());
 
 app.use('/register', registerRoute);
 app.use('/auth', authRoute);
-app.use('/students', studentRoute);
 app.use(verifyJwt);
+
+// authorized routes
+app.use('/students', studentRoute);
+app.use('/teachers', teacherRoute);
 app.use('/logout', logoutRoute);
 app.use('/users', usersRoute);
 app.use('/assignments', assignmentsRoute);
 
 mongoose.connection.once('open', () => {
   console.log('Connected to MongoDB');
-  app.listen(8800, () => {
-    console.log('Backend server is running at port 8800!');
+  app.listen(port, () => {
+    console.log('Backend server is running at: ', port);
   });
 });
 
