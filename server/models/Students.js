@@ -27,6 +27,9 @@ const StudentsSchema = new Schema({
     type: String,
     trim: true,
   },
+},
+{ timestamps: true,
+  get: time => time.toDateString() 
 });
 
 module.exports = mongoose.model('Students', StudentsSchema);

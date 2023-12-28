@@ -16,13 +16,47 @@ const GradeBookWrapper = styled.div`
   }
 `;
 
+const subjects = [
+    {
+        subject: 'Философия',
+        teacher: 'Фио преподавателя',
+        rk1: '92,00',
+        rk2: '89,00',
+        rating: '91,00',
+        quiz: '91,00',
+    },
+    {
+        subject: 'Философия',
+        teacher: 'Фио преподавателя',
+        rk1: '92,00',
+        rk2: '89,00',
+        rating: '91,00',
+        quiz: '91,00',
+    },
+    {
+        subject: 'Философия',
+        teacher: 'Фио преподавателя',
+        rk1: '92,00',
+        rk2: '89,00',
+        rating: '91,00',
+        quiz: '91,00',
+    },
+];
+
 const GradeBookPage = () => {
     return (
         <GradeBookWrapper>
-            <SubjectCard subject={'Философия'} teacher={'Фио преподавателя'} rk1={'92,00'} rk2={'89,00'} rating={'91,00'} quiz={'91,00'}></SubjectCard>
-            <SubjectCard subject={'Философия'} teacher={'Фио преподавателя'} rk1={'92,00'} rk2={'89,00'} rating={'91,00'} quiz={'91,00'}></SubjectCard>
-            <SubjectCard subject={'Философия'} teacher={'Фио преподавателя'} rk1={'92,00'} rk2={'89,00'} rating={'91,00'} quiz={'91,00'}></SubjectCard>
-            <SubjectCard subject={'Философия'} teacher={'Фио преподавателя'} rk1={'92,00'} rk2={'89,00'} rating={'91,00'} quiz={'91,00'}></SubjectCard>
+            {subjects.map((data, index) => (
+                <SubjectCard
+                    key={index}
+                    subject={data.subject}
+                    teacher={data.teacher}
+                    rk1={data.rk1}
+                    rk2={data.rk2}
+                    rating={data.rating}
+                    quiz={data.quiz}
+                />
+            ))}
         </GradeBookWrapper>
     );
 };

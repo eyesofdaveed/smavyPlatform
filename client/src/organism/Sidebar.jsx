@@ -1,5 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { colors } from '@base';
@@ -11,7 +11,6 @@ import DisciplineIcon from '@assets/icons/book.svg'
 import JournalIcon from '@assets/icons/book-open.svg'
 import MessageIcon from '@assets/icons/message-square.svg'
 import Toggle from '@assets/icons/toggle.svg'
-
 
 export const SidebarBox = styled.div`
     background-color: ${colors.sidebarColor};
@@ -53,8 +52,36 @@ export const Navigation = styled.nav`
     }
 `;
 
+export const Submenu = styled.div`
+    opacity: 0;
+    position: absolute;
+    right: -160px;
+    top: 0px;
+    background-color: #fff;
+    padding: 20px 40px;
+    border: none;
+    border-radius: 16px;
+    z-index: 5;
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+    transition: 0.3s all ease;
+
+    &:hover {
+        opacity: 1;
+    }
+
+    @media screen and (max-width: 550px) {
+        right: -60px;
+
+    }
+`;
+
 export const Li = styled.li`
+    position: relative;
     padding: 20px;
+
+    &:hover ${Submenu}{
+        opacity: 1;
+    }
 `;
 
 const StyledLink = styled(Link)`
@@ -68,6 +95,18 @@ const StyledLink = styled(Link)`
     line-height: 22px;
     letter-spacing: 0em;
     text-align: left;
+
+    &:hover{
+        color: ${colors.activeBlue};
+    }
+
+    ${({ $isActive }) =>
+        $isActive &&
+        `
+        color: ${colors.activeBlue};
+
+        `
+    }
 `;
 
 const ToggleStyle = styled.button`
@@ -89,21 +128,37 @@ const ToggleStyle = styled.button`
     }
 `;
 
+export const SubmenuItem = styled(StyledLink)`
+    padding: 10px 0px;
+`;
+
 const Sidebar = () => {
     const [isMobile, setIsMobile] = useState(false);
+    const [currentPage, setCurrentPage] = useState('profile');
+    const location = useLocation();
+    const navigate = useNavigate();
+
     useEffect(() => {
         const checkIfMobile = () => {
-        const mediaQuery = window.matchMedia('(max-width: 850px)');
-        setIsMobile(mediaQuery.matches);
+            const mediaQuery = window.matchMedia('(max-width: 850px)');
+            setIsMobile(mediaQuery.matches);
         };
 
         checkIfMobile();
         window.addEventListener('resize', checkIfMobile);
 
         return () => {
-        window.removeEventListener('resize', checkIfMobile);
+            window.removeEventListener('resize', checkIfMobile);
         };
     }, []);
+
+    useEffect(() => {
+        if (location.pathname === '/') {
+            setCurrentPage('profile');
+            navigate('/profile');
+        }
+    }, [location, navigate]);
+
     function showBlocks() {
         setIsMobile(prevState => !prevState)
     }
@@ -113,41 +168,45 @@ const Sidebar = () => {
             <ToggleStyle onClick={showBlocks}>
                 <img src={Toggle} alt="toggle" />
             </ToggleStyle>
-            <Logo src={LogoImg} alt="Logo" style={{ visibility: isMobile ? 'hidden' : 'visible' }}/>
+            <Logo src={LogoImg} alt="Logo" style={{ visibility: isMobile ? 'hidden' : 'visible' }} />
             <Navigation style={{ visibility: isMobile ? 'hidden' : 'visible' }}>
                 <ul style={{ listStyleType: 'none', padding: 0 }}>
                     <Li>
-                        <StyledLink to="/">
+                        <StyledLink onClick={() => setCurrentPage('profile')} to="/profile" $isActive={currentPage === 'profile'}>
                             <img src={ProfileIcon} />
                             Профиль
                         </StyledLink>
                     </Li>
                     <Li>
-                        <StyledLink to="/">
+                        <StyledLink onClick={() => setCurrentPage('news')} to="/news" $isActive={currentPage === 'news'}>
                             <img src={NewsIcon} />
                             Новости
                         </StyledLink>
                     </Li>
                     <Li>
-                        <StyledLink to="/">
+                        <StyledLink onClick={() => setCurrentPage('schedule')} to="/schedule" $isActive={currentPage === 'schedule'}>
                             <img src={ScheduleIcon} />
                             Расписание
                         </StyledLink>
                     </Li>
                     <Li>
-                        <StyledLink to="/">
+                        <StyledLink $isActive={currentPage === 'disciplines'}>
                             <img src={DisciplineIcon} />
                             Дисциплины
                         </StyledLink>
+                        <Submenu>
+                            <SubmenuItem onClick={() => setCurrentPage('disciplines')} to="/disciplines" $isActive={currentPage === 'disciplines'}>Дисциплины 1</SubmenuItem>
+                            <SubmenuItem onClick={() => setCurrentPage('disciplines')} to="/disciplines2" $isActive={currentPage === 'disciplines2'}>Дисциплины 2</SubmenuItem>
+                        </Submenu>
                     </Li>
                     <Li>
-                        <StyledLink to="/">
+                        <StyledLink onClick={() => setCurrentPage('gradebook')} to="/gradebook" $isActive={currentPage === 'gradebook'}>
                             <img src={JournalIcon} />
                             Журнал
                         </StyledLink>
                     </Li>
                     <Li>
-                        <StyledLink to="/">
+                        <StyledLink onClick={() => setCurrentPage('chat')} to="/chat" $isActive={currentPage === 'chat'}>
                             <img src={MessageIcon} />
                             Чаты
                         </StyledLink>

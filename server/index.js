@@ -19,6 +19,8 @@ const verifyJwt = require('./middleware/verifyJwt');
 const swaggerJsdoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
 
+const port = process.env.PORT || 8800;
+
 const options = {
   definition: {
     openapi: '3.0.0',
@@ -54,17 +56,21 @@ app.use(cookieParser());
 
 app.use('/register', registerRoute);
 app.use('/auth', authRoute);
+<<<<<<< HEAD
 app.use('/students', studentRoute);
 app.use('/teacher', teacherRoute);
+=======
+>>>>>>> main
 app.use(verifyJwt);
+app.use('/students', studentRoute);
 app.use('/logout', logoutRoute);
 app.use('/users', usersRoute);
 app.use('/assignments', assignmentsRoute);
 
 mongoose.connection.once('open', () => {
   console.log('Connected to MongoDB');
-  app.listen(8800, () => {
-    console.log('Backend server is running at port 8800!');
+  app.listen(port, () => {
+    console.log('Backend server is running at: ', port);
   });
 });
 
