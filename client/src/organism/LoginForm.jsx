@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { baseApi } from '@api';
 import { API_METHODS } from '@api/enums';
 import { Card, Flexbox, Input, Text } from '@atoms';
-import { sizes } from '@base/index';
+import { colors, sizes } from '@base/index';
 import { Button } from '../atoms/Button';
 
 export function LoginForm() {
@@ -30,12 +30,13 @@ export function LoginForm() {
 
   const renderForm = () => (
     <>
-      <Card width="20%">
-        <Flexbox direction="column" gap="8px">
-          <form onSubmit={handleSubmitData}>
+      <Card width="400px">
+        <form onSubmit={handleSubmitData}>
+          <Flexbox direction="column" gap="10px" width="95%" padding="10px">
             <Text fontSize={sizes.xLarge}>Вход</Text>
-            <Flexbox direction="column">
+            <Flexbox direction="column" width="100%">
               <Input
+                width="95%"
                 name="email"
                 placeholder="Ваше имя"
                 type="text"
@@ -43,20 +44,25 @@ export function LoginForm() {
                 onChange={handleChange}
               />
               <Input
+                width="95%"
                 name="password"
                 placeholder="Ваш пароль"
                 type="password"
                 required
                 onChange={handleChange}
               />
-              <Button type="submit" text="Отправить" />
             </Flexbox>
-          </form>
-          <Flexbox>
-            <Text fontSize={sizes.small}>Забыли пароль?</Text>
-            <Text fontSize={sizes.small}>Зарегестрироваться </Text>
+            <Flexbox justify="space-between">
+              <a style={{ fontSize: '12px' }} href="/passwordReset">
+                Забыли пароль?
+              </a>
+              <a style={{ fontSize: '12px' }} href="/registration">
+                Зарегестрироватся
+              </a>
+            </Flexbox>
+            <Button bgColor={colors.btnPrimary} type="submit" text="Войти" />
           </Flexbox>
-        </Flexbox>
+        </form>
       </Card>
     </>
   );
