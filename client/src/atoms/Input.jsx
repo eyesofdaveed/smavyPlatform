@@ -7,7 +7,7 @@ export const StyledInput = styled.input`
   outline: none;
   border: none;
   padding: 0 10px;
-  height: ${({ height }) => (height ? height : '100%')};
+  height: ${({ height }) => (height ? height : '40px')};
   width: ${({ width }) => (width ? width : '100%')};
   box-shadow: ${({ boxShadow }) => boxShadow};
   font-size: ${({ fontSize }) => (fontSize ? fontSize : '14px')};
