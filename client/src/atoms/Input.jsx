@@ -36,6 +36,7 @@ export const Input = ({
   fontSize,
   height,
   name,
+  onChange,
 }) => {
   return (
     <StyledInput
@@ -51,6 +52,7 @@ export const Input = ({
       fontSize={fontSize}
       height={height}
       name={name}
+      onChange={onChange}
     />
   );
 };
