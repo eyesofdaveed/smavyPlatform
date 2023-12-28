@@ -1,53 +1,54 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 
-import { Card } from '@atoms';
-import { Flexbox } from '@atoms';
-import { Input } from '@atoms';
-import { Text } from '@atoms';
-import { sizes } from '@base/index';
 import { baseApi } from '@api';
 import { API_METHODS } from '@api/enums';
+import { Flexbox, Input, Text } from '@atoms';
+import { sizes } from '@base/index';
 import { Button } from '../atoms/Button';
+import { Card } from '../atoms/Card';
 import { RadioButton } from '../atoms/RadioButton';
 
-const INPUT_TYPES = {
-  EMAIL: 'email',
-  PASSWORD: 'password',
-  NUMBER: 'number',
-};
-
 export function RegistrationForm() {
-  const [data, setData] = useState();
-
-  const handleSubmitData = async () => {
-    const data = await baseApi('users', API_METHODS.GET);
-  };
-
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [number, setNumber] = useState('');
   const [role, setRole] = useState('student');
-  const [errorMessage, setErrorMessage] = useState('');
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [formData, setFormData] = useState({
+    email: '',
+    password: '',
+    firstName: '',
+    lastName: '',
+    role: role,
+  });
 
-  const handleChange = inputName => value => {
-    if (inputName === INPUT_TYPES.EMAIL) setEmail(value.trim());
-    if (inputName === INPUT_TYPES.PASSWORD) setPassword(value.trim());
-    if (inputName === INPUT_TYPES.NUMBER) setNumber(value.trim());
+  // optimise with callback
+  const handleChange = useCallback(e => {
+    const { name, value } = e.target;
+
+    setTimeout(function (e) {
+      setFormData(prevFormData => ({
+        ...prevFormData,
+        [name]: value,
+      }));
+    }, 1000);
+  });
+
+  const handleSubmitData = async event => {
+    event.preventDefault();
+
+    try {
+      const data = await baseApi('register', API_METHODS.POST, formData);
+      document.cookie = `accessToken = ${data.accessToken}`; // set cookie
+    } catch (err) {
+      console.log(err);
+    }
+
+    const response = await baseApi('register', API_METHODS.POST, dataToSend);
+    console.log(response);
   };
 
   const renderForm = () => (
     <>
-      {data && data.map(item => console.log(item.firstName, '-', item.email))}
-
       <Card width="30%">
         <Flexbox direction="column" gap="8px" align="flex-start">
-          <form
-            onSubmit={e => {
-              e.preventDefault();
-              handleSubmitData();
-            }}
-          >
+          <form onSubmit={handleSubmitData}>
             <Flexbox gap="30px">
               <Text fontSize={sizes.xLarge}>Регистрация</Text>
               <Text fontSize={sizes.small}>
@@ -56,32 +57,46 @@ export function RegistrationForm() {
             </Flexbox>
             <Flexbox direction="column">
               <Input
+                name="email"
                 placeholder="Ваш email"
-                onChange={handleChange(INPUT_TYPES.EMAIL)}
-                value={email}
                 type="email"
                 required
+                onChange={handleChange}
               />
-              {errorMessage}
               <Input
+                name="password"
                 placeholder="Ваш пароль"
-                onChange={handleChange(INPUT_TYPES.PASSWORD)}
-                value={password}
                 type="password"
                 required
+                onChange={handleChange}
               />
-              {errorMessage}
               <Input
+                name="firstName"
                 placeholder="Ваш номер"
-                onChange={handleChange(INPUT_TYPES.NUMBER)}
-                value={number}
                 type="tel"
                 required
+                onChange={handleChange}
               />
-              {errorMessage}
+              <Input
+                name="lastName"
+                placeholder="Ваш номер"
+                type="tel"
+                required
+                onChange={handleChange}
+              />
               <Flexbox>
-                <RadioButton text="Ученик" role="student" onChange={setRole} />
-                <RadioButton text="Учитель" role="teacher" onChange={setRole} />
+                <RadioButton
+                  text="Ученик"
+                  role="student"
+                  value={role}
+                  onChange={() => setRole('student')}
+                />
+                <RadioButton
+                  text="Учитель"
+                  role="teacher"
+                  value={role}
+                  onChange={() => setRole('teacher')}
+                />
               </Flexbox>
               <Button type="submit" text="Продолжить" />
             </Flexbox>
@@ -96,5 +111,5 @@ export function RegistrationForm() {
       </Card>
     </>
   );
-  return isSubmitted ? <>User is successfully logged in</> : renderForm();
+  return renderForm();
 }

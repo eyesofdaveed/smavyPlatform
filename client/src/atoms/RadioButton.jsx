@@ -1,12 +1,9 @@
 import React from 'react';
 
-export const RadioButton = ({ text, role, onChange }) => {
-  const handleRole = () => {
-    onChange(role);
-  };
+export const RadioButton = ({ text, role, onChange, value }) => {
   return (
     <label>
-      <input type="radio" name="group1" onChange={handleRole} />
+      <input type="radio" name="group1" onChange={onChange} value={value} />
       {text}
     </label>
   );
