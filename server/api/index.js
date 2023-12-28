@@ -3,11 +3,10 @@ const mongoose = require('mongoose');
 
 const { isEmptyObject } = require('../utils');
 const errorHandler = require('../middleware/errorHandler');
+const { ERRORS } = require('../enums');
 
-const INVALID_ID_ERROR = 'Invalid EntityId';
-const ENTITY_NOT_FOUND = 'Entity not found';
-const UPDATE_ERROR = 'Update error';
-const EMPTY_ID_ERROR = 'Empty id error';
+const { INVALID_ID_ERROR, ENTITY_NOT_FOUND, UPDATE_ERROR, EMPTY_ID_ERROR } =
+  ERRORS;
 
 class Entity {
   constructor(entityModel) {
@@ -20,7 +19,7 @@ class Entity {
       const createdEntity = await newEntity.save();
       res.status(200).json(createdEntity);
     } catch (err) {
-      console.log(err);
+      errorHandler(err, req, res);
     }
   }
 
@@ -75,13 +74,7 @@ class Entity {
       });
       res.status(200).json({ data: entity });
     } catch (err) {
-      return errorHandler(
-        {
-          message: err.message,
-        },
-        req,
-        res,
-      );
+      errorHandler(err, req, res);
     }
   }
 
