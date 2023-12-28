@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 
 import { baseApi } from '@api';
 import { API_METHODS } from '@api/enums';
@@ -10,18 +10,35 @@ import { RadioButton } from '../atoms/RadioButton';
 
 export function RegistrationForm() {
   const [role, setRole] = useState('student');
+  const [formData, setFormData] = useState({
+    email: '',
+    password: '',
+    firstName: '',
+    lastName: '',
+    role: role,
+  });
+
+  // optimise with callback
+  const handleChange = useCallback(e => {
+    const { name, value } = e.target;
+
+    setTimeout(function (e) {
+      setFormData(prevFormData => ({
+        ...prevFormData,
+        [name]: value,
+      }));
+    }, 1000);
+  });
 
   const handleSubmitData = async event => {
     event.preventDefault();
 
-    const formData = new FormData(event.target);
-    const dataToSend = {
-      email: formData.get('email'),
-      password: formData.get('password'),
-      firstName: formData.get('firstName'),
-      lastName: formData.get('lastName'),
-      role: role,
-    };
+    try {
+      const data = await baseApi('register', API_METHODS.POST, formData);
+      document.cookie = `accessToken = ${data.accessToken}`; // set cookie
+    } catch (err) {
+      console.log(err);
+    }
 
     const response = await baseApi('register', API_METHODS.POST, dataToSend);
     console.log(response);
@@ -44,24 +61,28 @@ export function RegistrationForm() {
                 placeholder="Ваш email"
                 type="email"
                 required
+                onChange={handleChange}
               />
               <Input
                 name="password"
                 placeholder="Ваш пароль"
                 type="password"
                 required
+                onChange={handleChange}
               />
               <Input
                 name="firstName"
                 placeholder="Ваш номер"
                 type="tel"
                 required
+                onChange={handleChange}
               />
               <Input
                 name="lastName"
                 placeholder="Ваш номер"
                 type="tel"
                 required
+                onChange={handleChange}
               />
               <Flexbox>
                 <RadioButton
