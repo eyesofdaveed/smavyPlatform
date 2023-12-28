@@ -9,11 +9,6 @@ export const TextContainer = styled.div`
   text-align: ${({ textAlign }) => textAlign};
   transition: 0.1s;
 
-  &:hover {
-    color: blueviolet;
-    transition: 0.1s;
-  }
-
   @media screen and (max-width: 950px) {
     font-size: ${({ fontSizeTablet }) =>
       fontSizeTablet ? fontSizeTablet : '16px'};
