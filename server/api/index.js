@@ -38,7 +38,7 @@ class Entity {
 
       res.status(200).json({ data: requestedEntity });
     } catch (err) {
-      errorHandler(err, req, res);
+      return errorHandler(err, req, res);
     }
   }
 
