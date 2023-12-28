@@ -52,7 +52,7 @@ export function LoginForm() {
                 onChange={handleChange}
               />
             </Flexbox>
-            <Flexbox justify="space-between">
+            <Flexbox justify="space-between" margin="20px 0 0px">
               <a style={{ fontSize: '12px' }} href="/passwordReset">
                 Забыли пароль?
               </a>

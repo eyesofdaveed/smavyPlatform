@@ -13,14 +13,13 @@ export const TextContainer = styled.div`
     font-size: ${({ fontSizeTablet }) =>
       fontSizeTablet ? fontSizeTablet : '16px'};
     line-height: ${({ lineHeightTablet }) =>
-      lineHeightTablet ? lineHeightTablet : '32px'};
+      lineHeightTablet ? lineHeightTablet : '20px'};
   }
 
   @media screen and (max-width: 450px) {
     font-size: ${({ fontSizePhone }) =>
       fontSizePhone ? fontSizePhone : '12px'};
-    line-height: ${({ lineHeightPhone }) =>
-      lineHeightPhone ? lineHeightPhone : '32px'};
+    line-height: ${({ lineHeight }) => (lineHeight ? lineHeight : '15px')};
   }
 `;
 
