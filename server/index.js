@@ -58,6 +58,7 @@ app.use('/register', registerRoute);
 app.use('/auth', authRoute);
 app.use(verifyJwt);
 
+// authorized routes
 app.use('/students', studentRoute);
 app.use('/teachers', teacherRoute);
 app.use('/logout', logoutRoute);
