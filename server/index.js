@@ -18,7 +18,7 @@ const verifyJwt = require('./middleware/verifyJwt');
 const swaggerJsdoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 8800;
 
 const options = {
   definition: {

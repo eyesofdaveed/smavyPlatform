@@ -41,6 +41,14 @@ const UsersSchema = new Schema({
     enum: ['admin', 'student', 'teacher'],
     required: true,
   },
+},
+{ timestamps: true,
+  get: time => time.toDateString() 
 });
+
+// Метод для проверки refresh токена
+UsersSchema.methods.isValidRefreshToken = function (providedRefreshToken) {
+  return this.refreshToken === providedRefreshToken;
+};
 
 module.exports = mongoose.model('Users', UsersSchema);
