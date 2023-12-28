@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { baseApi } from '@api';
 import { API_METHODS } from '@api/enums';
@@ -7,27 +7,25 @@ import { sizes } from '@base/index';
 import { Button } from '../atoms/Button';
 
 export function LoginForm() {
+  const [formData, setFormData] = useState({ email: '', password: '' });
+
+  const handleChange = e => {
+    const { name, value } = e.target;
+    setFormData(prevFormData => ({
+      ...prevFormData,
+      [name]: value,
+    }));
+  };
+
   const handleSubmitData = async event => {
     event.preventDefault();
 
-    const formData = new FormData(event.target);
-    const dataToSend = {
-      email: formData.get('email'),
-      password: formData.get('password'),
-    };
-    const data = await baseApi('auth', API_METHODS.POST, dataToSend);
-
-    const setCookie = (name, value, days) => {
-      let expires = '';
-      if (days) {
-        let date = new Date();
-        date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000); // setting current day
-        expires = '; expires=' + date.toUTCString();
-      }
-      document.cookie = name + '=' + (value || '') + expires + '; path=/';
-    };
-
-    setCookie('accessToken', data.accessToken, 7); // Set cookie for 7 days
+    try {
+      const data = await baseApi('auth', API_METHODS.POST, formData);
+      document.cookie = `accessToken = ${data.accessToken}`; // set cookie
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const renderForm = () => (
@@ -37,12 +35,19 @@ export function LoginForm() {
           <form onSubmit={handleSubmitData}>
             <Text fontSize={sizes.xLarge}>Вход</Text>
             <Flexbox direction="column">
-              <Input name="email" placeholder="Ваше имя" type="text" required />
+              <Input
+                name="email"
+                placeholder="Ваше имя"
+                type="text"
+                required
+                onChange={handleChange}
+              />
               <Input
                 name="password"
                 placeholder="Ваш пароль"
                 type="password"
                 required
+                onChange={handleChange}
               />
               <Button type="submit" text="Отправить" />
             </Flexbox>
