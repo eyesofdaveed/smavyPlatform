@@ -1,12 +1,16 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 
 import { baseApi } from '@api';
 import { API_METHODS } from '@api/enums';
 import { Card, Flexbox, Input, Text } from '@atoms';
 import { colors, sizes } from '@base/index';
+
 import { Button } from '../atoms/Button';
+import { authorizeUser } from '../store/authSlice';
 
 export function LoginForm() {
+  const dispatch = useDispatch();
   const [formData, setFormData] = useState({ email: '', password: '' });
 
   const handleChange = e => {
@@ -20,12 +24,7 @@ export function LoginForm() {
   const handleSubmitData = async event => {
     event.preventDefault();
 
-    try {
-      const data = await baseApi('auth', API_METHODS.POST, formData);
-      document.cookie = `accessToken = ${data.accessToken}`; // set cookie
-    } catch (err) {
-      console.log(err);
-    }
+    dispatch(authorizeUser(formData));
   };
 
   const renderForm = () => (
