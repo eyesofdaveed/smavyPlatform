@@ -53,18 +53,14 @@ export function LoginForm() {
               />
             </Flexbox>
             <Flexbox justify="space-between">
-              <a style={{ textDecoration: 'none' }} href="/passwordReset">
-                <Text fontSize={sizes.small}>Забыли пароль?</Text>
+              <a style={{ fontSize: '12px' }} href="/passwordReset">
+                Забыли пароль?
               </a>
-              <a style={{ textDecoration: 'none' }} href="/registration">
-                <Text fontSize={sizes.small}>Зарегестрироватся</Text>
+              <a style={{ fontSize: '12px' }} href="/registration">
+                Зарегестрироватся
               </a>
             </Flexbox>
-            <Button
-              bgColor={colors.btnPrimary}
-              type="submit"
-              text="Отправить"
-            />
+            <Button bgColor={colors.btnPrimary} type="submit" text="Войти" />
           </Flexbox>
         </form>
       </Card>
