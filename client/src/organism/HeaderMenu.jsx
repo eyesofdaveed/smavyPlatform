@@ -86,7 +86,7 @@ const HeaderMenu = () => {
     return (
         <HeaderBox>
             <HeaderWrapper>
-                <Flexbox gap={'100px'} gaLaptop={'50px'}>
+                <Flexbox gap={'100px'} gaLaptop={'50px'} justify={'left'}>
                     <Text fontSize={sizes.xLarge} color={'#000'} fontWeight={'600'} fontSizePhone={'24px'}>Расписание</Text>
                     <InputDisplay>
                         <Input width={'500px'} height={'60px'} widthLaptop={'300px'} boxShadow={'1px 2px 8px 0px #00000026'} placeholder={'Поиск'} fontSize={'18px'} displayLaptopL={'none'}/>
