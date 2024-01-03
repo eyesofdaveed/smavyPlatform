@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 
 import { Flexbox } from '@atoms'
@@ -9,6 +10,7 @@ import { colors } from '@base';
 import Bell from '@assets/icons/bell.svg'
 import More from '@assets/icons/more.svg'
 import Search from '@assets/icons/search.svg'
+import { logout } from '../store/authSlice';
 
 export const HeaderBox = styled.div`
     background-color: #fff;
@@ -72,10 +74,22 @@ export const Submenu = styled.div`
     background-color: #fff;
     padding: 20px 40px;
     border: none;
+    border-radius: 10px;
+    box-shadow: -7px 7px 8px 0px #00000026;
+    text-align: center;
 `;
 
 export const SubmenuItem = styled.div`
     padding: 10px 0px;
+    font-size: 18px;
+    cursor: pointer;
+`;
+
+export const LogoutButton = styled.button`
+    background-color: transparent;
+    border: none;
+    color: red;
+    font-size: 18px;
 `;
 
 const HeaderMenu = () => {
@@ -83,6 +97,11 @@ const HeaderMenu = () => {
     const toggleSubMenu = () => {
         setSubMenuOpen(!isSubMenuOpen);
     };
+    const dispatch = useDispatch();
+    const handleLogout = () => {
+        dispatch(logout());
+    };
+
     return (
         <HeaderBox>
             <HeaderWrapper>
@@ -106,7 +125,7 @@ const HeaderMenu = () => {
                             <Submenu>
                                 <SubmenuItem>Submenu Item 1</SubmenuItem>
                                 <SubmenuItem>Submenu Item 2</SubmenuItem>
-                                <SubmenuItem>Submenu Item 3</SubmenuItem>
+                                <SubmenuItem><LogoutButton onClick={handleLogout}>Выйти</LogoutButton></SubmenuItem>
                             </Submenu>
                         )}
                     </Flexbox>
