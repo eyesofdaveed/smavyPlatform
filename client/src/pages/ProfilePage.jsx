@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { ProfiCard, PersonalData } from '@organism';
+import { CalendarAntd } from '@atoms';
 
 const ProfilePageWrapper = styled.div`
 
@@ -13,8 +14,10 @@ const ProfilePage = () => {
     return (
         <ProfilePageWrapper>
             <ProfiCard />
-            <PersonalData />
+            {/* <PersonalData /> */}
+            <CalendarAntd/>
         </ProfilePageWrapper>
+        
     );
 };
 
