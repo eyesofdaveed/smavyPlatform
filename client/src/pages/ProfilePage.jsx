@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { ProfiCard, PersonalData } from '@organism';
+import { SubjectTimeTable } from '../atoms';
 
 const ProfilePageWrapper = styled.div`
 
@@ -13,7 +14,8 @@ const ProfilePage = () => {
     return (
         <ProfilePageWrapper>
             <ProfiCard />
-            <PersonalData />
+            {/* <PersonalData /> */}
+            <SubjectTimeTable/>
         </ProfilePageWrapper>
         
     );
