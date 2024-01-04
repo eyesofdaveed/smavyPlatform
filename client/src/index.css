@@ -1,6 +1,7 @@
 @font-face {
   font-family: 'Montserrat';
-  src: url('../src/assets/fonts/Montserrat/Montserrat-VariableFont_wght.ttf') format('truetype');
+  src: url('../src/assets/fonts/Montserrat/Montserrat-VariableFont_wght.ttf')
+    format('truetype');
 }
 
 @font-face {
@@ -17,5 +18,19 @@ html {
 }
 
 * {
+  padding: 0;
   margin: 0;
+}
+a {
+  text-decoration: none;
+  color: white;
+}
+a:hover {
+  text-decoration: none;
+  color: rgb(95, 231, 255);
+}
+
+input::placeholder {
+  color: lightgray;
+  font-weight: lighter;
 }

@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 
-const StudentsSchema = new Schema({
+const TeachersSchema = new Schema({
   email: {
     type: String,
     trim: true,
@@ -19,17 +19,22 @@ const StudentsSchema = new Schema({
     required: true,
     trim: true,
   },
-  group: {
+  bio: {
     type: String,
     trim: true,
   },
-  course: {
-    type: String,
-    trim: true,
-  },
-},
-{ timestamps: true,
-  get: time => time.toDateString() 
+  groups: [
+    {
+      type: String,
+      trim: true,
+    },
+  ],
+  courses: [
+    {
+      type: String,
+      trim: true,
+    },
+  ],
 });
 
-module.exports = mongoose.model('Students', StudentsSchema);
+module.exports = mongoose.model('Teachers', TeachersSchema);

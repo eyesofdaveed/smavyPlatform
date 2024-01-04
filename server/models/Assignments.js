@@ -35,6 +35,9 @@ const AssignmentsSchema = new Schema({
         enum: Object.values(ASSIGNMENT_STATUS),
         default: ASSIGNMENT_STATUS.NOT_STARTED,
     }
+},
+{ timestamps: true,
+  get: time => time.toDateString() 
 });
 
 module.exports = mongoose.model("Assignments", AssignmentsSchema);

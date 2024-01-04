@@ -5,11 +5,13 @@ export const StyledFlexbox = styled.div`
   display: flex;
   flex-wrap: ${({ flexWrap }) => (flexWrap ? flexWrap : 'nowrap')};
   justify-content: ${({ justify }) => (justify ? justify : 'center')};
-  align-items: ${({align}) => align ? align : 'center'};
+  align-items: ${({ align }) => (align ? align : 'center')};
   flex-direction: ${({ direction }) => direction};
   gap: ${({ gap }) => (gap ? gap : '16px')};
-  width: ${({ width }) => width ? width :100};
   position: ${({ position }) => position};
+  width: ${({ width }) => width};
+  padding: ${({ padding }) => padding};
+  margin: ${({ margin }) => margin};
 
   @media screen and (max-width: 1620px) {
     gap: ${({ gaLaptop }) => gaLaptop};
@@ -23,11 +25,39 @@ export const StyledFlexbox = styled.div`
   }
 `;
 
-export const Flexbox = ({ direction = 'row', gap, gaLaptop, gapTablet, gapPhone, align, children, width, justify, flexWrap, visibility, position }) => {
+export const Flexbox = ({
+  direction = 'row',
+  gap,
+  gaLaptop,
+  gapTablet,
+  gapPhone,
+  align,
+  children,
+  width,
+  justify,
+  flexWrap,
+  padding,
+  margin,
+  visibility,
+  position,
+}) => {
   return (
-    <StyledFlexbox direction={direction} gap={gap} gaLaptop={gaLaptop} gapTablet={gapTablet} gapPhone={gapPhone} align={align} width={width} justify={justify} flexWrap={flexWrap} visibility={visibility} position={position}>
+    <StyledFlexbox
+      direction={direction}
+      gap={gap}
+      gaLaptop={gaLaptop}
+      gapTablet={gapTablet}
+      gapPhone={gapPhone}
+      align={align}
+      width={width}
+      justify={justify}
+      flexWrap={flexWrap}
+      visibility={visibility}
+      margin={margin}
+      padding={padding}
+      position={position}
+    >
       {children}
     </StyledFlexbox>
   );
 };
-

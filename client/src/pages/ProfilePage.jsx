@@ -1,22 +1,18 @@
-import React from 'react';
-import styled from 'styled-components';
+    import React from 'react';
+    import styled from 'styled-components';
 
-import { ProfiCard, ProfileBar } from '@organism';
+    import { ProfiCard, PersonalData } from '@organism';
 
-const ProfilePageWrapper = styled.div`
-    display: grid;
-    gap: 50px;
-  @media screen and (max-width: 1620px){
-  }
-`;
+    const ProfilePageWrapper = styled.div`
+    `;
 
-const ProfilePage = () => {
-    return (
-        <ProfilePageWrapper>
-            <ProfiCard />
-            <ProfileBar/>
-        </ProfilePageWrapper>
-    );
-};
+    const ProfilePage = () => {
+        return (
+            <ProfilePageWrapper>
+                <ProfiCard />
+                <PersonalData />
+            </ProfilePageWrapper>
+        );
+    };
 
-export default ProfilePage;
+    export default ProfilePage;

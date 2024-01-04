@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASE_URL = 'http://localhost:8800';
+const BASE_URL = 'https://smavybe-production.up.railway.app/';
 
 export const login = async ({ username, password }) => {
   try {
