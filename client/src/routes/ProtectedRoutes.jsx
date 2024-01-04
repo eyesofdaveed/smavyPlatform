@@ -9,6 +9,7 @@ import DisciplinesPage1 from '@pages/DisciplinesPage1';
 import DisciplinesPage2 from '@pages/DisciplinesPage2';
 import TasksPage from '@pages/TasksPage';
 import HomeTaskPage from '@pages/HomeTaskPage';
+import TestPage from '@pages/TestPage';
 import MainLayout from '../MainLayout';
 
 
@@ -23,6 +24,7 @@ export const Protected = () => {
                 <Route path='/disciplines2' element={<DisciplinesPage2 />} />
                 <Route path='/tasks' element={<TasksPage />} />
                 <Route path='/hometask' element={<HomeTaskPage />} />
+                <Route path='/test' element={<TestPage />} />
             </Routes>
         </MainLayout>
     );

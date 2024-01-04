@@ -8,7 +8,7 @@ const NotFoundWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 72vh;
 `;
 
 const NotFoundPage = () => {
@@ -19,7 +19,7 @@ const NotFoundPage = () => {
         <Text color={"#000"} fontSize={"32px"} fontWeight={"600"}>Not found</Text>
         <Text color={"#000"} fontSize={"18px"}>
           Эта страница недоступна. <br /> Вернитесь на{' '}
-          <Link to="/">главную страницу</Link> нашего сайта.
+          <Link to="/" style={{color:'#2E5BF0'}}>главную страницу</Link> нашего сайта.
         </Text>
       </Flexbox>
     </NotFoundWrapper>

@@ -33,7 +33,7 @@ export const TaskCard = ({ week, text, doc1, doc2, doc3, test, homeTask }) => {
                 <StyledLink to="/">{doc3}</StyledLink>
             </Flexbox>
             <Text color={'#000'} fontSize={'19px'} fontWeight={'400'} lineHeight={'50px'}>Тест:</Text>
-            <StyledLink to="/">{test}</StyledLink>
+            <StyledLink to="/test">{test}</StyledLink>
 
             <Text color={'#000'} fontSize={'19px'} fontWeight={'400'} lineHeight={'50px'}>Домашнее задание:</Text>
             <StyledLink to="/hometask">{homeTask}</StyledLink>
