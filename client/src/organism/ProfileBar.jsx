@@ -41,11 +41,11 @@ const Tab = styled.button`
 
 export const ProfileBar = () => {
   const tabs = [
-    { name: 'Личные данные', fontSize: '22px' },
-    { name: 'Сведения о специальности', fontSize: '22px' },
-    { name: 'Контактная информация', fontSize: '22px' },
-    { name: 'Сведения об образовании', fontSize: '22px' },
-    { name: 'Внутренние документы', fontSize: '22px' },
+    { name: 'Личные данные', fontSize: '18px' },
+    { name: 'Сведения о специальности', fontSize: '18px' },
+    { name: 'Контактная информация', fontSize: '18px' },
+    { name: 'Сведения об образовании', fontSize: '18px' },
+    { name: 'Внутренние документы', fontSize: '18px' },
   ];
   const [activeTab, setActiveTab] = useState(tabs[0].name);
 

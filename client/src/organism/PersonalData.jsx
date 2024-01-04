@@ -9,7 +9,7 @@ import { ValueBackround } from '../atoms';
 export const PersonalData = () => {
   return (
     <> 
-      <Text fontWeight={500} color={colors.black} fontSize={'30px'} textAlign={'left'}>Персональные сведения</Text>
+      <Text fontWeight={500} color={colors.black} fontSize={'28px'} textAlign={'left'}>Персональные сведения</Text>
       <Card padding="32px 60px 32px 20px" display="flex" width="fit-content" bgColor={colors.cardMainBg} borderRadius={'19px'}>
         <Flexbox direction="column" gap="30px" align="start">
           <Flexbox justify="space-between" width="100%">
