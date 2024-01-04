@@ -8,9 +8,10 @@ export const StyledFlexbox = styled.div`
   align-items: ${({ align }) => (align ? align : 'center')};
   flex-direction: ${({ direction }) => direction};
   gap: ${({ gap }) => (gap ? gap : '16px')};
-  width: ${({ width }) => (width ? width : '100%')};
-  padding: ${({ padding }) => (padding ? padding : '0')};
-  margin: ${({ margin }) => (margin ? margin : '0')};
+  position: ${({ position }) => position};
+  width: ${({ width }) => width};
+  padding: ${({ padding }) => padding};
+  margin: ${({ margin }) => margin};
 
   @media screen and (max-width: 1620px) {
     gap: ${({ gaLaptop }) => gaLaptop};
@@ -38,6 +39,7 @@ export const Flexbox = ({
   padding,
   margin,
   visibility,
+  position,
 }) => {
   return (
     <StyledFlexbox
@@ -53,6 +55,7 @@ export const Flexbox = ({
       visibility={visibility}
       margin={margin}
       padding={padding}
+      position={position}
     >
       {children}
     </StyledFlexbox>

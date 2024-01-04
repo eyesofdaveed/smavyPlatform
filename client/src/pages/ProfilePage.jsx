@@ -4,9 +4,6 @@
     import { ProfiCard, PersonalData } from '@organism';
 
     const ProfilePageWrapper = styled.div`
-
-    @media screen and (max-width: 1620px){
-    }
     `;
 
     const ProfilePage = () => {
