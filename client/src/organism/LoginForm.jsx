@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { baseApi } from '@api';
-import { API_METHODS } from '@api/enums';
 import { Card, Flexbox, Input, Text } from '@atoms';
 import { colors, sizes } from '@base/index';
 
@@ -59,7 +57,12 @@ export function LoginForm() {
                 Зарегестрироватся
               </a>
             </Flexbox>
-            <Button bgColor={colors.btnPrimary} type="submit" text="Войти" />
+            <Button
+              bgColor={colors.btnPrimary}
+              type="submit"
+              href="/profile"
+              text="Войти"
+            />
           </Flexbox>
         </form>
       </Card>
