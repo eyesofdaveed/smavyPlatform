@@ -1,14 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import Sidebar from './organism/Sidebar';
 import HeaderMenu from './organism/HeaderMenu';
+import Sidebar from './organism/Sidebar';
 
 const ContentWrapper = styled.div`
   margin-left: 328px;
   padding: 150px 40px 100px 80px;
 
-  @media screen and (max-width: 850px) {  
+  @media screen and (max-width: 850px) {
     margin-left: 20px;
     padding: 120px 50px 80px 50px;
   }
@@ -29,5 +29,3 @@ const MainLayout = ({ children }) => {
 };
 
 export default MainLayout;
-
-
