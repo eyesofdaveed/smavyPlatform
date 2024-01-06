@@ -23,9 +23,9 @@ const App = () => {
   
   }, [])
 
+  const isLoading = useSelector(state => state.auth.isLoading);
   const isAuthorized = useSelector(state => state.auth.isAuthorized);
 
-  const isLoading = useSelector(state => state.auth.isLoading);
 
   if (isLoading) {
     return <LoadingCircle />;
