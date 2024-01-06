@@ -19,11 +19,11 @@ class Entity {
       const createdEntity = await newEntity.save();
       res.status(200).json(createdEntity);
     } catch (err) {
-      errorHandler(err, req, res);
+      errorHandler(err, res);
     }
   }
 
-  async getById(req, res, entityName) {
+  async getById(req, res) {
     try {
       const entityId = _.get(req, 'params.id');
       if (!entityId) throw new Error(EMPTY_ID_ERROR);
@@ -38,7 +38,7 @@ class Entity {
 
       res.status(200).json({ data: requestedEntity });
     } catch (err) {
-      errorHandler(err, req, res);
+      return errorHandler(err, req, res);
     }
   }
 
@@ -78,7 +78,7 @@ class Entity {
     }
   }
 
-  async deleteById(req, res, entityName) {
+  async deleteById(req, res) {
     try {
       const entityId = _.get(req, 'params.id');
       if (!entityId) throw new Error(INVALID_ID_ERROR);
