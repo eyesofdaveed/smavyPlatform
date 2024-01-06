@@ -8,13 +8,12 @@ import { Button } from '../atoms/Button';
 import { Card } from '../atoms/Card';
 
 export function RegistrationForm() {
-  const [role, setRole] = useState('student');
   const [formData, setFormData] = useState({
     email: '',
     password: '',
     firstName: '',
     lastName: '',
-    role: role,
+    role: '',
   });
 
   // optimise with callback
@@ -39,8 +38,6 @@ export function RegistrationForm() {
       console.log(err);
     }
 
-    const response = await baseApi('register', API_METHODS.POST, dataToSend);
-    console.log(response);
   };
 
   const renderForm = () => (
@@ -86,6 +83,10 @@ export function RegistrationForm() {
                 required
                 onChange={handleChange}
               />
+            <Flexbox>
+              <input type='radio' value='teacher' name='role' onChange={handleChange} />Teacher
+              <input type='radio' value='student' name='role' onChange={handleChange} />Student
+            </Flexbox>
               <Button
                 bgColor={colors.btnPrimary}
                 type="submit"
