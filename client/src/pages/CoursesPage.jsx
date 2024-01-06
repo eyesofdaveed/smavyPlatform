@@ -53,7 +53,7 @@ const subjectsData = [
     },
 ];
 
-const DisciplinesPage2 = () => {
+const CoursesPage = () => {
     return (
         <PageWrapper>
             {subjectsData.map((subject, index) => (
@@ -69,4 +69,4 @@ const DisciplinesPage2 = () => {
     );
 };
 
-export default DisciplinesPage2;
+export default CoursesPage;

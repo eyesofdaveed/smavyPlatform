@@ -2,7 +2,7 @@ import { API_METHODS, baseApi } from '@api';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  isAuthorized: localStorage.getItem('isAuthorized') === 'true' || false,
+  isAuthorized: false,
   isLoading: false,
   user: null,
 };
@@ -14,7 +14,6 @@ export const authorizeUser = createAsyncThunk(
       const response = await baseApi('auth', API_METHODS.POST, formData);
       document.cookie = `accessToken=${response.accessToken}`;
 
-      window.location.href = '/profile';
       return response;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data);
@@ -27,7 +26,6 @@ export const authSlice = createSlice({
   initialState,
   reducers: {
     logout: state => {
-      localStorage.setItem('isAuthorized', 'false');
       state.isAuthorized = false;
       state.user = null;
     },
@@ -41,7 +39,6 @@ export const authSlice = createSlice({
         state.isLoading = false;
         state.isAuthorized = true;
         state.user = action.payload;
-        localStorage.setItem('isAuthorized', 'true');
       })
       .addCase(authorizeUser.rejected, state => {
         state.isLoading = false;
