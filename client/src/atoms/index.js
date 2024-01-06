@@ -12,7 +12,7 @@ export * from '../atoms/SubjectCard';
 export * from '../atoms/Messages';
 export * from '../atoms/OneMessage';
 export * from '../atoms/DisciplinesCard';
-export * from '../atoms/DisciplinesSubject';
+export * from '../atoms/CoursesSubject';
 export * from '../atoms/TaskCard';
 export * from '../atoms/HomeTaskCard';
 export * from '../atoms/SubjectTimeTable';

@@ -26,8 +26,13 @@ export const authSlice = createSlice({
   initialState,
   reducers: {
     logout: state => {
+      document.cookie = 'accessToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/';
       state.isAuthorized = false;
       state.user = null;
+    },
+    setCookie: state => {
+      state.isAuthorized = true;
+      state.isLoading = false;
     },
   },
   extraReducers: builder => {
@@ -36,6 +41,7 @@ export const authSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(authorizeUser.fulfilled, (state, action) => {
+        if (!action.payload.success) return;
         state.isLoading = false;
         state.isAuthorized = true;
         state.user = action.payload;
@@ -48,6 +54,6 @@ export const authSlice = createSlice({
   },
 });
 
-export const { logout } = authSlice.actions;
+export const { setCookie, logout } = authSlice.actions;
 
 export default authSlice.reducer;

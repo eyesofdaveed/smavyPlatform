@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { DisciplinesSubject } from '@atoms';
+import { CoursesSubject } from '@atoms';
 
 const PageWrapper = styled.div`
     display: flex;
@@ -57,7 +57,7 @@ const CoursesPage = () => {
     return (
         <PageWrapper>
             {subjectsData.map((subject, index) => (
-                <DisciplinesSubject
+                <CoursesSubject
                     key={index}
                     name={subject.name}
                     teacher={subject.teacher}

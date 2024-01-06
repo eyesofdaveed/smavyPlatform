@@ -1,12 +1,28 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
-import { BrowserRouter } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 import { LoadingCircle } from '@atoms';
 import { Protected } from './routes/ProtectedRoutes';
 import { Public } from './routes/PublicRoutes';
+import { setCookie } from './store/authSlice';
 
 const App = () => {
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    const cookieExists = document.cookie.split(';').some((item) => item.trim().startsWith('accessToken='));
+    
+    if(!cookieExists ){
+      navigate('/login')
+    }
+    else{
+      dispatch(setCookie())
+    }
+  
+  }, [])
+
   const isAuthorized = useSelector(state => state.auth.isAuthorized);
 
   const isLoading = useSelector(state => state.auth.isLoading);
@@ -16,7 +32,9 @@ const App = () => {
   }
 
   return (
-    <BrowserRouter>{isAuthorized ? <Protected isAuthorized={isAuthorized} /> : <Public />}</BrowserRouter>
+    <>
+      {isAuthorized ? <Protected /> : <Public />}
+    </>
   );
 };
 
