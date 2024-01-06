@@ -1,53 +1,61 @@
 const router = require('express').Router();
+const _ = require('lodash');
 
 const Assignments = require('../models/Assignments');
-const Entity = require('../api');
+const ApiOptimizer = require('../api');
+const errorHandler = require('../middleware/errorHandler');
 
-const assignment = new Entity(Assignments);
+const assignment = new ApiOptimizer(Assignments);
+const modelName = 'Assignment';
 
-// add new assignment
-router.post('/add', async (req, res) => {
-    const { title, description, deadline } = req.body;
+// get all done
+router.route('/').get(async (req, res) => {
+  try {
+    await assignment.getAll(req, res);
+  } catch (err) {
+    errorHandler(err, req, res);
+  }
+});
 
-    assignment.add({title, description, deadline}, res);
-})
+//delete an assignment by id done
+router.route('/:id').delete(async (req, res) => {
+  try {
+    await assignment.deleteById(req, res, modelName);
+  } catch (err) {
+    errorHandler(err, req, res);
+  }
+});
 
-// get all assignments
-router.get('/', async (req, res) => {
-    const { pageSize, pageNumber} = req.body.filter;
+// get by id done
+router.route('/:id').get(async (req, res) => {
+  try {
+    await assignment.getById(req, res, modelName);
+  } catch (err) {
+    errorHandler(err, req, res);
+  }
+});
 
-    assignment.getAll({
-        req,
-        res,
-        pageSize,
-        pageNumber,
-    });
-})
+// add new assignment done
+router.route('/add').post(async (req, res) => {
+  try {
+    const { title, description, deadline, isComplete, status } = req.body;
+    const entity = { title, description, deadline, isComplete, status };
+    await assignment.add({ entity, res });
+  } catch (err) {
+    errorHandler(err, req, res);
+  }
+});
 
-// find a assignment by id, and modify it
-router.put('/:id', async (req, res) => {
-    try {
-        const assignment = await Assignments.findByIdAndUpdate(req.params.id, {
-            $set: req.body,
-        });
-        res.status(200).json(assignment);
-    } catch (err) {
-        console.log(err);
-    }
-})
-
-
-//delete an assignment by id
-router.put('/:id', async (req, res) => {
-    const deletionCriteria = { _id: 123 };
-    try {
-        const assignment = await Assignments.deleteOne({deletionCriteria
-        });
-        res.status(200).json(assignment);
-    } catch (err) {
-        console.log(err);
-    }
-})
-
+// Update assignment done
+router.route('/:id').put(async (req, res) => {
+  try {
+    const entityId = _.get(req, 'params.id');
+    const { title, description, deadline, isComplete, status } = req.body;
+    const fieldsToUpdate = { title, description, deadline, isComplete, status };
+    await assignment.updateById({ entityId, fieldsToUpdate, req, res });
+  } catch (err) {
+    errorHandler(err, req, res);
+  }
+});
 
 module.exports = router;
