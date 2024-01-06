@@ -42,13 +42,15 @@ const handleNewUser = async (req, res) => {
       lastName: req.body.lastName,
       role,
     });
-    
+    const user = await newUser.save();
+
     //create Teacher entity
     if (role === ROLES.TEACHER) {
       const newTeacher = new Teachers({
         email,
         firstName,
-        lastName,
+        lastName,          
+        userId: user._id,
       })
       await newTeacher.save()
     }
@@ -58,11 +60,11 @@ const handleNewUser = async (req, res) => {
         email,
         firstName,
         lastName,
+        userId: user._id,
       })
       await newStudent.save()
     }
 
-    const user = await newUser.save();
     res.status(200).json(user);
   } catch (err) {
     return res.status(500).json({ message: `${err.message}` });
