@@ -55,8 +55,8 @@ app.use(cookieParser());
 
 app.use('/register', registerRoute);
 app.use('/auth', authRoute);
-app.use('/students', studentRoute);
 app.use(verifyJwt);
+app.use('/students', studentRoute);
 app.use('/logout', logoutRoute);
 app.use('/users', usersRoute);
 app.use('/assignments', assignmentsRoute);

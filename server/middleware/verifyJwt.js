@@ -4,18 +4,26 @@ const jwt = require('jsonwebtoken');
  * @DESC Verify JWT from authorization header Middleware
  */
 const verifyJwt = (req, res, next) => {
-  const authHeader = req.headers.authorization || req.headers.Authorization;
-  console.log(process.env.ACCESS_TOKEN_SECRET);
-  if (!authHeader) return res.sendStatus(403);
-  console.log(authHeader); // Bearer token
-  const token = authHeader.split(' ')[1];
-  jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, decoded) => {
-    console.log('verifying');
-    if (err) return res.sendStatus(403); //invalid token
+  try {
+    const accessToken = req.header('Authorization');
 
-    console.log(decoded); //for correct token
-    next();
-  });
+    if (!accessToken) {
+      return res.status(401).json({ message: 'JWT required.' });
+    }
+
+    const jwtToken = accessToken.replace('Bearer ', '');
+    jwt.verify(jwtToken, process.env.ACCESS_TOKEN_SECRET, (error, decoded) => {
+      if (error) {
+        return res.status(401).json({ message: 'Invalid token.' });
+      }
+      req.user = decoded.UserInfo;
+
+      next();
+    });
+  } catch (error) {
+    console.error('Error in verifyJwt middleware:', error);
+    res.status(500).json('Internal Server Error');
+  }
 };
 
 module.exports = verifyJwt;
