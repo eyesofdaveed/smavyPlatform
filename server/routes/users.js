@@ -58,7 +58,7 @@ const modelName = 'User';
  *       400:
  *         description: Bad request
  */
-router.route('/').get(checkRole(ROLES.ADMIN), async (req, res) => {
+router.route('/').get(checkRole([ROLES.ADMIN]), async (req, res) => {
   try {
     await user.getAll(req, res);
   } catch (err) {
@@ -155,7 +155,7 @@ router.route('/:id').get(async (req, res) => {
  *       400:
  *         description: Bad request
  */
-router.put('/:id', checkRole(ROLES.ADMIN), async (req, res) => {
+router.put('/:id', checkRole([ROLES.ADMIN]), async (req, res) => {
   try {
     const entityId = _.get(req, 'params.id');
     const { role } = req.body;
