@@ -1,10 +1,12 @@
 const bcrypt = require('bcrypt');
 
-const { hashConstance } = require('../enums');
+const { hashConstance, ROLES } = require('../enums');
 const Users = require('../models/Users');
+const Teachers = require('../models/Teachers')
+const Students = require('../models/Students')
 
 const handleNewUser = async (req, res) => {
-  const { email, password, role } = req.body;
+  const { email, firstName, lastName, password, role } = req.body;
   if (!email)
     return res
       .status(400)
@@ -40,6 +42,25 @@ const handleNewUser = async (req, res) => {
       lastName: req.body.lastName,
       role,
     });
+    
+    //create Teacher entity
+    if (role === ROLES.TEACHER) {
+      const newTeacher = new Teachers({
+        email,
+        firstName,
+        lastName,
+      })
+      await newTeacher.save()
+    }
+    //or by default create Student entity
+    else {
+      const newStudent = new Students({
+        email,
+        firstName,
+        lastName,
+      })
+      await newStudent.save()
+    }
 
     const user = await newUser.save();
     res.status(200).json(user);
