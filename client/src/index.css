@@ -34,3 +34,13 @@ input::placeholder {
   color: lightgray;
   font-weight: lighter;
 }
+button {
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+button:hover {
+  cursor: pointer;
+  background: rgba(95, 231, 255, 0.2) !important;
+  transition: 0.5s;
+}

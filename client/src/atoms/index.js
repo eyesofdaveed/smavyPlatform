@@ -15,8 +15,9 @@ export * from '../atoms/DisciplinesCard';
 export * from '../atoms/DisciplinesSubject';
 export * from '../atoms/TaskCard';
 export * from '../atoms/HomeTaskCard';
-export * from '../atoms/SubjectTimeTable'
-export * from '../atoms/StyledComponentsCalendar'
+export * from '../atoms/SubjectTimeTable';
+export * from '../atoms/StyledComponentsCalendar';
+export * from '../atoms/LoadingCircle';
 
 
 

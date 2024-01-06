@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const baseUrl =
-  import.meta.env.VITE_ISPROD === 'false'
+  import.meta.env.VITE_ISPROD === 'true'
     ? import.meta.env.VITE_PROD_URL
     : import.meta.env.VITE_LOCAL_URL;
 
@@ -24,3 +24,5 @@ export const baseApi = async (link, method, data) => {
       }
   }
 };
+
+export { API_METHODS } from './enums.js';
