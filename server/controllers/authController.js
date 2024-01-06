@@ -23,13 +23,15 @@ const handleLogin = async (req, res) => {
 
   const isMatch = await bcrypt.compare(password, foundUser.password);
   if (isMatch) {
-    const { email, firstName } = foundUser;
+    const { email, firstName, lastName, role } = foundUser;
     // create JWTs
     const accessToken = jwt.sign(
       {
         UserInfo: {
           email,
           firstName,
+          role,
+          lastName
         },
       },
       process.env.ACCESS_TOKEN_SECRET,
