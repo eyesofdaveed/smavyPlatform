@@ -7,7 +7,7 @@ import LogoImg from '@assets/img/logo.png'
 import ProfileIcon from '@assets/icons/profileIcon.svg'
 import NewsIcon from '@assets/icons/server.svg'
 import ScheduleIcon from '@assets/icons/calendar.svg'
-import DisciplineIcon from '@assets/icons/book.svg'
+import CoursesIcon from '@assets/icons/book.svg'
 import JournalIcon from '@assets/icons/book-open.svg'
 import MessageIcon from '@assets/icons/message-square.svg'
 import Toggle from '@assets/icons/toggle.svg'
@@ -153,11 +153,9 @@ const Sidebar = () => {
     }, []);
 
     useEffect(() => {
-        if (location.pathname === '/') {
             setCurrentPage('profile');
             navigate('/profile');
-        }
-    }, [location, navigate]);
+    }, []);
 
     function showBlocks() {
         setIsMobile(prevState => !prevState)
@@ -190,14 +188,10 @@ const Sidebar = () => {
                         </StyledLink>
                     </Li>
                     <Li>
-                        <StyledLink $isActive={currentPage === 'disciplines'}>
-                            <img src={DisciplineIcon} />
-                            Дисциплины
+                        <StyledLink onClick={() => setCurrentPage('courses')} $isActive={currentPage === 'courses'}  to="/courses">
+                            <img src={CoursesIcon} />
+                            Курсы
                         </StyledLink>
-                        <Submenu>
-                            <SubmenuItem onClick={() => setCurrentPage('disciplines')} to="/disciplines" $isActive={currentPage === 'disciplines'}>Дисциплины 1</SubmenuItem>
-                            <SubmenuItem onClick={() => setCurrentPage('disciplines')} to="/disciplines2" $isActive={currentPage === 'disciplines2'}>Дисциплины 2</SubmenuItem>
-                        </Submenu>
                     </Li>
                     <Li>
                         <StyledLink onClick={() => setCurrentPage('gradebook')} to="/gradebook" $isActive={currentPage === 'gradebook'}>
@@ -218,3 +212,6 @@ const Sidebar = () => {
 };
 
 export default Sidebar;
+
+
+

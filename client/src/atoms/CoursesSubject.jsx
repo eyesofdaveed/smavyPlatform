@@ -57,9 +57,13 @@ const StyledLink = styled(Link)`
     }
 `;
 
-export const DisciplinesSubject = ({ name, teacher, period, task }) => {
+export const CoursesSubject = ({ name, teacher, period, task }) => {
     return (
         <DisciplinesSubjectStyle>
+            {/* TODO add button for modal */}
+            <button>
+
+            </button>
             <CardContent>
                 <Flexbox justify={'start'} gap={'40px'}>
                     <SubjectImage><img src={Philosophy}/></SubjectImage>
