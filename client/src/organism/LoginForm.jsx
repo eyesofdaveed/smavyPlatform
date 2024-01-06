@@ -60,7 +60,6 @@ export function LoginForm() {
             <Button
               bgColor={colors.btnPrimary}
               type="submit"
-              href="/profile"
               text="Войти"
             />
           </Flexbox>

@@ -122,13 +122,14 @@ const HeaderMenu = () => {
           </Text>
           <InputDisplay>
             <Input
-              width={'500px'}
-              height={'60px'}
-              widthLaptop={'300px'}
-              boxShadow={'1px 2px 8px 0px #00000026'}
-              placeholder={'Поиск'}
-              fontSize={'18px'}
-              displayLaptopL={'none'}
+              width="500px"
+              padding="20px"
+              height="60px"
+              widthLaptop="300px"
+              boxShadow="1px 2px 8px 0px #00000026"
+              placeholder="Поиск"
+              fontSize="18px"
+              displayLaptopL="none"
             />
             <SearchButton>
               <img src={Search} alt="Serach Icon" />
@@ -147,7 +148,7 @@ const HeaderMenu = () => {
               style={{
                 background: 'transparent',
                 border: 'none',
-                width: '140px',
+                width: '50px',
                 height: '50px',
                 borderRadius: '5px',
               }}
