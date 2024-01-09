@@ -132,6 +132,15 @@ export const SubmenuItem = styled(StyledLink)`
     padding: 10px 0px;
 `;
 
+const navLinks = [
+    { id: 1, name: 'profile', path: '/profile', icon: ProfileIcon, text: 'Профиль' },
+    { id: 2, name: 'news', path: '/news', icon: NewsIcon, text: 'Новости' },
+    { id: 3, name: 'schedule', path: '/schedule', icon: ScheduleIcon, text: 'Расписание' },
+    { id: 4, name: 'courses', path: '/courses', icon: CoursesIcon, text: 'Курсы' },
+    { id: 5, name: 'gradebook', path: '/gradebook', icon: JournalIcon, text: 'Журнал' },
+    { id: 6, name: 'chat', path: '/chat', icon: MessageIcon, text: 'Чаты' },
+];
+
 const Sidebar = () => {
     const [isMobile, setIsMobile] = useState(false);
     const [currentPage, setCurrentPage] = useState('profile');
@@ -169,42 +178,14 @@ const Sidebar = () => {
             <Logo src={LogoImg} alt="Logo" style={{ visibility: isMobile ? 'hidden' : 'visible' }} />
             <Navigation style={{ visibility: isMobile ? 'hidden' : 'visible' }}>
                 <ul style={{ listStyleType: 'none', padding: 0 }}>
-                    <Li>
-                        <StyledLink onClick={() => setCurrentPage('profile')} to="/profile" $isActive={currentPage === 'profile'}>
-                            <img src={ProfileIcon} />
-                            Профиль
+                {navLinks.map(link => (
+                    <Li key={link.id}>
+                        <StyledLink onClick={() => setCurrentPage(link.name)} to={link.path} $isActive={currentPage === link.name}>
+                            <img src={link.icon} alt={link.text} />
+                            {link.text}
                         </StyledLink>
                     </Li>
-                    <Li>
-                        <StyledLink onClick={() => setCurrentPage('news')} to="/news" $isActive={currentPage === 'news'}>
-                            <img src={NewsIcon} />
-                            Новости
-                        </StyledLink>
-                    </Li>
-                    <Li>
-                        <StyledLink onClick={() => setCurrentPage('schedule')} to="/schedule" $isActive={currentPage === 'schedule'}>
-                            <img src={ScheduleIcon} />
-                            Расписание
-                        </StyledLink>
-                    </Li>
-                    <Li>
-                        <StyledLink onClick={() => setCurrentPage('courses')} $isActive={currentPage === 'courses'}  to="/courses">
-                            <img src={CoursesIcon} />
-                            Курсы
-                        </StyledLink>
-                    </Li>
-                    <Li>
-                        <StyledLink onClick={() => setCurrentPage('gradebook')} to="/gradebook" $isActive={currentPage === 'gradebook'}>
-                            <img src={JournalIcon} />
-                            Журнал
-                        </StyledLink>
-                    </Li>
-                    <Li>
-                        <StyledLink onClick={() => setCurrentPage('chat')} to="/chat" $isActive={currentPage === 'chat'}>
-                            <img src={MessageIcon} />
-                            Чаты
-                        </StyledLink>
-                    </Li>
+                     ))}
                 </ul>
             </Navigation>
         </SidebarBox>
@@ -212,6 +193,3 @@ const Sidebar = () => {
 };
 
 export default Sidebar;
-
-
-
