@@ -1,12 +1,14 @@
-const mongoose = require('mongoose');
-
-const { Schema } = mongoose;
+const { Schema, model } = require("mongoose");
 
 const StudentsSchema = new Schema({
   email: {
     type: String,
     trim: true,
     lowercase: true,
+    required: true,
+  },
+  userId: {
+    type: Schema.Types.ObjectId,
     required: true,
   },
   firstName: {
@@ -32,4 +34,4 @@ const StudentsSchema = new Schema({
   get: time => time.toDateString() 
 });
 
-module.exports = mongoose.model('Students', StudentsSchema);
+module.exports = model('Students', StudentsSchema);

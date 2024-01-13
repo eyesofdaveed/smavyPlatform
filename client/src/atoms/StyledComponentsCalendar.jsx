@@ -5,7 +5,8 @@ export const Calendar = styled.div`
   height: auto;   
   box-shadow: 1px 2px 8px 0px #00000026;
   border-radius: 20px;
-  padding: 30px;
+  padding: 15px;
+  background-color: #fff;
 `;
 
 export const Header = styled.div`
@@ -96,7 +97,7 @@ export const NotificationType = styled.div`
 
 export const NotificationsContainer = styled.div`
   padding: 10px;
-  max-height: 200px;
+  max-height: 100px;
   overflow-y: auto;
 `;
 

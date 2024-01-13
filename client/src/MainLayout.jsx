@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react'
 import styled from 'styled-components';
 
-import HeaderMenu from './organism/HeaderMenu';
-import Sidebar from './organism/Sidebar';
+import Sidebar from '@organism/Sidebar';
+import RightBar from '@organism/RightBar';
+import HeaderMenu from '@organism/HeaderMenu';
 
 const ContentWrapper = styled.div`
   margin-left: 328px;
-  padding: 150px 40px 100px 80px;
+  // margin-right: 320px;
+  padding: 150px 80px 100px 80px;
+  transition: 0.5s;
 
   @media screen and (max-width: 850px) {
     margin-left: 20px;
@@ -19,11 +22,16 @@ const ContentWrapper = styled.div`
 `;
 
 const MainLayout = ({ children }) => {
+  const [isRightBarClosed, setIsRightBarClosed] = useState(false);
+
   return (
     <>
       <Sidebar />
       <HeaderMenu />
-      <ContentWrapper> {children} </ContentWrapper>
+      <RightBar isClosed={isRightBarClosed} toggleRightBar={() => setIsRightBarClosed(prev => !prev)} />
+      <ContentWrapper style={{ marginRight: isRightBarClosed ? '0px' : '320px' }}>
+        {children}
+      </ContentWrapper>
     </>
   );
 };
