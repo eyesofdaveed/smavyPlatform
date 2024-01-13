@@ -47,10 +47,10 @@ const handleLogin = async (req, res) => {
     foundUser.refreshToken = refreshToken;
     await foundUser.save();
 
-     res.cookie('Authorization', accessToken, {
+     res.cookie('Bearer', accessToken, {
        httpOnly: true,
        sameSite: 'None',
-      secure: true,
+       secure: true,
        maxAge: 24 * 60 * 60 * 1000,
      });
     res.json({

@@ -10,7 +10,7 @@ const verifyJwt = (req, res, next) => {
       return res.status(401).json({ message: 'JWT required.' });
     }
 
-    const jwtToken = accessToken.replace('Bearer ', '');
+    const jwtToken = accessToken.replace('Bearer=', '');
     jwt.verify(jwtToken, process.env.ACCESS_TOKEN_SECRET, (error, decoded) => {
       if (error) {
         return res.status(401).json({ message: 'Invalid token.' });
