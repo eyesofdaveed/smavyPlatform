@@ -5,3 +5,5 @@ export * from '../organism/Sidebar';
 export * from '../organism/HeaderMenu';
 export * from '../organism/ProfileBar';
 export * from '../organism/SpecialtyCard'
+export * from '../organism/Modal'
+

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 
 import { CoursesSubject, Text, Input } from '@atoms';
+import { Modal } from '@organism';
 
 const PageWrapper = styled.div`
     position: relative;
@@ -33,37 +34,6 @@ const AddButton = styled.button`
     }
 `;
 
-const ModalCourse = styled.div`
-    position: absolute;
-    width: 96%;
-    height: 60vh;
-    background-color: #fff;
-    border-radius: 32px;
-    box-shadow: 1px 2px 8px 0px #00000026;
-    display: ${props => props.show ? 'block' : 'none'}; 
-    padding: 50px;
-    z-index: 20;
-`;
-
-const CloseModal = styled.button`
-    width: 50px;
-    height: 50px;
-    position: absolute;
-    right: 20px;
-    background: transparent;
-    color: #2E5BF0;
-    border: none;
-    border-radius: 50px;
-    font-size: 32px;
-    transition: transform 0.2s ease;
-    margin-top: -30px;
-
-    &:hover{
-        background-color: #2E5BF0;
-        transform: scale(1.1);
-    }
-`;
-
 const Inputs = styled.div`
     margin-top: 40px;
     display: flex;
@@ -80,16 +50,6 @@ const InputModal = styled.input`
     font-size: 18px;
 `;
 
-const SaveButton = styled.button`
-    background: #2E5BF0;
-    color: #fff;
-    font-size: 18px;
-    border: none;
-    border-radius: 32px;
-    padding: 10px 40px;
-    margin-top: 40px;
-`;
-
 const DarkOverlay = styled.div`
     position: fixed;
     top: 0;
@@ -101,27 +61,26 @@ const DarkOverlay = styled.div`
     display: ${props => props.show ? 'block' : 'none'};
 `;
 
-
 const CoursesPage = () => {
 
     const [subjectsData, setSubjectsData] = useState([
         {
-          name: 'Философия',
-          teacher: 'Фио преподавателя',
-          period: 'Текущая неделя - 3',
-          task: 'Lorem ipsum dolor sit amet consectetur. Sit quam duis pharetra leo ut quam. At tortor porttitor quis maecenas.',
+            name: 'Философия',
+            teacher: 'Фио преподавателя',
+            period: 'Текущая неделя - 3',
+            task: 'Lorem ipsum dolor sit amet consectetur. Sit quam duis pharetra leo ut quam. At tortor porttitor quis maecenas.',
         },
         {
-          name: 'Философия',
-          teacher: 'Фио преподавателя',
-          period: 'Текущая неделя - 3',
-          task: 'Lorem ipsum dolor sit amet consectetur. Sit quam duis pharetra leo ut quam. At tortor porttitor quis maecenas.',
+            name: 'Философия',
+            teacher: 'Фио преподавателя',
+            period: 'Текущая неделя - 3',
+            task: 'Lorem ipsum dolor sit amet consectetur. Sit quam duis pharetra leo ut quam. At tortor porttitor quis maecenas.',
         },
         {
-          name: 'Философия',
-          teacher: 'Фио преподавателя',
-          period: 'Текущая неделя - 3',
-          task: 'Lorem ipsum dolor sit amet consectetur. Sit quam duis pharetra leo ut quam. At tortor porttitor quis maecenas.',
+            name: 'Философия',
+            teacher: 'Фио преподавателя',
+            period: 'Текущая неделя - 3',
+            task: 'Lorem ipsum dolor sit amet consectetur. Sit quam duis pharetra leo ut quam. At tortor porttitor quis maecenas.',
         },
     ]);
 
@@ -145,8 +104,8 @@ const CoursesPage = () => {
     const handleInputChange = (event) => {
         const { name, value } = event.target;
         setNewCourse((prevCourse) => ({
-          ...prevCourse,
-          [name]: value,
+            ...prevCourse,
+            [name]: value,
         }));
     };
 
@@ -166,7 +125,7 @@ const CoursesPage = () => {
         <PageWrapper>
             <AddButton onClick={openModal}>+</AddButton>
             <DarkOverlay show={isModalOpen} onClick={closeModal} />
-            <ModalCourse show={isModalOpen}> 
+            {/* <ModalCourse show={isModalOpen}> 
                 <CloseModal onClick={closeModal}>X</CloseModal>
                 <Text color={'#000'} fontSize={'36px'} fontWeight={'600'}>Добавить Курс</Text>
                 <Inputs>
@@ -193,7 +152,33 @@ const CoursesPage = () => {
                 />
                 </Inputs>
                 <SaveButton onClick={saveData}>Сохранить</SaveButton>
-            </ModalCourse>
+            </ModalCourse> */}
+
+            <Modal show={isModalOpen} closeModal={closeModal} handleInputChange={handleInputChange} newCourse={newCourse} saveData={saveData} TextModal={'Добавить курс'}>
+                <Inputs>
+                    <InputModal
+                        type="text"
+                        name="name"
+                        value={newCourse.name}
+                        onChange={handleInputChange}
+                        placeholder='Название курса'
+                    />
+                    <InputModal
+                        type="text"
+                        name="teacher"
+                        value={newCourse.teacher}
+                        onChange={handleInputChange}
+                        placeholder='Фио преподавателя'
+                    />
+                    <InputModal
+                        type="text"
+                        name="period"
+                        value={newCourse.period}
+                        onChange={handleInputChange}
+                        placeholder='Eще что-то'
+                    />
+                </Inputs>
+            </Modal>
             {subjectsData.map((subject, index) => (
                 <CoursesSubject
                     key={index}
