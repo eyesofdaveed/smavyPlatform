@@ -8,6 +8,76 @@ const errorHandler = require('../middleware/errorHandler');
 const student = new ApiOptimizer(Students);
 const modelName = 'Student';
 
+/**
+ * @swagger
+ * /students:
+ *   get:
+ *     summary: Get students
+ *     tags: [Students]
+ *     parameters:
+ *       - in: query
+ *         name: firstName
+ *         schema:
+ *           type: string
+ *         description: Filter students by firstName
+ *       - in: query
+ *         name: lastName
+ *         schema:
+ *           type: string
+ *         description: Filter students by lastName
+ *       - in: query
+ *         name: email
+ *         schema:
+ *           type: string
+ *         description: Filter students by email
+ *       - in: query
+ *         name: group
+ *         schema:
+ *           type: string
+ *         description: Filter students by group
+ *       - in: query
+ *         name: course
+ *         schema:
+ *           type: string
+ *         description: Filter students by course
+ *       - in: query
+ *         name: page
+ *         schema:
+ *           type: integer
+ *         description: Page number
+ *       - in: query
+ *         name: take
+ *         schema:
+ *           type: integer
+ *         description: Number of students to take per page
+ *     responses:
+ *       200:
+ *         description: Students retrieved successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/Student'
+ *             example:
+ *               data:
+ *                 - id: "12345"
+ *                   firstName: "John"
+ *                   lastName: "Doe"
+ *                   email: "john@example.com"
+ *                   group: "3F"
+ *                   course: "Learning React"
+ *                 - id: "67890"
+ *                   firstName: "Jane"
+ *                   lastName: "Doe"
+ *                   email: "jane@example.com"
+ *                   group: "3D"
+ *                   course: "Learning Node"
+ *               message: "Успешно получено"
+ *       400:
+ *         description: Bad request
+ */
+
 // get all done
 router.route('/').get(async (req, res) => {
   try {
@@ -45,6 +115,86 @@ router.route('/add').post(async (req, res) => {
     errorHandler(err, req, res);
   }
 });
+
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     Student:
+ *       type: object
+ *       properties:
+ *         id:
+ *           type: string
+ *         firstName:
+ *           type: string
+ *         lastName:
+ *           type: string
+ *         email:
+ *           type: string
+ *         group:
+ *           type: string
+ *         course:
+ *           type: string
+ */
+
+/**
+ * @swagger
+ * /students/{studentId}:
+ *   put:
+ *     summary: Update student by ID
+ *     tags: [Students]
+ *     parameters:
+ *       - in: path
+ *         name: studentId
+ *         required: true
+ *         type: string
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               id:
+ *                 type: string
+ *               firstName:
+ *                 type: string
+ *               lastName:
+ *                 type: string
+ *               email:
+ *                 type: string
+ *               group:
+ *                 type: string
+ *               course:
+ *                 type: string
+ *           examples:
+ *             example1:
+ *               value:
+ *                 id: "12345"
+ *                 firstName: "John"
+ *                 lastName: "Doe"
+ *                 email: "john@example.com"
+ *                 group: "3F"
+ *                 course: "Learning React"
+ *     responses:
+ *       200:
+ *         description: Student updated successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Student'
+ *             example:
+ *               data:
+ *                 id: "12345"
+ *                 firstName: "John"
+ *                 lastName: "Doe"
+ *                 email: "john@example.com"
+ *                 group: "3F"
+ *                 course: "Learning React"
+ *               message: "Успешно сохранено"
+ *       400:
+ *         description: Bad request
+ */
 
 // Update student
 router.route('/:id').put(async (req, res) => {
