@@ -31,6 +31,10 @@ const options = {
   },
   apis: ['routes/*.js'], // Укажите путь к вашим файлам маршрутов
 };
+const corsConfig = {
+  origin: true,
+  credentials: true,
+};
 
 const specs = swaggerJsdoc(options);
 
@@ -50,8 +54,8 @@ app.use(logger);
 app.use(express.json());
 app.use(helmet());
 app.use(morgan('common'));
-app.use(cors());
-app.options('*', cors());
+app.use(cors(corsConfig));
+app.options('*', cors(corsConfig));
 app.use(cookieParser());
 
 app.use('/register', registerRoute);
