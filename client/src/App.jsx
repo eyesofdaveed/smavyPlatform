@@ -14,10 +14,7 @@ const App = () => {
   useEffect(() => {
     const cookieExists = document.cookie.split(';').some((item) => item.trim().startsWith('accessToken='));
     
-    if(!cookieExists ){
-      navigate('/login')
-    }
-    else{
+    if(cookieExists ){
       dispatch(setCookie())
     }
   
