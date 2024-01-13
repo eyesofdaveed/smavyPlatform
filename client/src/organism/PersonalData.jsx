@@ -133,7 +133,6 @@ export const PersonalData = () => {
               >
                 <option value="Женский">Женский</option>
                 <option value="Мужской">Мужской</option>
-                <option value="Другое">Другое</option>
               </select>
             </ValueBackround>
           </Flexbox>
