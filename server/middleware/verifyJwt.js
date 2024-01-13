@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken');
  */
 const verifyJwt = (req, res, next) => {
   try {
-    const accessToken = req.header('Authorization');
+    const accessToken = req.header.authorization.split(' ')[1];
     if (!accessToken) {
       return res.status(401).json({ message: 'JWT required.' });
     }
