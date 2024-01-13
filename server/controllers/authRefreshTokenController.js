@@ -10,12 +10,13 @@ const handleRefreshToken = async (req, res) => {
     }
     const email = user.email
     const firstName = user.firstName
+    const lastName = user.lastName
+    const role = user.role
 
   // Проверяем валидность refreshToken и его срок действия
   try {
     jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET);
-    console.log(jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET), 19, )
-    const accessToken = generateAccessToken(email, firstName)
+    const accessToken = generateAccessToken(email, firstName, lastName, role)
     res.json({
         accessToken,
         refreshToken,
@@ -24,8 +25,8 @@ const handleRefreshToken = async (req, res) => {
   } catch (error) {
     if (error.name === 'TokenExpiredError') {
       // Если refreshToken истек, генерируем новый refreshToken и accessToken
-      const newRefreshToken = generateRefreshToken(email);
-      const newAccessToken = generateAccessToken(email, firstName);
+      const newRefreshToken = generateRefreshToken(email, firstName, lastName, role);
+      const newAccessToken = generateAccessToken(email, firstName, lastName, role);
 
       user.refreshToken = newRefreshToken;
       await user.save();
@@ -40,29 +41,37 @@ const handleRefreshToken = async (req, res) => {
   }
 };
 
-function generateAccessToken(email, firstName)
+function generateAccessToken(email, firstName, lastName, role)
 {
-    const accessToken = jwt.sign(
+  return jwt.sign(
         {
           UserInfo: {
             email,
             firstName,
+            role,
+            lastName
           },
         },
         process.env.ACCESS_TOKEN_SECRET,
         { expiresIn: '1h' },
       );
-      return accessToken;
 }
 
-function generateRefreshToken(email)
+function generateRefreshToken(email, firstName, lastName, role)
 {
-    const accessToken = jwt.sign(
-        { email: email },
+    const refreshToken = jwt.sign(
+      {
+        UserInfo: {
+          email,
+          firstName,
+          role,
+          lastName
+        },
+      },
       process.env.REFRESH_TOKEN_SECRET,
       { expiresIn: '365d' },
       );
-      return accessToken;
+      return refreshToken;
 }
 
 module.exports = handleRefreshToken;
