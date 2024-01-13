@@ -5,12 +5,11 @@ const jwt = require('jsonwebtoken');
  */
 const verifyJwt = (req, res, next) => {
   try {
-    const accessToken = req.header.authorization.split(' ')[1];
-    if (!accessToken) {
-      return res.status(401).json({ message: 'JWT required.' });
-    }
+    console.log(req.header('Authorization'), 8)
+    const accessToken = req.header('Authorization');
 
-    const jwtToken = accessToken.replace('Bearer=', '');
+    const jwtToken = accessToken.replace('Bearer ', '');
+    console.log(jwtToken, 15);
     jwt.verify(jwtToken, process.env.ACCESS_TOKEN_SECRET, (error, decoded) => {
       if (error) {
         return res.status(401).json({ message: 'Invalid token.' });

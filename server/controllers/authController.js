@@ -46,14 +46,9 @@ const handleLogin = async (req, res) => {
     // Saving refreshToken with current user
     foundUser.refreshToken = refreshToken;
     await foundUser.save();
-
-     res.cookie('Bearer', accessToken, {
-       httpOnly: true,
-       sameSite: 'None',
-       secure: true,
-       maxAge: 24 * 60 * 60 * 1000,
-     });
-    res.json({
+    res.setHeader("Set-Cookie", `Bearer=${accessToken}`);
+    res.setHeader('Access-Control-Allow-Credentials', 'true');
+    res.status(200).send({
       accessToken,
       refreshToken,
       success: true,
