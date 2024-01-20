@@ -5,10 +5,11 @@ const jwt = require('jsonwebtoken');
  */
 const verifyJwt = (req, res, next) => {
   try {
-    console.log(req.header('Authorization'), 8)
-    const accessToken = req.header('Authorization');
+    // console.log(req.header('Authorization'), 8)
+    // const accessToken = req.header('Authorization');
 
-    const jwtToken = accessToken.replace('Bearer ', '');
+    // const jwtToken = accessToken.replace('Bearer ', '');
+    const jwtToken =req.cookies.Bearer;
     console.log(jwtToken, 15);
     jwt.verify(jwtToken, process.env.ACCESS_TOKEN_SECRET, (error, decoded) => {
       if (error) {
