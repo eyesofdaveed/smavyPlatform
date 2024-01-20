@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { baseApi, API_METHODS } from '@api'
 
 import { CoursesSubject, Text, Input } from '@atoms';
 
@@ -15,7 +16,7 @@ const PageWrapper = styled.div`
     }
 `;
 
-const AddButton = styled.button`
+export const AddButton = styled.button`
     width: 50px;
     height: 50px;
     position: absolute;
@@ -150,7 +151,14 @@ const CoursesPage = () => {
         }));
     };
 
-    const saveData = () => {
+    const saveData = async () => {
+      try {
+        const response = await baseApi('assignments', API_METHODS.GET);
+        console.log(response)
+      } catch (error) {
+        console.log(error);
+      }
+
         const updatedSubjectsData = [...subjectsData, newCourse];
         closeModal();
         setNewCourse({

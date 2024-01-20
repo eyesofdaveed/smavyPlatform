@@ -12,7 +12,6 @@ export const authorizeUser = createAsyncThunk(
   async (formData, thunkAPI) => {
     try {
       const response = await baseApi('auth', API_METHODS.POST, formData);
-      document.cookie = `accessToken=${response.accessToken}`;
 
       return response;
     } catch (error) {
@@ -26,7 +25,6 @@ export const authSlice = createSlice({
   initialState,
   reducers: {
     logout: state => {
-      document.cookie = 'accessToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/';
       state.isAuthorized = false;
       state.user = null;
     },

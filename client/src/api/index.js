@@ -9,7 +9,10 @@ export const baseApi = async (link, method, data) => {
   switch (method) {
     case 'GET':
       try {
-        const response = await axios.get(`${baseUrl}/${link}/`);
+     
+        const response = await axios.get(`${baseUrl}/${link}/`, {
+          withCredentials: true
+        });
         console.log(response.data);
         return response.data;
       } catch (err) {
@@ -17,7 +20,8 @@ export const baseApi = async (link, method, data) => {
       }
     case 'POST':
       try {
-        const response = await axios.post(`${baseUrl}/${link}/`, data);
+        const response = await axios.post(`${baseUrl}/${link}/`, data
+        );
         return response.data;
       } catch (err) {
         console.log(err);
