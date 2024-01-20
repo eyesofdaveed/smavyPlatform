@@ -5,6 +5,8 @@ const baseUrl =
     ? import.meta.env.VITE_PROD_URL
     : import.meta.env.VITE_LOCAL_URL;
 
+    axios.defaults.withCredentials = true;
+
 export const baseApi = async (link, method, data) => {
   switch (method) {
     case 'GET':
