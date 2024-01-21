@@ -4,6 +4,7 @@ const _ = require('lodash');
 const Assignments = require('../models/Assignments');
 const ApiOptimizer = require('../api');
 const errorHandler = require('../middleware/errorHandler');
+const checkTeacher = require('../middleware/checkTeacher');
 
 const assignment = new ApiOptimizer(Assignments);
 const modelName = 'Assignment';
@@ -96,7 +97,7 @@ router.route('/:id').get(async (req, res) => {
 });
 
 // add new assignment done
-router.route('/add').post(async (req, res) => {
+router.post('/add', checkTeacher, async (req, res) => {
   try {
     const { title, description, deadline, isComplete, status } = req.body;
     const entity = { title, description, deadline, isComplete, status };
